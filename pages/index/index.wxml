@@ -1,0 +1,62 @@
+<view class="container">
+<swiper class="home-swiper" autoplay='{{true}}' interval="{{3000}}" circular='{{true}}'>
+    <swiper-item wx:for="{{home_swiper_array}}" >
+    <image src='{{item.src}}' mode='aspectFill'></image>
+    </swiper-item>
+</swiper>
+<view class="nav-bar">
+  <view class="nav-content {{current_index==0?'active':''}}" bindtap='bindTapToSwitchNav' data-index='0'>二次元</view>
+  <view class="nav-space">|</view>
+  <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>搞怪</view>
+  <view class="nav-space"bindtap='bindTapToSwitchNav'>|</view>
+  <view class="nav-content {{current_index==2?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='2'>经典</view>
+  <view class="nav-space">|</view>
+  <view class="nav-content {{current_index==3?'active':''}}" 
+ bindtap='bindTapToSwitchNav' data-index='3'>原创</view>
+</view>
+<swiper class="home-tab" current='{{current_tab}}'  bindchange="tabChange" >
+  <swiper-item wx:for='{{home_tab_array}}' >
+    <scroll-view scroll-y class='home-tab'>
+      <view class="tab_box"> 
+        
+        <view class='tab_item_box'>
+        <view class='tab_item_title'>热门实力派</view>
+        <view class='more' bindtap='bindTapToWorkDetail'>更多>></view>
+          <view class='tab_item_content' wx:for='{{item.power_content}}'>
+            <view class="img-box" bindtap='bindTapToPlayPage'>
+              <image class="img" src='{{item.src}}' mode='aspectFill'></image>
+            <image class="img-icon" src='../../mini_icon/play.png'></image>
+            </view>
+            <view class='img_title'>title</view>
+            <view class='img_descr'>date/descr</view>
+          </view>
+        <!-- </view>
+        
+        <view class='tab_item_box'> -->
+        <view class='tab_item_title'>热门偶像派</view>
+        <view class='more' bindtap='bindTapToWorkDetail'>更多>></view>
+          <view class='tab_item_content' wx:for='{{item.idol_content}}'>
+            <view class="img-box" bindtap='bindTapToPlayPage'>
+              <image class="img" src='{{item.src}}' mode='aspectFill'></image>
+              <image class="img-icon" src='../../mini_icon/play.png'></image>
+            </view>
+            <view class='img_title'>title</view>
+            <view class='img_descr'>date/descr</view>
+          </view>
+        </view>     
+      </view>
+     
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+
+<!-- 
+<button bindtap='bindTapToPlayPage'>
+点击查看作品详情
+</button>
+<button bindtap='bindTapToWorkDetail'>
+点击查看更多作品
+</button> -->
+</view>
+

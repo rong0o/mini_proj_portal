@@ -1,0 +1,3 @@
+<!--pages/userDetail/userDetail.wxml-->
+<text>用户详情页</text>
+<button bindtap='bindTapToPlayPage'>点击观看单个作品</button>

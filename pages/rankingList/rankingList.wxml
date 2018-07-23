@@ -1,0 +1,5 @@
+<!--pages/rankingList/rankingList.wxml-->
+<text>排行榜</text>
+<button bindtap='bindTapToUserDetail'>
+点击查看用户详情页
+</button>

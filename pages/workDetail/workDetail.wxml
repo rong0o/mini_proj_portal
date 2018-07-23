@@ -1,0 +1,3 @@
+<!--pages/workDetail/workDetail.wxml-->
+<text>作品集</text>
+<button bindtap='bindTapToPlayPage'>点击观看单个作品</button>

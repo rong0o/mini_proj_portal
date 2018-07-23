@@ -1,0 +1,4 @@
+<!--pages/myPage/myPage.wxml-->
+<text>个人中心</text>
+<button bindtap='bindTapToMyWorks'>我的作品</button>
+<button bindtap='bindTapMyCollect'>我的收藏</button>

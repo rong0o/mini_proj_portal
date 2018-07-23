@@ -1,0 +1,5 @@
+<!--pages/playPage/playPage.wxml-->
+<text>单个作品播放页</text>
+<button bindtap='bindTapToRecording'>
+我要配音
+</button>
