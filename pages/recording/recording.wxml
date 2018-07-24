@@ -1,1 +1,47 @@
-配音详情页
+<!--index.wxml-->
+<view class="container">
+<link href="iconfont-embedded.css" rel="stylesheet" type="text/css" /> 
+<video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" bindtimeupdate='timeupdate' controls ></video>
+
+<view>
+  <view wx:if="{{status}}">
+    <button  bindtap='startTo'>开启配音</button>
+  </view>
+  <view wx:else>
+    <view wx:for='{{list}}' wx:key='{{index}}'>
+      <view class='play-list'>
+        <view class='play-list-header'>
+          <view class='play-list-header-item'>
+            {{index+1}}/{{list.length}}
+          </view>
+          <view class='play-list-header-item'>
+            <button class='play-list-header-btn' bindtap='playOriginalAudio'  data-index='{{index}}'>播放原音</button>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view class='play-list-sentence'>
+          {{item.sentence}}
+        </view>
+        <view class='play-list-chinese'>
+          {{item.chinese}}
+        </view>
+        <view class='play-list-footer'>
+          <view class='play-list-footer-progress'>
+            <progress percent="{{item.slider2change}}"  />
+          </view>
+          <view class='icon'  bindtap='playRecord'  data-index='{{index}}'>
+            <image src='play.png'></image>
+          </view>
+          <view class='icon' bindtap='record'  data-index='{{index}}'>
+            <image src='voice.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class='play-list-header-btn' bindtap='mergeAll' disabled='{{isdisabled}}'>预览配音</button>
+  </view>
+</view>
+
+
