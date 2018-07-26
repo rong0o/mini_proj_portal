@@ -8,7 +8,7 @@ const urls = [] //存放录音微信文件的路径
 const recorderManagers = [] //存放录音机
 const textUrl = 'http://e228e498.ngrok.io'
 let innerVideoContext, isrecording
-var resurl
+var resurl, i1 = 0
 
 Page({
   //存放多个音频上下文，对应多个句子
@@ -22,9 +22,9 @@ Page({
   data: {
     urls: '',
     list: [
-      { sentence: 'hello', chinese: '你好', slider2change:0, currentTime: 0, duration: 3}/*,
+      { sentence: 'hello', chinese: '你好', slider2change:0, currentTime: 0, duration: 3},
       { sentence: 'you', chinese: '你', slider2change: 0, currentTime: 8, duration: 3 },
-      { sentence: 'a', chinese: '113', slider2change: 0, currentTime: 13, duration: 3 }*/
+      { sentence: 'a', chinese: '113', slider2change: 0, currentTime: 13, duration: 3 }
     ],
     recording:{
       state:false,
@@ -156,6 +156,9 @@ Page({
       if(times.length && !this.data.stack){
         const time = times.shift()
         this.data.stack = time
+        const ctx = wx.createInnerAudioContext()
+        ctx.autoplay = true
+        ctx.src = urls[i1++]
       }
       if (this.data.stack) {
         const duration = this.data.stack.duration
@@ -247,6 +250,7 @@ Page({
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
+    i1 = 0
   },
   publish(){
     //发布，post所有的list
