@@ -1,4 +1,4 @@
-
+// pages/rankingList/rankingList.js
 Page({
 
   /**
@@ -8,14 +8,11 @@ Page({
     user1: '/mini_icon/li_avatar.png'
   },
 
-  yellow: function (e) {
+  green:function(e){
     wx.navigateTo({
-      url: '../rankingList/rankingList',
+      url: '../charmRank/charmRank',
     })
     console.log(e)
   },
-
-
-
 
 })
