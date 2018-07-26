@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/rankingList2/rankingList2",
     "pages/rankingList/rankingList",
+    
+  
     "pages/myPage/myPage",
     "pages/recording/recording",
     "pages/userDetail/userDetail",
