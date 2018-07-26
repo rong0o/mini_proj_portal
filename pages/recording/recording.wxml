@@ -1,11 +1,20 @@
 <!--index.wxml-->
 <view class="container">
 <link href="iconfont-embedded.css" rel="stylesheet" type="text/css" /> 
-<video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" bindtimeupdate='timeupdate' controls ></video>
+<video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
 
 <view>
   <view wx:if="{{status}}">
     <button  bindtap='startTo'>开启配音</button>
+  </view>
+  <view wx:elif='{{isshare}}'>
+    <view bindtap='preview'>预览</view>
+    <view class='share-total'>统计</view>
+    <view class='share-footer'>
+      <view class='share-footer-item'><button bindtap='recordAgain'>重配</button></view>
+      <view class='share-footer-item share-footer-item-publish'><button bindtap='publish'>我要发布</button></view>
+      <view class='share-footer-item'><button bindtap='toSave'>保存</button></view>
+    </view>
   </view>
   <view wx:else>
     <view wx:for='{{list}}' wx:key='{{index}}'>
@@ -39,9 +48,10 @@
         </view>
       </view>
     </view>
+    <button class='play-list-header-btn' bindtap='mergeAll' disabled='{{isdisabled}}'>{{content}}   </button>
   </view>
-  <button class='play-list-header-btn' bindtap='mergeAll' disabled='{{isdisabled}}'>预览配音</button>
   </view>
+  
 </view>
 
 
