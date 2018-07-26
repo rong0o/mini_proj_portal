@@ -1,1 +1,81 @@
-/* pages/recording/recording.wxss */
+/**index.wxss**/
+@import "./iconfont-embedded.wxss";
+page{
+  background: rgba(250, 243, 243, 0.5);
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.play-list{
+  width:18rem;
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+
+.play-list-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.play-list-header-item{
+
+  vertical-align: bottom;
+}
+.play-list-header-btn{
+  background: #eee;
+  width: 7rem;
+  height: 1.8rem;
+  vertical-align: bottom;
+  line-height: 1.8rem;
+}
+.play-list-chinese{
+  color: #aaa;
+}
+.play-list-footer image {
+  width: 20px; 
+  height: 20px;
+
+}
+.icon,.play-list-footer-progress{
+  display: inline-block;
+  margin: 2px;
+  height: 10px;
+}
+.play-list-footer-progress{
+  width: 80%;
+}
+.share-footer{
+  position: absolute;
+  bottom: 0;
+  width:100vw;
+  left: 0;
+  margin: auto;
+  display: flex;
+  justify-content: space-around
+}
+
+.share-footer-item{
+  display: inline-block;
+  text-align: center
+}
+.share-footer-item-publish {
+  background: rgb(185, 144, 10)
+}
