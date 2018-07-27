@@ -9,12 +9,16 @@
       <image class='user2' src='{{user1}}'></image> 
 
 
-      <block wx:if="{{isCharm}}">
-       <text class='text1' style=''>{{charmContent1}}</text>
+      <block wx:if="{{isCharm & isClickUser1}}">
+      
+          <text class='text1' style=''>{{charmContent1}}</text>
+       
       </block>
 
-      <block wx:if="{{isStrength}}">
+      <block wx:if="{{isStrength & isClickUser1}}">
         <text class='text1' style=''>{{stengthContent1}}</text>
       </block>
+
+
   </view>
 </view>
