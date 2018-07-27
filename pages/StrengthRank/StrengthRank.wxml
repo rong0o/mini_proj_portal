@@ -1,9 +1,0 @@
-<!--pages/rankingList/rankingList.wxml-->
-<button class='btny'  bindtap='yellow' size='mini' >实力派</button>
-<button class='btng'  bindtap="green" size='mini' >偶像派</button>
-<view class='wrap'>
-  <view class='img-wrap'>
-      <image class='user1' src='{{user1}}'></image> 
-      <image class='user2' src='{{user1}}'></image> 
-  </view>
-</view>
