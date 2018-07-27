@@ -12,25 +12,25 @@ var resurl, i1 = 0
 
 Page({
   //存放多个音频上下文，对应多个句子
-  onLoad(){
+  onLoad() {
     innerVideoContext = wx.createVideoContext('myVideo', this)
     innerVideoContext.seek(0)
-    this.data.list.forEach(x=>{
+    this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
   },
   data: {
     urls: '',
     list: [
-      { sentence: 'hello', chinese: '你好', slider2change:0, currentTime: 0, duration: 3},
+      { sentence: 'hello', chinese: '你好', slider2change: 0, currentTime: 0, duration: 3 },
       { sentence: 'you', chinese: '你', slider2change: 0, currentTime: 8, duration: 3 },
       { sentence: 'a', chinese: '113', slider2change: 0, currentTime: 13, duration: 3 }
     ],
-    recording:{
-      state:false,
-      currentTime:0,
+    recording: {
+      state: false,
+      currentTime: 0,
       duration: 0,
-      index:0
+      index: 0
     },
     content: '完成配音',
     status: true,
@@ -41,7 +41,7 @@ Page({
     stack: null,
     isshare: false
   },
-  startTo(){
+  startTo() {
     this.setData({
       status: false
     })
@@ -68,12 +68,12 @@ Page({
   stop: function (index) {
     //第index个句子录音结束
     recorderManager.stop();
-    
+
     recorderManager.onStop((res) => {
       urls[index] = res.tempFilePath;
       console.log('停止录音', res.tempFilePath)
       resurl = res.tempFilePath
-      setTimeout(()=>{
+      setTimeout(() => {
         wx.uploadFile({
           url: textUrl + '/upload', //线上可用非localhost的域名
           filePath: resurl, //路径
@@ -96,21 +96,21 @@ Page({
             console.log('falied', res)
           }
         });
-      },0)
+      }, 0)
 
     })
 
     //控制合并全部按钮是否可以点击
     let count = 0
-    urls.forEach(url=>{
-      url && count ++
+    urls.forEach(url => {
+      url && count++
     })
     this.count = count
-    if(this.count === this.data.list.length-1){
-      this.setData({ isdisabled : false})
+    if (this.count === this.data.list.length - 1) {
+      this.setData({ isdisabled: false })
     }
-    
-   
+
+
   },
   play: function (i) {
     /*wx.request({
@@ -134,7 +134,7 @@ Page({
       }
     })*/
     //播放第i个句子的录音
-    if (!urls[i]){
+    if (!urls[i]) {
       return
     }
     innerAudioContexts[i] = wx.createInnerAudioContext()
@@ -153,7 +153,7 @@ Page({
     //如果是合并全部的时候
     if (this.data.ismerging) {
       const times = this.data.times
-      if(times.length && !this.data.stack){
+      if (times.length && !this.data.stack) {
         const time = times.shift()
         this.data.stack = time
         const ctx = wx.createInnerAudioContext()
@@ -166,27 +166,28 @@ Page({
         const endTime = duration + currentTime
         //如果在录音音频的播放范围，原视频静音
         if (curTime >= currentTime && curTime <= endTime) {
+          console.log(1211123123)
           this.setData({ ismuted: true })
-        } else if (curTime > endTime){
+        } else if (curTime > endTime) {
           this.setData({ ismuted: false, stack: null })
         }
       }
     }
     //播放原音状态，视频的自动跳转
-    if (this.data.recording.state){
+    if (this.data.recording.state) {
       const percent = 100 * (curTime - this.data.recording.currentTime) / this.data.recording.duration
       this.data.list[this.data.recording.index].slider2change = percent
       this.setData({
         list: this.data.list
       })
       if (curTime >= this.data.recording.currentTime + this.data.recording.duration) {
-        this.data.recording.state = false;  
+        this.data.recording.state = false;
         innerVideoContext.seek(this.data.recording.currentTime)
         innerVideoContext.pause();
       }
     }
   },
-  playOriginalAudio (e){
+  playOriginalAudio(e) {
     //播放哪一个句子的原音
     let list = this.data.list;
     const index = e.currentTarget.dataset.index;
@@ -197,33 +198,33 @@ Page({
     this.data.recording.index = index;
     innerVideoContext.play();
   },
-  playRecord (e) {     
+  playRecord(e) {
     //播放哪一个句子的录音
     const i = e.currentTarget.dataset.index
     this.play(i)
   },
-  record(e){
+  record(e) {
     //录音 
-    if(isrecording){
+    if (isrecording) {
       return;
     }
     isrecording = true
     const index = e.currentTarget.dataset.index;
-    const delay = this.data.list[index].duration*1000;
-    setTimeout(()=>{
+    const delay = this.data.list[index].duration * 1000;
+    setTimeout(() => {
       this.start()
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       isrecording = false
       this.stop(index)
-    },delay)
+    }, delay)
   },
   //合并全部
   //请求统计信息
-  mergeAll(){
-    this.setData({ isshare: true, content: '播放配音'})
+  mergeAll() {
+    this.setData({ isshare: true, content: '播放配音' })
   },
-  preview () {
+  preview() {
     //预览
     this.setData({
       ismerging: true
@@ -234,7 +235,7 @@ Page({
     innerVideoContext.seek(0)
     innerVideoContext.autoplay = true
   },
-  recordAgain(){
+  recordAgain() {
     //重新配音
     this.setData({
       status: false,
@@ -252,10 +253,10 @@ Page({
     })
     i1 = 0
   },
-  publish(){
+  publish() {
     //发布，post所有的list
   },
-  toSave(){
+  toSave() {
     //保存，post所有的list
 
   }

@@ -10,8 +10,22 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          console.log(res.code)
+          //发起网络请求
+          wx.request({
+            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx9e946873f852c1cf&secret=a2eb8c22f96238ad991bf929d75806f5&js_code=' + res.code + '&grant_type=authorization_code',
+            success: function (res) {
+              console.log(res.data)
+              wx.setStorageSync('wechatid', res.openid)
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {

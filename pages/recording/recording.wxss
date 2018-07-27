@@ -1,5 +1,5 @@
 /**index.wxss**/
-/* @import "./iconfont-embedded.wxss"; */
+@import "./iconfont-embedded.wxss";
 page{
   background: rgba(250, 243, 243, 0.5);
 }
