@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/charmRank/charmRank",
+    "pages/index/index",
+    
     "pages/myPage/myPage",
     "pages/recording/recording",
     "pages/userDetail/userDetail",

@@ -41,6 +41,13 @@ page{
   width: 30px;
 }
 
+.text1{
+  position: absolute;
+  top:5%;
+  left:50%;
+  color: red;
+}
+
 
 /* .img-wrap{
   position: absolute;
