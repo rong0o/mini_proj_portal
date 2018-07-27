@@ -1,26 +1,15 @@
 // pages/myPage/myPage.js
+var app=getApp();
+var host=app.globalData.host;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    home_swiper_array: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png'}],
+    home_swiper_array: [],
     current_index:0,
-    home_tab_array:[{
-      power_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-      idol_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-    },{
-        power_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-        idol_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-    },{
-        power_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-        idol_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-    },{
-        power_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }],
-        idol_content: [{ src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }, { src: 'http://ojg9qyra6.bkt.clouddn.com/1.png' }]
-      }],
-      current_tab:0,
+    home_tab_array:[],
+    current_tab:0,
 
   },
   bindTapToPlayPage:function(){
@@ -28,9 +17,12 @@ Page({
       url: '../playPage/playPage',
     })
   },
-  bindTapToWorkDetail: function () {
+  //点击更多
+  bindTapToWorkDetail: function (e) {
+    const type=e.target.dataset.type+1;
+    const hot=e.target.dataset.hot;
     wx.navigateTo({
-      url: '../workDetail/workDetail',
+      url: '../workDetail/workDetail?type=' + type+'&hot='+hot,
     })
   },
   bindTapToSwitchNav:function(e){
@@ -51,7 +43,48 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //请求轮播图数据
+     wx.request({
+       url: host+"swiper",
+       method:"POST",
+       header: {
+         'content-type': 'application/json' 
+       },
+       success: (res) =>{
+         if(res.data.error_code==0){
+           this.setData({
+             home_swiper_array: res.data.data
+           });
+           console.log(res.data.data);
+         }else
+            console.log("ERROR:error_code"+res.data.error_code);
+       },
+       fail:()=>{
+         console.log("swiper data error");
+       }
+     });
+     //请求首页图片
+     wx.request({
+       url: host+'mainpage',
+       method: "POST",
+       data:{
+         type:5,
+         num:4,
+         token:6
+       },
+       header: {
+         'content-type': 'application/json' // 默认值
+       },
+       success:(res)=>{
+         if (res.data.error_code == 0) {
+           this.setData({
+             home_tab_array: res.data.data
+           });
+           console.log(res.data.data);
+         }else 
+          console.log("ERROR:error_code" + res.data.error_code);
+       }
+     })
   },
 
   /**

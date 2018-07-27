@@ -9,7 +9,7 @@
 .nav-content{
   flex:1;
   text-align: center;
-  border-radius: 50%;
+  border-radius: 8px;
   height: 25px;
   line-height: 25px;
   margin: 2%;

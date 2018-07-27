@@ -1,0 +1,16 @@
+{
+  "error_code":0,
+  "data":[{
+    "vidioId":1,
+    "imageSrc":"http://ojg9qyra6.bkt.clouddn.com/1.png"
+  },{
+    "vidioId": 2,
+    "imageSrc": "http://ojg9qyra6.bkt.clouddn.com/1.png"
+  },{
+    "vidioId": 3,
+    "imageSrc": "http://ojg9qyra6.bkt.clouddn.com/1.png"
+  },{
+    "vidioId": 4,
+    "imageSrc": "http://ojg9qyra6.bkt.clouddn.com/1.png"
+  }]
+}
