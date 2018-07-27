@@ -166,6 +166,7 @@ Page({
         const endTime = duration + currentTime
         //如果在录音音频的播放范围，原视频静音
         if (curTime >= currentTime && curTime <= endTime) {
+          console.log(1211123123)
           this.setData({ ismuted: true })
         } else if (curTime > endTime) {
           this.setData({ ismuted: false, stack: null })
