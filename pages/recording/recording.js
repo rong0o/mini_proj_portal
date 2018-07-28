@@ -6,7 +6,7 @@ const recorderManager = wx.getRecorderManager()
 const innerAudioContexts = [] //存放音频上下文
 const urls = [] //存放录音微信文件的路径
 const recorderManagers = [] //存放录音机
-const textUrl = 'http://134.175.160.37/'
+const textUrl = 'http://134.175.160.37'
 const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
@@ -76,14 +76,14 @@ Page({
   stop: function (index) {
     //第index个句子录音结束
     recorderManager.stop();
-
+    const list = this.data.list;
     recorderManager.onStop((res) => {
       urls[index] = res.tempFilePath;
       console.log('停止录音', res.tempFilePath)
       resurl = res.tempFilePath
       setTimeout(() => {
         wx.uploadFile({
-          url: textUrl + '/uploadaudio', //线上可用非localhost的域名
+          url: textUrl + '/saveVoice', //线上可用非localhost的域名
           filePath: resurl, //路径
           name: 'file',
           method: 'POST',
@@ -96,6 +96,10 @@ Page({
             name: 'testname',
             userId: 94,
             token: 'ooBkB5S0uzPoJ4BlTytIbs1AVbxU',
+            startTime: list[index].currentTime,
+            elapsedTime: list[index].duration,
+            index: index + '',
+            vedioId: 27
           },
           success: function (res) {
             console.log('ok', res)
