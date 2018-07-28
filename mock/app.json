@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/charmRank/charmRank",
+    "pages/myPage2/myPage",
+    "pages/recording/recording",
+    "pages/userDetail/userDetail",
+    "pages/workDetail/workDetail",
+    "pages/playPage/playPage",
+    "pages/userPlayPage/userPlayPage"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "配音大PK",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#FDD65D",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "mini_icon/home.png",
+        "selectedIconPath": "mini_icon/home_selected.png"
+      },
+      {
+        "pagePath": "pages/charmRank/charmRank",
+        "text": "排行榜",
+        "iconPath": "mini_icon/ranking.png",
+        "selectedIconPath": "mini_icon/ranking_selected.png"
+      },
+      {
+        "pagePath": "pages/myPage2/myPage",
+        "text": "我的",
+        "iconPath": "mini_icon/my.png",
+        "selectedIconPath": "mini_icon/my_selected.png"
+      }
+    ]
+  }
+}

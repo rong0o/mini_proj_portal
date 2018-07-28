@@ -2,16 +2,17 @@
  * 录音模块
  * create by wooyhe
  */
+
 const recorderManager = wx.getRecorderManager()
 const innerAudioContexts = [] //存放音频上下文
 const urls = [] //存放录音微信文件的路径
 const recorderManagers = [] //存放录音机
-const textUrl = 'http://134.175.160.37/'
+const textUrl = 'http://134.175.160.37'
 const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
 
-let innerVideoContext, isrecording, condition
+let innerVideoContext, isrecording
 let resurl, i1 = 0
 let _ = (t, arr) => arr.some(__ => (
   __.currentTime - 0.4 <= t &&
@@ -36,7 +37,7 @@ Page({
       { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524},
       { sentence: 'a', chinese: '我的心里好难过', slider2change: 0, currentTime: 9.112, duration: 1.414},
       { sentence: 'a', chinese: '我有什么资格可以去追问他呢', slider2change: 0, currentTime: 12.585, duration: 2.145},
-      { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.68, duration: 2.32},
+      { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.38, duration: 2.32},
       { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
       { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
       { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
@@ -57,7 +58,7 @@ Page({
   start: function () {
     const options = {
       duration: 10000,//指定录音的时长，单位 ms
-      sampleRate: 16000,//采样率
+      sampleRate: 22050,//采样率
       numberOfChannels: 1,//录音通道数
       encodeBitRate: 96000,//编码码率
       format: 'mp3',//音频格式，有效值 aac/mp3
@@ -76,14 +77,14 @@ Page({
   stop: function (index) {
     //第index个句子录音结束
     recorderManager.stop();
-
+    const list = this.data.list;
     recorderManager.onStop((res) => {
       urls[index] = res.tempFilePath;
       console.log('停止录音', res.tempFilePath)
       resurl = res.tempFilePath
       setTimeout(() => {
         wx.uploadFile({
-          url: textUrl + '/uploadaudio', //线上可用非localhost的域名
+          url: textUrl + '/saveVoice', //线上可用非localhost的域名
           filePath: resurl, //路径
           name: 'file',
           method: 'POST',
@@ -96,6 +97,10 @@ Page({
             name: 'testname',
             userId: 94,
             token: 'ooBkB5S0uzPoJ4BlTytIbs1AVbxU',
+            startTime: list[index].currentTime,
+            elapsedTime: list[index].duration,
+            index: index + '',
+            vedioId: 27
           },
           success: function (res) {
             console.log('ok', res)
@@ -107,16 +112,6 @@ Page({
       }, 0)
 
     })
-
-    //控制合并全部按钮是否可以点击
-    // let count = 0
-    // urls.forEach(url => {
-    //   url && count++
-    // })
-    // this.count = count
-    // if (this.count === this.data.list.length - 1) {
-    //   this.setData({ isdisabled: false })
-    // }
 
 
   },
@@ -154,19 +149,7 @@ Page({
       } else {
         this.setData({ ismuted: false, stack: null })
       }
-      /*
-      if (this.data.stack) {
-        const duration = this.data.stack.duration
-        const currentTime = this.data.stack.currentTime
-        const endTime = duration + currentTime 
-        //如果在录音音频的播放范围，原视频静音
-        if (curTime >= currentTime - 0.4 && curTime <= endTime + 0.4) {
-          this.setData({ ismuted: true })
-        } else if (curTime > endTime + 0.4) {
-          this.setData({ ismuted: false, stack: null })
-        }
-      }
-      */
+    
     }
     //播放原音状态，视频的自动跳转
     if (this.data.recording.state) {
@@ -175,7 +158,6 @@ Page({
       this.setData({
         list: this.data.list
       })
-      console.log(_(t, this.data.lsit))
       if (curTime >= this.data.recording.currentTime + this.data.recording.duration) {
         this.data.recording.state = false;
         innerVideoContext.seek(this.data.recording.currentTime)
@@ -213,7 +195,7 @@ Page({
     setTimeout(() => {
       isrecording = false
       this.stop(index)
-    }, delay + 800)
+    }, delay + 500)
   },
   //合并全部
   //请求统计信息
@@ -229,6 +211,7 @@ Page({
   },
   preview() {
     //预览
+    console.log(123)
     this.setData({
       ismerging: true,
       ismuted: true
@@ -237,6 +220,7 @@ Page({
     this.data.times = [...lists]
 
     innerVideoContext.autoplay = true
+    innerVideoContext.play()
     innerVideoContext.seek(0)
   },
   recordAgain() {
@@ -260,7 +244,7 @@ Page({
   },
   publish() {
     //发布，post所有的list
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../index/index'
     })
   },
@@ -270,9 +254,9 @@ Page({
   }
 
 })
-
+/*
 wx.request({
-  url: 'http://134.175.160.37/mainpage',
+  url: 'http://134.175.160.37/saveVoice',
   method:'POST',
   header:{
     'content-type' : 'application/json'
@@ -283,9 +267,12 @@ wx.request({
     token:'adfsdfsdf'
   },
   success(res){
+    console.log(666)
     console.log(res)
   },
   fail(res){
     console.log(res)
   }
-})
+})*/
+
+

@@ -1,6 +1,6 @@
 <view class="container">
 <swiper class="home-swiper" autoplay='{{true}}' interval="{{3000}}" circular='{{true}}'>
-    <swiper-item wx:for="{{home_swiper_array}}" >
+    <swiper-item wx:for="{{home_swiper_array}}" data-swiperindex="{{index}}" bindtap="onTapSwiper" >
     <image src='{{host}}{{item.imageSrc}}' mode='aspectFill'></image>
     </swiper-item>
 </swiper>
@@ -22,8 +22,8 @@
         <view class='tab_item_box'>
         <view class='tab_item_title'>最热</view>
         <view class='more' bindtap='bindTapToWorkDetail' data-type='{{tab_index}}' data-hot='{{true}}'>更多>></view>
-          <view class='tab_item_content' wx:for='{{tab_item.hot}}' wx:for-item="img_item">
-            <view class="img-box" bindtap='bindTapToPlayPage'>
+          <view class='tab_item_content' wx:for='{{tab_item.hot}}' wx:for-item="img_item"  bindtap='bindTapToPlayPage' data-imgindex="{{index}} " data-tabindex="{{tab_index}}" data-isHot="{{true}}">
+            <view class="img-box">
               <image class="img" src='{{host}}{{img_item.imageSrc}}' ></image>
             <image class="img-icon" src='../../mini_icon/play.png'></image>
             </view>
@@ -35,8 +35,8 @@
         <view class='tab_item_box'> -->
         <view class='tab_item_title'>最新</view>
         <view class='more' bindtap='bindTapToWorkDetail' data-type='{{tab_index}}'  data-hot='{{false}}'>更多>></view>
-          <view class='tab_item_content' wx:for='{{tab_item.new}}'  wx:for-item="img_item">
-            <view class="img-box" bindtap='bindTapToPlayPage'>
+          <view class='tab_item_content' wx:for='{{tab_item.new}}'  wx:for-item="img_item" bindtap='bindTapToPlayPage' data-imgindex="{{index}} " data-tabindex="{{tab_index}}" data-isHot="{{false}}">
+            <view class="img-box">
               <image class="img" src='{{host}}{{img_item.imageSrc}}' ></image>
               <image class="img-icon" src='../../mini_icon/play.png'></image>
             </view>

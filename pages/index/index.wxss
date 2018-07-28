@@ -3,7 +3,7 @@ image{
   height: 100%;
 }
 .home-swiper{
-  height: 120px;
+  height: 150px;
 }
 .nav-bar{
   display:flex;

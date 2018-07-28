@@ -3,15 +3,16 @@ var app = getApp();
 var host = app.globalData.host;
 var token = app.globalData.token;
 var userId = app.globalData.id;
+console.log(userId);
 var comment_page=1;
-var audioId=0;
+var audioId=27;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     comment: [],
-    type:0,
+    isSelf:0,
     isLike: false,
     isCollect: false,
     collect_text: "收藏",
@@ -45,7 +46,7 @@ Page({
       num: 1,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
       this.setData({
         comment: res.data.data
       });
@@ -67,10 +68,11 @@ Page({
       type: like_type,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
       this.setData({
         charisma: res.data.data.charm
       });
+      console.log("点赞");
       console.log(res.data.data);
     }
     this.ajax(url, data, callback);
@@ -89,10 +91,10 @@ Page({
     var data = {
       audioId: audioId,
       userId: userId,
-      type: like_type,
+      type: collect_type,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
     }
     this.ajax(url, data, callback);
   },
@@ -111,23 +113,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    audioId=options.audioId;
-    type=options.type
+    audioId=27;//options.audioId;
+    userId = app.globalData.id;
+    var type=options.type
     //请求视频信息
     var url = host + "/audioDetail";
     var data = {
       audioId:audioId,
+      userId: userId,
       token:token,
     };
-    var callback = () => {
+    var callback = (res) => {
+      var rData=res.data.data;
       this.setData({
-        vedioScr: this.data.data.vedioScr,
-        audioScr: this.data.data.audioScr,
-        charisma: this.data.data.like,
-        power: this.data.data.score,
-        username: this.data.data.username,
-        userImage: this.data.data.userImage,
-        recordDate: this.data.data.recordDate
+        vedioScr: rData.vedioScr,
+        audioScr: rData.audioScr,
+        charisma: rData.like,
+        power: rData.score,
+        username: rData.username,
+        userImage: rData.userImage,
+        recordDate: rData.recordDate,
+        isSelf:rData.myself
       });
       console.log(res.data.data);
     }
@@ -144,7 +150,7 @@ Page({
       type: 0,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
       this.setData({
         isLike: res.data.data.like
       });
@@ -174,14 +180,14 @@ Page({
   //请求函数：
   ajax: function (url, data, callback) {
     wx.request({
-      url: host + "/audioDetail",
+      url: url,
       data: data,
       method: "POST",
       header: {
         'content-type': 'application/json'
       },
-      success: function () {
-        callback && callback();
+      success: function (res) {
+        callback && callback(res);
       },
       fail: function () {
         console.log(url + "data error");

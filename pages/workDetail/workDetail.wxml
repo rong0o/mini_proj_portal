@@ -32,4 +32,5 @@
       </view>
     </view>
   </view>
+  <view wx:if="{{noMoreWorkFlag==1}}" class="no-more-work">没有更多作品了o(╥﹏╥)o</view>
 </scroll-view>

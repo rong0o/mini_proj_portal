@@ -18,25 +18,25 @@
   },
   "tabBar": {
     "selectedColor": "#FDD65D",
-    "backgroundColor":"#ffffff",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"mini_icon/home.png",
-        "selectedIconPath":"mini_icon/home_selected.png"
+        "iconPath": "mini_icon/1.png",
+        "selectedIconPath": "mini_icon/1_ed.png"
       },
       {
         "pagePath": "pages/charmRank/charmRank",
         "text": "排行榜",
-        "iconPath": "mini_icon/ranking.png",
-        "selectedIconPath": "mini_icon/ranking_selected.png"
+        "iconPath": "mini_icon/2.png",
+        "selectedIconPath": "mini_icon/2_ed.png"
       },
       {
         "pagePath": "pages/myPage2/myPage",
         "text": "我的",
-        "iconPath": "mini_icon/my.png",
-        "selectedIconPath": "mini_icon/my_selected.png"        
+        "iconPath": "mini_icon/3.png",
+        "selectedIconPath": "mini_icon/3_ed.png"
       }
     ]
   }

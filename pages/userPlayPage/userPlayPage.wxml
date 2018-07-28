@@ -9,9 +9,9 @@
     <view class="vedio-time">{{recordDate}}</view> 
     <view class="power">实力值:{{power}}</view>
     <view class="charimas">魅力值:{{charisma}}</view>
-    <view class="comment-button" bindtap="onTapInputComment" wx:if="{{type==2}}"><image src='../../mini_icon/comment.png'></image></view>
-    <view class="iconfont icon-dianzan"  style="color:{{isLike? '#FDD65D':'#bfbfbf'}}" bindtap='onTapLike' wx:if='{{type==2}}'></view>
-    <button class="vedio-icon  iconfont icon-fenxiang" wx:if="{{type==0}}"  bindtap='onShareAppMessagege' open-type="share"></button>
+    <view class="comment-button" bindtap="onTapInputComment" wx:if="{{isSelf==0}}"><image src='../../mini_icon/comment.png'></image></view>
+    <view class="iconfont icon-dianzan"  style="color:{{isLike? '#FDD65D':'#bfbfbf'}}" bindtap='onTapLike' wx:if='{{isSelf==0}}'></view>
+    <button class="vedio-icon  iconfont icon-fenxiang" wx:if="{{isSelf==1}}"  bindtap='onShareAppMessagege' open-type="share"></button>
   </view>
 </view>
 
@@ -34,7 +34,7 @@
     </view>
   </view>
 </scroll-view>
-<view class="foot-bar clear-float" wx:if="{{type==2}}">
+<view class="foot-bar clear-float" wx:if="{{isSelf==0}}">
   <view class="collect foot-item">
     <view class="foot-icon iconfont icon-shoucang"  style="color:{{isCollect? '#FDD65D':'#bfbfbf'}}" bindtap='onTapCollect'></view>
     <view class="foot-text" >{{collect_text}}</view>
