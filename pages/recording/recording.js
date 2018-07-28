@@ -6,7 +6,7 @@ const recorderManager = wx.getRecorderManager()
 const innerAudioContexts = [] //存放音频上下文
 const urls = [] //存放录音微信文件的路径
 const recorderManagers = [] //存放录音机
-const textUrl = 'http://d0b664c6.ngrok.io'
+const textUrl = 'http://134.175.160.37/'
 const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
@@ -260,6 +260,9 @@ Page({
   },
   publish() {
     //发布，post所有的list
+    wx.navigateTo({
+      url: '../index/index'
+    })
   },
   toSave() {
     //保存，post所有的list
