@@ -1,5 +1,4 @@
 /**index.wxss**/
-
 page{
   background: rgba(250, 243, 243, 0.5);
 }
@@ -39,8 +38,8 @@ page{
 
   vertical-align: bottom;
 }
-.play-list-header-btn{
-  background: #eee;
+.play-list-header-btn,.play-list-finish-btn{
+  background: #ddd;
   width: 7rem;
   height: 1.8rem;
   vertical-align: bottom;
@@ -62,20 +61,6 @@ page{
 .play-list-footer-progress{
   width: 80%;
 }
-.share-footer{
-  position: absolute;
-  bottom: 0;
-  width:100vw;
-  left: 0;
-  margin: auto;
-  display: flex;
-  justify-content: space-around
-}
-
-.share-footer-item{
-  display: inline-block;
-  text-align: center
-}
-.share-footer-item-publish {
-  background: rgb(185, 144, 10)
+.play-list-finish-btn{
+  background: #f7c443;
 }

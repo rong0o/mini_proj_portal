@@ -1,31 +1,32 @@
 <!--pages/workDetail/workDetail.wxml-->
-<!-- <button wx:for="{{worksArray}}" wx:key="*this" style="display: block;"> {{item}} </button> -->
-<scroll-view class="work-list-content" bindscrolltolower="bindScrollToBottom" lower-threshold="50" scroll-y="true">
+
+<view wx:if="{{worksArray.length == 0}}" class="no-work">暂无作品</view>
+<scroll-view wx:else class="work-list-content" bindscrolltolower="bindScrollToBottom" lower-threshold="50" scroll-y="true">
   <view wx:for="{{worksArray}}" wx:key="*this" data-idx="{{index}}" bindtap="bindTapToAudioPage">
     <view class="work-content">
       <view class="img-content">
-        <image class="work-img" src="./img/img_test.jpg" lazy-load="true" mode="aspectFill"></image>
-        <image class="work-play-icon" src="./img/play.png">url{{item.picSrc}}</image>
+        <image class="work-img" src="{{host + item.imageSrc}}" lazy-load="true" mode="aspectFill"></image>
+        <image class="work-play-icon" src="{{playIconSrc}}">url{{item.picSrc}}</image>
       </view>
       <view class="text-content">
         <view class="work-view-text big-text">名称:{{item.title}}</view>
-        <view wx:if="{{type == 2}}" class="work-view-text small-text">作者</view>
+        <view wx:if="{{type == 2}}" class="work-view-text small-text">{{item.username}}</view>
         <view class="work-view-text small-text">时间:{{item.recordDate}}</view>
         <view class="work-charm-and-like">
           <view class="index-content">
-            <image class="small-icon" src="../../../img/power.png"></image>
+            <image class="small-icon" src="{{powerImgSrc}}"></image>
             <view class="icon-value small-text">{{item.score}}</view>
           </view>
 
           <view class="index-content">
-            <image class="small-icon" src="../../../img/charm.png"></image>
+            <image class="small-icon" src="{{charmImgSrc}}"></image>
             <view class="icon-value small-text">{{item.like}}</view>
           </view>
 
-          <view class="index-content">
+          <!-- <view class="index-content">
             <image class="small-icon" src="../../../img/comment.png"></image>
             <view class="icon-value small-text">{{item.comment}}</view>
-          </view>
+          </view> -->
 
         </view>
       </view>

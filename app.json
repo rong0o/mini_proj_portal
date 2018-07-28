@@ -12,7 +12,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "black",
+    "navigationBarBackgroundColor": "#FFF",
     "navigationBarTitleText": "配音大PK",
     "navigationBarTextStyle": "black"
   },

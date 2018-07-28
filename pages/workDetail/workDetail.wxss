@@ -1,4 +1,10 @@
 /* pages/workDetail/workDetail.wxss */
+.no-work {
+  align-items: center;
+  display: flex;
+  justify-content: center;  
+}
+
 .work-list-content {
   height: 600px;
 }
@@ -15,7 +21,7 @@
 }
 
 .work-img {
-  width: 145px;
+  width: 175px;
   height: 120px;
   padding-right: 3px;
   padding-left: 1px;
@@ -25,9 +31,9 @@
   display: flex;
   flex-direction: column;
   /* background: yellow; */
-  width: 62%;
+  width: 50%;
   height: 120px;
-  padding-left: 8px;
+  padding-left: 30px;
 }
 
 .work-view-text {
@@ -90,7 +96,7 @@
 }
 
 .index-content {
-  width: 35%;
+  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;

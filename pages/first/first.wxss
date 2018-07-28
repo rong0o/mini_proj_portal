@@ -6,6 +6,18 @@
   width:100%;
   flex-direction: row;
 }
+.center{
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  width: 60%;
+  margin-top: 600rpx;
+  
+  background-color: #FFCC00;
+  color: #FFF;
+  font-weight: 700
+}
 .nav-content{
   flex:1;
   text-align: center;
@@ -88,3 +100,5 @@
   visibility:hidden;
   height:0
   } 
+
+

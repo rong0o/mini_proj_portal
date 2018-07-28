@@ -12,9 +12,9 @@
           <image class="user-img" src="{{item.userImg}}">用户头像</image>
           <view>{{item.username}}</view>
           <view class="index-block">
-            <image class="index-icon" src="../../../img/power.png">实力值</image>
+            <image class="index-icon" src="{{powerImgSrc}}">实力值</image>
             <view class="small-text">{{item.power}}</view>
-          </view>
+          </view> 
         </view>
       </view>
     </scroll-view>
@@ -28,7 +28,7 @@
           <image class="user-img" src="{{item.userImg}}">用户头像</image>
           <view>{{item.username}}</view>
           <view class="index-block">
-            <image class="index-icon" src="../../../img/charm.png">魅力值</image>
+            <image class="index-icon" src="{{charmImgSrc}}">魅力值</image>
             <view class="small-text">{{item.charm}}</view>
           </view>
         </view>
@@ -38,22 +38,22 @@
 </view>
 
 <view class="btn-area">
-  <button wx:if="{{collectFlag==0}}" bindtap="bindCollectWork" class="btnSide">
+  <!-- <button wx:if="{{collectFlag==0}}" bindtap="bindCollectWork" class="btnSide">
     <image class="btn-icon" src="../../../img/uncollect.png"></image>
     <view class="btn-text">收藏</view>
   </button>
   <button wx:else="{{collectFlag==1}}" bindtap="bindCollectWork" class="btnSide">
     <image class="btn-icon" src="../../../img/collected.png"></image>
     <view class="btn-text">取消收藏</view>
-  </button>
+  </button> -->
 
   <button bindtap="bindTapToRecording" class="btnMiddle">
-    <image class="btn-icon" src="../../../img/record.png"></image>
+    <image class="btn-icon" src="{{recordSrc}}"></image>
     <view class="btn-text">我要配音</view>
   </button>
 
-  <button bindtap="onShareAppMessagege" class="btnSide" open-type="share">
+  <!-- <button bindtap="onShareAppMessagege" class="btnSide" open-type="share">
     <image class="btn-icon" src="../../../img/share.png"></image>
     <view class="btn-text">分享</view>
-  </button>
+  </button> -->
 </view>
