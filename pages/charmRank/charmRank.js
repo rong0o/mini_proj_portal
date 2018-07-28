@@ -1,4 +1,4 @@
-// var app = getApp();
+ // var app = getApp();
 // var token = app.globalData.token
 // var wechatid = app.globalData.wechatid
 
