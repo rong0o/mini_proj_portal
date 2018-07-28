@@ -29,7 +29,7 @@ Page({
   },
   bindTapMyCollect: function () {
     wx.navigateTo({
-      url: '../workDetail/workDetail?type=1',
+      url: '../workDetail/workDetail?type=2',
     })
   },
   bindTapToMyPower: function () {
