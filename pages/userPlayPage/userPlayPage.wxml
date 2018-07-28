@@ -1,14 +1,14 @@
 <!--index.wxml-->
 <view class="vedio-wrap">
-  <video src="{{vedioInfo.vedioSrc}}"></video>
+  <video src="{{vedioSrc}}"></video>
   <view class="video-info-wrap clear-float">
     <view class="user-image">
-      <image src="{{vedioInfo.userImageSrc}}"></image>
+      <image src="{{userImage}}"></image>
     </view>
-    <view class="user-name">嵘么么会瘦到100斤嵘么么会瘦到100斤嵘么么会瘦到100斤</view>    
-    <view class="vedio-time">2018-07-22</view>
-    <view class="power">实力值:99</view>
-    <view class="charimas">魅力值:99</view>
+    <view class="user-name">{{username}}</view>    
+    <view class="vedio-time">{{recordDate}}</view>
+    <view class="power">实力值:{{power}}</view>
+    <view class="charimas">魅力值:{{charisma}}</view>
     <view class="comment-button" bindtap="onTapInputComment"><image src='../../mini_icon/comment.png'></image></view>
     <view class="iconfont icon-dianzan"  style="color:{{isLike? '#FDD65D':'#bfbfbf'}}" bindtap='onTapLike'></view>
   </view>
@@ -22,14 +22,14 @@
   </form>
 </view>
 
-<scroll-view>
+<scroll-view bindscrolltolower="onScrollCommentList">
   <view class="comment-disp">
     <view class="comment-title">最新评论</view>
-    <view class="comment-item clear-float">
-      <view class="comment-user-img"><image src=''></image></view>
-      <view class="comment-user-name">嵘么么</view>
-      <view class="comment-time">2018-09-16</view>
-      <scroll-view class="comment-content">哈哈哈哈哈</scroll-view>
+    <view class="comment-item clear-float" wx:for='{{comment}}'>
+      <view class="comment-user-img"><image src='{{item.userImage}}'></image></view>
+      <view class="comment-user-name">{{item.username}}</view>
+      <view class="comment-time">{{item.date}}</view>
+      <scroll-view class="comment-content">{{item.comment}}</scroll-view>
     </view>
   </view>
 </scroll-view>
@@ -45,7 +45,7 @@
   </view>
   <view class="like foot-item">
     <view class="foot-icon  iconfont icon-fenxiang"></view>
-    <view class="foot-text" >分享</view>
+    <view class="foot-text" bindtap='onTapToShare'>分享</view>
   </view>
 
 
