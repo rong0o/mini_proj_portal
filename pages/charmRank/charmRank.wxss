@@ -81,22 +81,22 @@ page{
 
 .text1{
   position: absolute;
-  top:5%;
-  left:60%;
+  top:10%;
+  left:50%;
   color: black;
   font-size: 10px;
 }
 
 .text2{
   position: absolute;
-  top:15%;
+  top:24%;
   left:60%;
   color: black;
   font-size: 10px;
 }
 .text3{
   position: absolute;
-  top:35%;
+  top:45%;
   left:70%;
   color: black;
   font-size: 10px;
@@ -104,7 +104,7 @@ page{
 
 .text4{
   position: absolute;
-  top:55%;
+  top:65%;
   left:70%;
   color: black;
   font-size: 10px;
@@ -112,7 +112,7 @@ page{
 
 .text5{
   position: absolute;
-  top:65%;
+  top:75%;
   left:70%;
   color: black;
   font-size: 10px;
