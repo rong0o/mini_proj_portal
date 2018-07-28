@@ -26,7 +26,7 @@ page{
 .user1{
   position: absolute;
   top:0.2%;
-  left:25%;
+  left:30%;
   color: red;
   height: 30px;
   width: 30px;
@@ -35,7 +35,7 @@ page{
 .user2{
   position: absolute;
   top:5%;
-  left:35%;
+  left:43%;
   color: red;
   height: 30px;
   width: 30px;
