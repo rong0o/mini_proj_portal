@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/first/first",
     "pages/index/index",
     "pages/charmRank/charmRank",
     "pages/myPage2/myPage",
