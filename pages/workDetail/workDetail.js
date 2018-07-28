@@ -1,5 +1,6 @@
 // pages/workDetail/workDetail.js
 const app = getApp();
+const appData = app.globalData;
 Page({
   /**
    * 页面的初始数据
@@ -7,8 +8,11 @@ Page({
   data: {
     // 作品数据(待传入)
     worksArray: [],
-    'type': null,
+    'type': -1,
     nworksPerPage: 5,
+    'playIconSrc': '../../../mini_icon/play.png',
+    'powerImgSrc': '../../../mini_icon/power.png',
+    'charmImgSrc': '../../../mini_icon/charm.png',
   },
 
   /**
@@ -16,19 +20,17 @@ Page({
    */
   bindTapToAudioPage: function (event) {
     // 获得列表点击索引
+    var that = this;
     var index = event.currentTarget.dataset.idx;
     var audioId = this.data.worksArray[index].audioId;
-
     var options = {
-      'type': this.data.type,
-      'title': this.data.worksArray[index].title,
+      'type': that.data.type,      
       'audioId': audioId,
-      'index': index,
     }
-    
     // 此处替换新页
     wx.navigateTo({
-      url: '../audioPage/audioPage?options=' + JSON.stringify(options),
+      url: '../audioPage/audioPage?audioId=' + options.audioId
+      + '&type=' + options.type,
     });
   },
 
@@ -44,7 +46,7 @@ Page({
     };
     this.requestWorksList(options);
   },
-
+  
   /**
    * 计算页数
    */
@@ -59,27 +61,24 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.worksArray = [
-      { "title": "作品1", "date": "时间1", "score": 1, "like": 1, 'imageSrc': 'url1...', 'username': "", 'audioId': '',},
-      { "title": "作品2", "date": "时间2", "score": 2, "like": 2, 'imageSrc': 'url2...'},
-      { "title": "作品3", "date": "时间3", "score": 3, "like": 3, 'imageSrc': 'url3...'},
-      { "title": "作品4", "date": "时间4", "score": 4, "like": 4, 'imageSrc': 'url4...'},
-      { "title": "作品5", "date": "时间5", "score": 5, "like": 5, 'imageSrc': 'url5...'},
-      { "title": "作品6", "date": "时间6", "score": 6, "like": 6, 'imageSrc': 'url6...'},
-      { "title": "作品7", "date": "时间7", "score": 7, "like": 7, 'imageSrc': 'url7...'}];
-    
+    var test_worksArray = [];
+    // test_worksArray = [
+    //   { "title": "作品1", "date": "时间1", "score": 1, "like": 1, 'imageSrc': 'url1...', 'username': "", 'audioId': '',},
+    //   { "title": "作品2", "date": "时间2", "score": 2, "like": 2, 'imageSrc': 'url2...'},
+    //   { "title": "作品3", "date": "时间3", "score": 3, "like": 3, 'imageSrc': 'url3...'},
+    //   { "title": "作品4", "date": "时间4", "score": 4, "like": 4, 'imageSrc': 'url4...'},
+    //   { "title": "作品5", "date": "时间5", "score": 5, "like": 5, 'imageSrc': 'url5...'},
+    //   { "title": "作品6", "date": "时间6", "score": 6, "like": 6, 'imageSrc': 'url6...'},
+    //   { "title": "作品7", "date": "时间7", "score": 7, "like": 7, 'imageSrc': 'url7...'}];
     // console.log(this.data.worksArray);
-    var optionObj = JSON.parse(options.options);
-    
     that.setData({
-      'worksArray': that.worksArray,
-      'type': optionObj.type,
+      'worksArray': that.data.worksArray.concat(test_worksArray),
+      'type': options.type,
     });
-
     // 首次进入页面加载前10个作品
-    var initNum = 10;
+    var initNum = that.data.nworksPerPage;
     var initPage = 1;
-    if (optionObj.type == 0) {
+    if (that.data.type == 0) {
       wx.setNavigationBarTitle({
         title: '我的作品',
       });
@@ -88,7 +87,7 @@ Page({
         page: initPage,
         num: initNum,
       });
-    } else if (optionObj.type == 1) {
+    } else if (that.data.type == 1) {
       wx.setNavigationBarTitle({
         title: '我的作品'
       });
@@ -97,7 +96,7 @@ Page({
         page: initPage,
         num: initNum,
       });
-    } else if (optionObj.type == 2) {
+    } else if (that.data.type == 2) {
       wx.setNavigationBarTitle({
         title: '我的收藏'
       });
@@ -106,10 +105,10 @@ Page({
         page: initPage,
         num: initNum,
       });
-    } else if (optionObj.type == 3) {
+    } else if (that.data.type == 3) {
 
     } else {
-      console.log('错误请求 type:' + options.type);
+      console.log('错误请求 type:' + that.data.type);
     }    
   },
 
@@ -119,29 +118,30 @@ Page({
   requestWorksList: function(options) {
     var that = this;
     var postData = {
-      'type': options.type,
+      'type': options.type - 0,
       'page': options.page,
       'num': options.num,
-      'userId': app.globalData.userId,
-      'token': app.globalData.token,
+      'userId': 94, // !!!!!!!!!!!!!!!!!!! 测试用id 
+      'token': appData.token,
     };
-    //console.log("post data: ", postData);
+    console.log("post data: ", postData);
     wx.request({
-      url: 'http://134.175.160.37/myaudio',      
+      url: appData.host + '/myaudio',      
       method: 'POST',      
       data: postData,
       success: function (res) {
+        console.log(res);
         if (res.statusCode == 0) { // 失败
           console.log("请求出错！");
         } else if (!res.data.data.length) {
           console.log('没有数据');
         } else {
-          that.data.worksArray = that.data.worksArray.concat(res.data);
+          console.log(res.data.data);          
+          that.data.worksArray = that.data.worksArray.concat(res.data.data);
           that.setData({
             worksArray: that.data.worksArray,
           });
-        }
-        console.log(res);
+        }        
       },
       fail: function(e) {
         console.log('请求作品列表出错: ' +  options.type);

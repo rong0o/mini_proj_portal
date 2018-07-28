@@ -18,12 +18,12 @@ Page({
   },
   bindTapToMyWorks: function () {
     wx.navigateTo({
-      url: '../workDetail/workDetail',
+      url: '../workDetail/workDetail?type=0',
     })
   },
   bindTapMyCollect: function () {
     wx.navigateTo({
-      url: '../workDetail/workDetail',
+      url: '../workDetail/workDetail?type=1',
     })
   },
   bindTapToMyPower: function () {

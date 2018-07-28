@@ -12,8 +12,9 @@ Page({
     'charmArray': null,
     'title': null,
     'desc': null, // 描述（已录音数）
-    'powerImg': '../../../img/power.png',
-    'charmImg': '../../../img/charm.png',
+    'powerImgSrc': '../../../mini_icon/power.png',
+    'charmImgSrc': '../../../mini_icon/charm.png',
+    'recordSrc': '../../../mini_icon/PKlogo-02.png', 
   },
 
   bindTapToRecording: function() {
@@ -140,9 +141,10 @@ Page({
         console.log(e.errMsg);
       },
     };
-    if (options.from == 'button') {
+    // 采用button分享
+    // if (options.from == 'button') {
 
-    }
+    // }
     return shareObj;
   },
 
@@ -179,7 +181,7 @@ Page({
       videoId: this.data.videoId,
       token: app.globalData.token,
     };
-    this.requestvideo(reqOps);
+    //this.requestvideo(reqOps);
   },
 
   /**
