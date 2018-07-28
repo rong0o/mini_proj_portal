@@ -7,8 +7,12 @@ const innerAudioContexts = [] //存放音频上下文
 const urls = [] //存放录音微信文件的路径
 const recorderManagers = [] //存放录音机
 const textUrl = 'http://d0b664c6.ngrok.io'
+const app = getApp();
+const host = app.globalData.host;
+const token = app.globalData.token;
+
 let innerVideoContext, isrecording, condition
-var resurl, i1 = 0
+let resurl, i1 = 0
 let _ = (t, arr) => arr.some(__ => (
   __.currentTime - 0.4 <= t &&
   t <= __.duration + __.currentTime
@@ -44,17 +48,11 @@ Page({
       index: 0
     },
     content: '完成配音',
-    status: true,
     ismerging: false,
     ismuted: false,
     times: [],
     stack: null,
     isshare: false
-  },
-  startTo() {
-    this.setData({
-      status: false
-    })
   },
   start: function () {
     const options = {
@@ -85,7 +83,7 @@ Page({
       resurl = res.tempFilePath
       setTimeout(() => {
         wx.uploadFile({
-          url: textUrl + '/upload', //线上可用非localhost的域名
+          url: textUrl + '/uploadaudio', //线上可用非localhost的域名
           filePath: resurl, //路径
           name: 'file',
           method: 'POST',
