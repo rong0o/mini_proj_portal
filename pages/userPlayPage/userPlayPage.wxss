@@ -138,9 +138,9 @@ image{
 }
 .form-btn{
   float: right;
-  width: 18%;
+  width: 20%;
   height: 25px;
-  font-size: 16px;
+  font-size: 30rpx;
   line-height: 25px;
   margin:3% 5% 3% 0;
   border: 0;

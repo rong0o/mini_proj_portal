@@ -4,14 +4,14 @@ var host = app.globalData.host;
 var token = app.globalData.token;
 var userId = app.globalData.id;
 var comment_page=1;
-var audioId=0;
+var audioId=27;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     comment: [],
-    type:2,
+    isSelf:0,
     isLike: false,
     isCollect: false,
     collect_text: "收藏",
@@ -130,7 +130,7 @@ Page({
         username: rData.username,
         userImage: rData.userImage,
         recordDate: rData.recordDate,
-        isSelf:rData.isSeft
+        isSelf:rData.myself
       });
       console.log(res.data.data);
     }
@@ -177,7 +177,7 @@ Page({
   //请求函数：
   ajax: function (url, data, callback) {
     wx.request({
-      url: host + "/audioDetail",
+      url: url,
       data: data,
       method: "POST",
       header: {
