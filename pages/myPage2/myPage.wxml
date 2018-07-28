@@ -15,14 +15,17 @@
 
   <view class="list-container">
 
-    <button class='btny' bindtap='bindTapToMyPower' size='mini'>实力值</button>
-    <button class='btng' bindtap="bindTapToMyCharm" size='mini'>魅力值</button>
 
-
-    <text class='btny2'>{{power}}</text>
+    <text class='btny3'>实力值</text>
     <image class='list-icon1' src="../../mini_icon/charm.png"></image>
-    <text class='btng2'>{{charm}}</text>
+    <text class='btng3'>魅力值</text>
     <image class="list-icon1" src="../../mini_icon/power.png"></image>
+
+<text class='btny2'>\n</text>
+    <text class='btny2'>{{power}}</text>
+
+    <text class='btng2'>{{charm}}</text>
+
   </view>
 
   <view class="list-container">
