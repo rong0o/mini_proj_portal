@@ -23,28 +23,39 @@ page{
   color: #160404;
 }
 
+.box{
+  height: 100%;
+  width: 100%;
+}
+
 .user1{
   position: absolute;
   top:0.2%;
-  left:30%;
+  left:35%;
   height: 30px;
   width: 30px;
+  border: 0 solid #ffffff;
+    border-radius: 500px;
 }
 
 .user2{
   position: absolute;
-  top:15%;
+  top:20%;
   left:43%;
   height: 30px;
   width: 30px;
+  border: 0 solid #ffffff;
+    border-radius: 500px;
 }
 
 .user3{
   position: absolute;
-  top:35%;
-  left:35%;
+  top:40%;
+  left:44%;
   height: 30px;
   width: 30px;
+  border: 0 solid #ffffff;
+    border-radius: 500px;
 }
 
 /* .user4{
@@ -60,6 +71,7 @@ page{
   top:5%;
   left:60%;
   color: black;
+  font-size: 10px;
 }
 
 .text2{
@@ -67,12 +79,14 @@ page{
   top:15%;
   left:60%;
   color: black;
+  font-size: 10px;
 }
 .text3{
   position: absolute;
   top:35%;
   left:70%;
   color: black;
+  font-size: 10px;
 }
 
 /* .img-wrap{

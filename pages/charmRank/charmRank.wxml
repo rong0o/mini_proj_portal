@@ -2,7 +2,10 @@
 <button class='btny'  bindtap='yellow' size='mini' >实力派</button>
 <button class='btng'  bindtap="green" size='mini' >偶像派</button>
 <view class='wrap'>
-  <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 100% 100%; background-repeat: no-repeat;background-position: cover;'>
+  <!-- <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 100% 100%; background-repeat: no-repeat;background-position: cover;'> -->
+
+
+<image class="box" src='{{tree}}'>
     
      <image class='user1' src='{{others[0].userImage}}' bindtap='one'></image>
       <image class='user2' src='{{others[1].userImage}}' bindtap='two'></image>
@@ -46,6 +49,6 @@
         <text>{{item.test}}</text>
     
       </block> -->
-
-  </view>
+</image>
+  <!-- </view> -->
 </view>

@@ -14,6 +14,7 @@ Page({
     'powerImgSrc': '../../../mini_icon/power.png',
     'charmImgSrc': '../../../mini_icon/charm.png',
     host: appData.host,
+    noMoreWorkFlag: 0,
   },
 
   /**
@@ -116,7 +117,7 @@ Page({
       'userId': 94, // !!!!!!!!!!!!!!!!!!! 测试用id 
       'token': appData.token,
     };
-    console.log("post data: ", postData);
+    //console.log("post data: ", postData);
     wx.request({
       url: appData.host + '/myaudio',      
       method: 'POST',      
@@ -126,7 +127,8 @@ Page({
         if (res.statusCode == 0) { // 失败
           console.log("请求出错！");
         } else if (!res.data.data.length) {
-          console.log('没有数据');
+          // console.log('没有数据');
+
         } else {
           console.log(res.data.data);          
           that.data.worksArray = that.data.worksArray.concat(res.data.data);

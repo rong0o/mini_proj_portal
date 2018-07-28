@@ -31,6 +31,11 @@ Page({
         value: 80
       }
     ],
+
+    tree: '/mini_icon/yellowTree.png',
+    // greenTree: '/mini_icon/greenTree.png',
+
+  
     user1: '/mini_icon/li_avatar.png',
     user2: '/mini_icon/li_avatar.png',
     isCharm: true,
@@ -54,6 +59,7 @@ Page({
       isCharm: false,
       isStrength: true,
       image_url: 'http://134.175.160.37/image/yellowTree.png',
+      tree: '/mini_icon/yellowTree.png',
     })
     var app = getApp();
     var token = app.globalData.token
@@ -96,6 +102,8 @@ Page({
       isCharm: true,
       isStrength: false,
       image_url: 'http://134.175.160.37/image/greenTree.png',
+      tree: '/mini_icon/greenTree.png',
+      
     })
 
     var app = getApp();
@@ -122,8 +130,10 @@ Page({
         console.log(res)
         console.log(res.data.data.others)
         if (res.data.error_code == 0) {
+          console.log(res.data.data.others.length)
           this.setData({
             others: res.data.data.others
+            
             // user1: '/mini_icon/test_avatar.png'
 
           });

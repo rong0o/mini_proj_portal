@@ -94,6 +94,7 @@ Page({
          'content-type': 'application/json' // 默认值
        },
        success:(res)=>{
+         console.log(res.data);
          if (res.data.error_code == 0) {
            this.setData({
              home_tab_array: res.data.data
