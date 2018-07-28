@@ -2,6 +2,7 @@
 var app=getApp();
 var host=app.globalData.host;
 var token = app.globalData.token;
+
 Page({
   /**
    * 页面的初始数据
@@ -14,15 +15,26 @@ Page({
     host:host,
 
   },
-  bindTapToPlayPage:function(){
+  //点击轮播图
+  onTapSwiper:function(e){
+    var index=e.currentTarget.dataset.swiperindex;
+  },
+  bindTapToPlayPage:function(e){
+    var eData = e.currentTarget.dataset;
+    var imgIndex = eData.imgindex;
+    var tabIndex=eData.tabindex;
+    var isHot = eData.isHot?"hot":"new";
+    var vedioId = this.data.home_tab_array[tabIndex][isHot][imgIndex-0].vedioId;
+
     wx.navigateTo({
-      url: '../playPage/playPage',
+      url: '../playPage/playPage?vedioId=' + vedioId,
     })
   },
   //点击更多
   bindTapToWorkDetail: function (e) {
     const type=e.target.dataset.type+1;
     const hot=e.target.dataset.hot;
+    console.log(type+"  "+hot);
     wx.navigateTo({
       url: '../workDetail/workDetail?type=' + type+'&hot='+hot,
     })

@@ -11,7 +11,7 @@ Page({
    */
   data: {
     comment: [],
-    type:0,
+    type:2,
     isLike: false,
     isCollect: false,
     collect_text: "收藏",
