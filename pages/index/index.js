@@ -37,7 +37,7 @@ Page({
   //点击更多
   bindTapToWorkDetail: function (e) {
     const type=e.target.dataset.type+1;
-    const hot=e.target.dataset.hot;
+    const hot=e.target.dataset.hot?1:0;
     console.log(type+"  "+hot);
     wx.navigateTo({
       url: '../workDetail/workDetail?type=' + type+'&hot='+hot,

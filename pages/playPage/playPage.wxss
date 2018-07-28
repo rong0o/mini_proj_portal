@@ -1,5 +1,9 @@
 /* pages/playPage/playPage.wxss */
 
+button{
+  background-color: rgba(127, 127, 127, 0);
+
+}
 .work-video {
   width: 100%;
 }
