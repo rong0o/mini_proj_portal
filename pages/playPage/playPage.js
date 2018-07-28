@@ -30,7 +30,7 @@ Page({
   __navigateToAudioPage: function(ops) {
     var opsStr = JSON.stringify(ops);
     wx.navigateTo({
-      url: '../audioPage/audioPage?options=' + opsStr,
+      url: '../userPlayPage/userPlayPage?options=' + opsStr,
     });
   },
 
@@ -172,14 +172,15 @@ Page({
       charmImg: test_img,
       powerImg: test_img,
     });
+    console.log(this.data.powerArray);
     // 测试数据结束
 
-    //console.log("playpage: ", this.options);
+
     var reqOps = {
       videoId: this.data.videoId,
       token: app.globalData.token,
     };
-    this.requestvideo(reqOps);
+    //this.requestvideo(reqOps);
   },
 
   /**
