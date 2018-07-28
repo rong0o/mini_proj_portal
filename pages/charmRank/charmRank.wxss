@@ -33,7 +33,7 @@ page{
 
 .user2{
   position: absolute;
-  top:5%;
+  top:15%;
   left:43%;
   height: 30px;
   width: 30px;
@@ -41,19 +41,19 @@ page{
 
 .user3{
   position: absolute;
-  top:10%;
-  left:30%;
+  top:35%;
+  left:35%;
   height: 30px;
   width: 30px;
 }
 
-.user4{
+/* .user4{
   position: absolute;
   top:5%;
   left:43%;
   height: 30px;
   width: 30px;
-}
+} */
 
 .text1{
   position: absolute;
@@ -62,6 +62,18 @@ page{
   color: black;
 }
 
+.text2{
+  position: absolute;
+  top:15%;
+  left:60%;
+  color: black;
+}
+.text3{
+  position: absolute;
+  top:35%;
+  left:70%;
+  color: black;
+}
 
 /* .img-wrap{
   position: absolute;

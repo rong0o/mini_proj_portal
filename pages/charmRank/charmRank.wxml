@@ -5,8 +5,8 @@
   <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 100% 100%; background-repeat: no-repeat;background-position: cover;'>
     
      <image class='user1' src='{{others[0].userImage}}' bindtap='one'></image>
-      <image class='user2' src='{{others[1].userImage}}' bindtap='one'></image>
-       <image class='user3' src='{{others[2].userImage}}' bindtap='one'></image>
+      <image class='user2' src='{{others[1].userImage}}' bindtap='two'></image>
+       <image class='user3' src='{{others[2].userImage}}' bindtap='three'></image>
 
 
       <block wx:if="{{isCharm & isClickUser1}}">
@@ -19,6 +19,27 @@
           {{others[0].value}},当前排名{{others[0].rank}},不错哦</text>
       </block>
 
+
+      <block wx:if="{{isCharm & isClickUser2}}">
+          <text class='text2' style=''>{{others[1].username}}魅力值
+          {{others[1].value}},当前排名{{others[1].rank}},不错哦</text>
+      </block>
+
+      <block wx:if="{{isStrength & isClickUser2}}">
+        <text class='text2' style=''>{{others[1].username}}评分
+          {{others[1].value}},当前排名{{others[1].rank}},还可以的呢</text>
+      </block>
+
+    <block wx:if="{{isCharm & isClickUser3}}">
+          <text class='text3' style=''>{{others[2].username}}魅力值
+          {{others[2].value}},当前排名{{others[2].rank}},不错哦</text>
+      </block>
+
+      <block wx:if="{{isStrength & isClickUser3}}">
+        <text class='text3' style=''>{{others[2].username}}评分
+          {{others[2].value}},当前排名{{others[2].rank}},还可以的呢</text>
+      </block>
+      
       <!-- <block wx:for="{{others}}">
 
         <image class='user1' src='{{item.userImage}}' bindtap='one'></image> 

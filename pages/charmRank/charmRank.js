@@ -33,12 +33,16 @@ Page({
     ],
     user1: '/mini_icon/li_avatar.png',
     user2: '/mini_icon/li_avatar.png',
-    stengthContent1: '小星星 实力评分98 超越他还差17个实力值少年 加油~',
-    charmContent1: '叮当猫 魅力值2888 超越他还差500个赞哦少年 加油~',
     isCharm: true,
     isStrength: false,
     isClickUser1:false,
     isClick: false,
+
+    isClickUser2: false,
+    isClick2: false,
+
+    isClickUser3: false,
+    isClick3: false,
     image_url: 'http://134.175.160.37/image/yellowTree.png',
       },
 
@@ -146,9 +150,44 @@ Page({
       this.isClick = true
       console.log("isClickUser1 another" + this.data.isClickUser1)
     }
-
-
   },
+
+  two: function (e) {
+    console.log(e)
+
+    if (this.isClick2) {
+      this.isClick2 = false
+      this.setData({
+        isClickUser2: false
+      })
+      console.log("isClickUser2" + this.data.isClickUser2)
+    } else {
+      this.setData({
+        isClickUser2: true
+      })
+      this.isClick2 = true
+      console.log("isClickUser2 another" + this.data.isClickUser2)
+    }
+  },
+
+  three: function (e) {
+    console.log(e)
+
+    if (this.isClick3) {
+      this.isClick3 = false
+      this.setData({
+        isClickUser3: false
+      })
+      console.log("isClickUser3" + this.data.isClickUser3)
+    } else {
+      this.setData({
+        isClickUser3: true
+      })
+      this.isClick3 = true
+      console.log("isClickUser3 another" + this.data.isClickUser3)
+    }
+  },
+
 
    /**
    * 生命周期函数--监听页面加载
