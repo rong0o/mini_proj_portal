@@ -76,28 +76,27 @@ Page({
       url: app.globalData.host + '/ranking',
       method: "POST",
       data: {
-        userId: app.globalData.token,
-        token: app.globalData.token,
+        userId: id,
+        token: token,
         num: 10,
-        type: 1
+        type: 1,
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: (res) => {
         console.log(res)
-        if (res.data.error_code == 0) {
+        if (res.error_code == 0) {
           this.setData({
             // home_tab_array: res.data.data
           });
           console.log(url)
           console.log(res.data.others);
         } else
-          console.log("ERROR:error_code-------" + res.data.error_code);
+          console.log("ERROR:error_code-------" + res.error_code);
           console.log(app.globalData.host + '/ranking');
 
         console.log(app.globalData.wechatid)
-        console.log(app.globalData.token)
       }
     })
   },
