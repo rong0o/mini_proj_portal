@@ -13,6 +13,7 @@ Page({
     'playIconSrc': '../../../mini_icon/play.png',
     'powerImgSrc': '../../../mini_icon/power.png',
     'charmImgSrc': '../../../mini_icon/charm.png',
+    host: appData.host,
   },
 
   /**
@@ -24,12 +25,12 @@ Page({
     var index = event.currentTarget.dataset.idx;
     var audioId = this.data.worksArray[index].audioId;
     var options = {
-      'type': that.data.type,      
+      'type': that.data.type - 0,    
       'audioId': audioId,
     }
     // 此处替换新页
     wx.navigateTo({
-      url: '../audioPage/audioPage?audioId=' + options.audioId
+      url: '../userPlayPage/userPlayPage?audioId=' + options.audioId
       + '&type=' + options.type,
     });
   },
@@ -61,16 +62,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var test_worksArray = [];
-    // test_worksArray = [
-    //   { "title": "作品1", "date": "时间1", "score": 1, "like": 1, 'imageSrc': 'url1...', 'username': "", 'audioId': '',},
-    //   { "title": "作品2", "date": "时间2", "score": 2, "like": 2, 'imageSrc': 'url2...'},
-    //   { "title": "作品3", "date": "时间3", "score": 3, "like": 3, 'imageSrc': 'url3...'},
-    //   { "title": "作品4", "date": "时间4", "score": 4, "like": 4, 'imageSrc': 'url4...'},
-    //   { "title": "作品5", "date": "时间5", "score": 5, "like": 5, 'imageSrc': 'url5...'},
-    //   { "title": "作品6", "date": "时间6", "score": 6, "like": 6, 'imageSrc': 'url6...'},
-    //   { "title": "作品7", "date": "时间7", "score": 7, "like": 7, 'imageSrc': 'url7...'}];
-    // console.log(this.data.worksArray);
+    var test_worksArray = [];    
     that.setData({
       'worksArray': that.data.worksArray.concat(test_worksArray),
       'type': options.type,
@@ -130,7 +122,7 @@ Page({
       method: 'POST',      
       data: postData,
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         if (res.statusCode == 0) { // 失败
           console.log("请求出错！");
         } else if (!res.data.data.length) {

@@ -19,7 +19,7 @@ Page({
 
   bindTapToRecording: function() {
     wx.navigateTo({
-      url: '../recording/recording?userId=' + this.data.userId 
+      url: '../recording/recording?' + this.data.userId 
       + '&audioId=' + this.data.videoId
       + '&token=' + this.data.token,
     })
@@ -28,10 +28,9 @@ Page({
   /**
    * 导航到录音作品页，内部调用
    */
-  __navigateToAudioPage: function(ops) {
-    var opsStr = JSON.stringify(ops);
+  __navigateToAudioPage: function(options) {    
     wx.navigateTo({
-      url: '../audioPage/audioPage?options=' + opsStr,
+      url: '../userPlayPage/userPlayPage?audioId=' + options.audioId,
     });
   },
 
@@ -39,10 +38,9 @@ Page({
    * 点击实力排行榜用户
    */
   bindtapToPowerUser: function(e) {
-    var idx = e.currentTarget.dataset.idx;
+    var idx = e.currentTarget.dataset.idx; // 点击用户索引
     var options = {
       audioId: this.data.powerArray[idx].audioId,
-      idx: idx, // 点击用户索引
     };
     this.__navigateToAudioPage(options);
   },
@@ -54,7 +52,6 @@ Page({
     var idx = e.currentTarget.dataset.idx;
     var options = {
       audioId: this.data.charmArray[idx].audioId,
-      idx: idx, // 点击用户索引
     };
     this.__navigateToAudioPage(options);
   },  

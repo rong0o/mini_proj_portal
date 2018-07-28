@@ -14,7 +14,7 @@
           <view class="index-block">
             <image class="index-icon" src="{{powerImgSrc}}">实力值</image>
             <view class="small-text">{{item.power}}</view>
-          </view>
+          </view> 
         </view>
       </view>
     </scroll-view>
