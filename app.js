@@ -1,4 +1,4 @@
-﻿//app.js
+//app.js
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -33,6 +33,8 @@ App({
     userInfo: null,
     host: "http://134.175.160.37",
     token:null,
-    id:0
+    id:0,
+    power:0,
+    charm:0
   }
 })
