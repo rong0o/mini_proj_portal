@@ -118,6 +118,11 @@ page{
   font-size: 10px;
 }
 
+.nextPage{
+  position: absolute;
+  top:85%;
+  left:90%;
+}
 /* .img-wrap{
   position: absolute;
   top:0;left:0;bottom: 0;right: 0;

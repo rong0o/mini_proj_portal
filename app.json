@@ -2,7 +2,6 @@
   "pages": [
     "pages/first/first",
     "pages/index/index",
-    "pages/rank/rank",
     "pages/charmRank/charmRank",
     "pages/myPage2/myPage",
     "pages/recording/recording",
@@ -29,12 +28,6 @@
       },
       {
         "pagePath": "pages/charmRank/charmRank",
-        "text": "排行榜",
-        "iconPath": "mini_icon/ranking.png",
-        "selectedIconPath": "mini_icon/ranking_selected.png"
-      },
-      {
-        "pagePath": "pages/rank/rank",
         "text": "排行榜",
         "iconPath": "mini_icon/ranking.png",
         "selectedIconPath": "mini_icon/ranking_selected.png"

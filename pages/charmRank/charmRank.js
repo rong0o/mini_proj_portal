@@ -257,7 +257,7 @@ Page({
       data: {
         userId: id,
         token: token,
-        num: 10,
+        num: 5,
         type: 1,
       },
       header: {
@@ -279,5 +279,12 @@ Page({
     })
   },
 
+
+  nextPage: function(e) {
+    
+    this.setData({
+      others: this.others
+    })
+  }
 
 })

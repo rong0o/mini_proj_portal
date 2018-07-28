@@ -71,6 +71,8 @@
         <text>{{item.test}}</text>
     
       </block> -->
+
+      <button class='nextPage' bindtap='nextPage'>下一页</button>
 </image>
   <!-- </view> -->
 <!-- </view> -->
