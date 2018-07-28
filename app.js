@@ -19,6 +19,7 @@ App({
               wx.setStorageSync('wechatid', res.data.openid)
               wx.setStorageSync('token', res.data.openid)
               that.globalData.token = res.data.openid;
+              that.globalData.wechatid = res.data.openid;
             }
           })
         } else {
@@ -28,8 +29,9 @@ App({
     })
   },
   globalData: {
+    wechatid: null,
     userInfo: null,
     host: "http://134.175.160.37",
-    token:""
+    token:null
   }
 })

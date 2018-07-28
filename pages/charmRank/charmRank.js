@@ -1,4 +1,8 @@
+// var app = getApp();
+// var token = app.globalData.token
+// var wechatid = app.globalData.wechatid
 
+// var id = app.globalData.id
 Page({
 
   /**
@@ -44,18 +48,59 @@ Page({
       this.setData({
         isClickUser1: false
       })
-      console.log("1111" + this.data.isClickUser1)      
+      console.log("isClickUser1" + this.data.isClickUser1)      
     } else {
       this.setData({
         isClickUser1: true
       })
       this.isClick = true
-      console.log("2222" + this.data.isClickUser1)
+      console.log("isClickUser1 another" + this.data.isClickUser1)
     }
-    
-  }
 
 
+  },
+
+   /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var app = getApp();
+    var token = app.globalData.token
+    var wechatid = app.globalData.wechatid
+
+    var id = app.globalData.id
+
+    console.log(token)
+    //请求首页图片
+    wx.request({
+      url: app.globalData.host + '/ranking',
+      method: "POST",
+      data: {
+        userId: app.globalData.token,
+        token: app.globalData.token,
+        num: 10,
+        type: 1
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.data.error_code == 0) {
+          this.setData({
+            // home_tab_array: res.data.data
+          });
+          console.log(url)
+          console.log(res.data.others);
+        } else
+          console.log("ERROR:error_code-------" + res.data.error_code);
+          console.log(app.globalData.host + '/ranking');
+
+        console.log(app.globalData.wechatid)
+        console.log(app.globalData.token)
+      }
+    })
+  },
 
 
 })
