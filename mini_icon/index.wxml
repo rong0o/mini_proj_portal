@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<view class="vedio-wrap">
+  <video src="{{vedioInfo.vedioSrc}}"></video>
+  <view class="video-info-wrap clear-float">
+    <view class="user-image">
+      <image src="{{vedioInfo.userImageSrc}}"></image>
+    </view>
+    <view class="user-name">嵘么么会瘦到100斤嵘么么会瘦到100斤嵘么么会瘦到100斤</view>    
+    <view class="vedio-time">2018-07-22</view>
+    <view class="power">实力值:99</view>
+    <view class="charimas">魅力值:99</view>
+    <view class="comment-button"><image src='../../mini_icon/comment.png'></image></view>
+  </view>
+</view>
+<view class="comment-input"></view>
+<view class="comment-disp">
+  <view>最新评论</view>
+  <view class="comment-item">
+    <view class="comment-user-img"></view>
+    <view class="comment-user-name"></view>
+    <view class="comment-time"></view>
+    <view class="comment-content"></view>
+  </view>
+</view>
+<view class="foot-bar clear-float">
+  <view class="collect foot-item">
+    <view class="foot-icon iconfont icon-shoucang"></view>
+    <view class="foot-text">收藏</view>
+  </view>
+  <view class="recording foot-item">
+    <view class="foot-icon"></view>
+    <view class="foot-text">我要配音</view>
+  </view>
+  <view class="like foot-item">
+    <view class="foot-icon  iconfont icon-dianzan"></view>
+    <view class="foot-text">点赞</view>
+  </view>
+
+
+
+
+
+
+</view>
+

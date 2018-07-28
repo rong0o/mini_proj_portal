@@ -7,7 +7,8 @@
     "pages/recording/recording",
     "pages/userDetail/userDetail",
     "pages/workDetail/workDetail",
-    "pages/playPage/playPage"
+    "pages/playPage/playPage",
+    "pages/userPlayPage/userPlayPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

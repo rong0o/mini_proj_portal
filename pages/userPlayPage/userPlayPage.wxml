@@ -1,0 +1,57 @@
+<!--index.wxml-->
+<view class="vedio-wrap">
+  <video src="{{vedioInfo.vedioSrc}}"></video>
+  <view class="video-info-wrap clear-float">
+    <view class="user-image">
+      <image src="{{vedioInfo.userImageSrc}}"></image>
+    </view>
+    <view class="user-name">嵘么么会瘦到100斤嵘么么会瘦到100斤嵘么么会瘦到100斤</view>    
+    <view class="vedio-time">2018-07-22</view>
+    <view class="power">实力值:99</view>
+    <view class="charimas">魅力值:99</view>
+    <view class="comment-button" bindtap="onTapInputComment"><image src='../../mini_icon/comment.png'></image></view>
+    <view class="iconfont icon-dianzan"  style="color:{{isLike? '#FDD65D':'#bfbfbf'}}" bindtap='onTapLike'></view>
+  </view>
+</view>
+
+<view class="comment-input" wx:if="{{isCommentIput}}">
+  <form bindsubmit='onCommentSubmit' class='clear-float'>
+    <textarea class="comment-textarea" name="comment"></textarea>
+    <button form-type="submit" class="form-btn">发表</button> 
+    <button  class="form-btn" bindtap="onTapInputComment">取消</button> 
+  </form>
+</view>
+
+<scroll-view>
+  <view class="comment-disp">
+    <view class="comment-title">最新评论</view>
+    <view class="comment-item clear-float">
+      <view class="comment-user-img"><image src=''></image></view>
+      <view class="comment-user-name">嵘么么</view>
+      <view class="comment-time">2018-09-16</view>
+      <scroll-view class="comment-content">哈哈哈哈哈</scroll-view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="foot-bar clear-float">
+  <view class="collect foot-item">
+    <view class="foot-icon iconfont icon-shoucang"  style="color:{{isCollect? '#FDD65D':'#bfbfbf'}}" bindtap='onTapCollect'></view>
+    <view class="foot-text" >{{collect_text}}</view>
+  </view>
+  <view class="recording foot-item">
+    <view class="foot-icon"><image src="../../mini_icon/PKlogo-02.png"></image></view>
+    <view class="foot-text" bindtap='onTapToRecording'>我要配音</view>
+  </view>
+  <view class="like foot-item">
+    <view class="foot-icon  iconfont icon-fenxiang"></view>
+    <view class="foot-text" >分享</view>
+  </view>
+
+
+
+
+
+
+</view>
+

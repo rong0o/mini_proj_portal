@@ -1,5 +1,59 @@
 <!--pages/playPage/playPage.wxml-->
-<text>单个作品播放页</text>
-<button bindtap='bindTapToRecording'>
-我要配音
-</button>
+<video class="work-video" id="user-video" src="{{videoSrc}}" binderror="videoErrorCallback"></video>
+
+<view class="big-text left-padding">作品名:{{title}}</view>
+<view class="small-text left-padding desc-text">共有{{desc}}人配音</view>
+<view class="rank-area">
+  <view class="power-area">
+    <text class="big-text left-padding">实力排行榜</text>
+    <scroll-view class="rank-block" scroll-x="true" scroll-y="true">
+      <view class="scroll-block" wx:for="{{powerArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToPowerUser'>
+        <view class="user-info-block">
+          <image class="user-img" src="{{item.userImg}}">用户头像</image>
+          <view>{{item.username}}</view>
+          <view class="index-block">
+            <image class="index-icon" src="../../../img/power.png">实力值</image>
+            <view class="small-text">{{item.power}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="charm-area">
+    <text class="big-text left-padding">魅力排行榜</text>
+    <scroll-view class="rank-block" scroll-y="false" scroll-x="true">
+      <view class="scroll-block" wx:for="{{charmArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToCharmUser'>
+        <view class="user-info-block">
+          <image class="user-img" src="{{item.userImg}}">用户头像</image>
+          <view>{{item.username}}</view>
+          <view class="index-block">
+            <image class="index-icon" src="../../../img/charm.png">魅力值</image>
+            <view class="small-text">{{item.charm}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+<view class="btn-area">
+  <button wx:if="{{collectFlag==0}}" bindtap="bindCollectWork" class="btnSide">
+    <image class="btn-icon" src="../../../img/uncollect.png"></image>
+    <view class="btn-text">收藏</view>
+  </button>
+  <button wx:else="{{collectFlag==1}}" bindtap="bindCollectWork" class="btnSide">
+    <image class="btn-icon" src="../../../img/collected.png"></image>
+    <view class="btn-text">取消收藏</view>
+  </button>
+
+  <button bindtap="bindTapToRecording" class="btnMiddle">
+    <image class="btn-icon" src="../../../img/record.png"></image>
+    <view class="btn-text">我要配音</view>
+  </button>
+
+  <button bindtap="onShareAppMessagege" class="btnSide" open-type="share">
+    <image class="btn-icon" src="../../../img/share.png"></image>
+    <view class="btn-text">分享</view>
+  </button>
+</view>

@@ -43,6 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.token);
     //请求轮播图数据
      wx.request({
        url: host+"swiper",
