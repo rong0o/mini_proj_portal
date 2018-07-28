@@ -7,13 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: {},
+    charm:0,
+    power:0
   },
   onLoad: function () {
     var userInfo = wx.getStorageSync('userInfo')
+    var charm = app.globalData.charm
+    var power = app.globalData.power
     var that = this
     that.setData({
       userInfo: userInfo,
+      charm: charm,
+      power: power
     })
   },
   bindTapToMyWorks: function () {
