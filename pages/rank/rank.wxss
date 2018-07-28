@@ -1,0 +1,33 @@
+page{
+  height: 100%;
+}
+
+.btny {
+  width: 30%;
+  margin-left: 10px;
+  margin-right: 100rpx;
+  background-color: #FFCC00;
+  color: #160404;
+}
+
+.btng {
+    width: 30%;
+  margin-left: 100rpx;
+  background-color: rgb(215, 238, 238);
+  color: #160404;
+}
+
+.box{
+  height: 100%;
+  width: 100%;
+}
+
+.avatar{
+  position: absolute;
+  /* top:0.2%;
+  left:35%; */
+  height: 30px;
+  width: 30px;
+  border: 0 solid #ffffff;
+  border-radius: 500px;
+}

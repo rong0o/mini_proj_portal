@@ -30,7 +30,7 @@ page{
 
 .user1{
   position: absolute;
-  top:0.2%;
+  top:010%;
   left:35%;
   height: 30px;
   width: 30px;
@@ -40,7 +40,7 @@ page{
 
 .user2{
   position: absolute;
-  top:20%;
+  top:24%;
   left:43%;
   height: 30px;
   width: 30px;
@@ -50,7 +50,7 @@ page{
 
 .user3{
   position: absolute;
-  top:40%;
+  top:44%;
   left:44%;
   height: 30px;
   width: 30px;
@@ -58,37 +58,71 @@ page{
     border-radius: 500px;
 }
 
-/* .user4{
+.user4{
   position: absolute;
-  top:5%;
-  left:43%;
+  top:65%;
+  left:50%;
   height: 30px;
   width: 30px;
-} */
+  border: 0 solid #ffffff;
+    border-radius: 500px;
+}
+
+.user5{
+  position: absolute;
+  top:75%;
+  left:52%;
+  height: 30px;
+  width: 30px;
+  border: 0 solid #ffffff;
+    border-radius: 500px;
+}
+
 
 .text1{
   position: absolute;
-  top:5%;
-  left:60%;
+  top:10%;
+  left:50%;
   color: black;
   font-size: 10px;
 }
 
 .text2{
   position: absolute;
-  top:15%;
+  top:24%;
   left:60%;
   color: black;
   font-size: 10px;
 }
 .text3{
   position: absolute;
-  top:35%;
+  top:45%;
   left:70%;
   color: black;
   font-size: 10px;
 }
 
+.text4{
+  position: absolute;
+  top:65%;
+  left:70%;
+  color: black;
+  font-size: 10px;
+}
+
+.text5{
+  position: absolute;
+  top:75%;
+  left:70%;
+  color: black;
+  font-size: 10px;
+}
+
+.nextPage{
+  position: absolute;
+  top:85%;
+  left:90%;
+}
 /* .img-wrap{
   position: absolute;
   top:0;left:0;bottom: 0;right: 0;

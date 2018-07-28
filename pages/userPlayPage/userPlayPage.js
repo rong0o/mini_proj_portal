@@ -3,6 +3,7 @@ var app = getApp();
 var host = app.globalData.host;
 var token = app.globalData.token;
 var userId = app.globalData.id;
+console.log(userId);
 var comment_page=1;
 var audioId=27;
 Page({
@@ -45,7 +46,7 @@ Page({
       num: 1,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
       this.setData({
         comment: res.data.data
       });
@@ -67,10 +68,11 @@ Page({
       type: like_type,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
       this.setData({
         charisma: res.data.data.charm
       });
+      console.log("点赞");
       console.log(res.data.data);
     }
     this.ajax(url, data, callback);
@@ -92,7 +94,7 @@ Page({
       type: collect_type,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
     }
     this.ajax(url, data, callback);
   },
@@ -111,8 +113,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    audioId=options.audioId;
-    type=options.type
+    audioId=27;//options.audioId;
+    userId = app.globalData.id;
+    var type=options.type
     //请求视频信息
     var url = host + "/audioDetail";
     var data = {
@@ -147,7 +150,7 @@ Page({
       type: 0,
       token: token,
     };
-    var callback = () => {
+    var callback = (res) => {
       this.setData({
         isLike: res.data.data.like
       });
@@ -183,8 +186,8 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function () {
-        callback && callback();
+      success: function (res) {
+        callback && callback(res);
       },
       fail: function () {
         console.log(url + "data error");

@@ -1,4 +1,4 @@
-// var app = getApp();
+ // var app = getApp();
 // var token = app.globalData.token
 // var wechatid = app.globalData.wechatid
 
@@ -48,6 +48,12 @@ Page({
 
     isClickUser3: false,
     isClick3: false,
+
+    isClickUser4: false,
+    isClick4: false,
+
+    isClickUser5: false,
+    isClick5: false,
     image_url: 'http://134.175.160.37/image/yellowTree.png',
       },
 
@@ -198,6 +204,40 @@ Page({
     }
   },
 
+  four: function (e) {
+    console.log(e)
+
+    if (this.isClick4) {
+      this.isClick4 = false
+      this.setData({
+        isClickUser4: false
+      })
+      console.log("isClickUser4" + this.data.isClickUser4)
+    } else {
+      this.setData({
+        isClickUser4: true
+      })
+      this.isClick4 = true
+      console.log("isClickUser4 another" + this.data.isClickUser4)
+    }
+  },
+
+  five: function (e) {
+    console.log(e)
+
+    if (this.isClick5) {
+      this.isClick5 = false
+      this.setData({
+        isClickUser5: false
+      })
+    } else {
+      this.setData({
+        isClickUser5: true
+      })
+      this.isClick5 = true
+    }
+  },
+
 
    /**
    * 生命周期函数--监听页面加载
@@ -217,7 +257,7 @@ Page({
       data: {
         userId: id,
         token: token,
-        num: 10,
+        num: 5,
         type: 1,
       },
       header: {
@@ -239,5 +279,12 @@ Page({
     })
   },
 
+
+  // nextPage: function(e) {
+    
+  //   this.setData({
+  //     others: this.others
+  //   })
+  // }
 
 })

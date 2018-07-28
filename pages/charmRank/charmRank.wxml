@@ -1,7 +1,7 @@
 <!--pages/rankingList/rankingList.wxml-->
 <button class='btny'  bindtap='yellow' size='mini' >实力派</button>
 <button class='btng'  bindtap="green" size='mini' >偶像派</button>
-<view class='wrap'>
+<!-- <view class='wrap'> -->
   <!-- <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 100% 100%; background-repeat: no-repeat;background-position: cover;'> -->
 
 
@@ -10,6 +10,8 @@
      <image class='user1' src='{{others[0].userImage}}' bindtap='one'></image>
       <image class='user2' src='{{others[1].userImage}}' bindtap='two'></image>
        <image class='user3' src='{{others[2].userImage}}' bindtap='three'></image>
+       <image class='user4' src='{{others[3].userImage}}' bindtap='four'></image>
+       <image class='user5' src='{{others[4].userImage}}' bindtap='five'></image>
 
 
       <block wx:if="{{isCharm & isClickUser1}}">
@@ -42,6 +44,26 @@
         <text class='text3' style=''>{{others[2].username}}评分
           {{others[2].value}},当前排名{{others[2].rank}},还可以的呢</text>
       </block>
+
+         <block wx:if="{{isCharm & isClickUser4}}">
+          <text class='text4' style=''>{{others[3].username}}魅力值
+          {{others[2].value}},当前排名{{others[2].rank}},不错哦</text>
+      </block>
+
+      <block wx:if="{{isStrength & isClickUser4}}">
+        <text class='text4' style=''>{{others[3].username}}评分
+          {{others[3].value}},当前排名{{others[3].rank}},还可以的呢</text>
+      </block>
+
+         <block wx:if="{{isCharm & isClickUser5}}">
+          <text class='text5' style=''>{{others[4].username}}魅力值
+          {{others[4].value}},当前排名{{others[4].rank}},不错哦</text>
+      </block>
+
+      <block wx:if="{{isStrength & isClickUser5}}">
+        <text class='text5' style=''>{{others[4].username}}评分
+          {{others[4].value}},当前排名{{others[4].rank}},还可以的呢</text>
+      </block>
       
       <!-- <block wx:for="{{others}}">
 
@@ -49,6 +71,8 @@
         <text>{{item.test}}</text>
     
       </block> -->
+<!-- 
+      <button class='nextPage' bindtap='nextPage'>下一页</button> -->
 </image>
   <!-- </view> -->
-</view>
+<!-- </view> -->
