@@ -1,79 +1,47 @@
-﻿// pages/myPage/myPage.js
-var app=getApp();
-var host=app.globalData.host;
+// pages/myPage/myPage.js
+
+var app = getApp()
 Page({
+
   /**
    * 页面的初始数据
    */
-  bindGetUserInfo: function (e) {
-    console.log(e.detail.userInfo)
-    try {
-      var nickname = e.detail.userInfo.nickName
-      var avatarurl = e.detail.userInfo.avatarUrl
-      var wechatid = wx.getStorageSync('wechatid')
-      console.log(wechatid)
-      wx.setStorageSync('nickname', e.detail.userInfo.nickName)
-      wx.setStorageSync('avatarurl', e.detail.userInfo.avatarUrl)
-      wx.setStorageSync('userInfo', e.detail.userInfo)
-      wx.request({
-        url: 'http://134.175.160.37:80/user/add', //仅为示例，并非真实的接口地址
-        data: {
-          username: nickname,
-          avatarUrl: avatarurl,
-          wechatid: wechatid,
-          token: wechatid
-        },
-        success: function (res) {
-          app.globalData.id = res.data.id
-        }
-      })
-      this.bindTapToPlayPage()
-      /*wx.navigateTo({
-        url: '../workDetail/workDetail',
-      })*/
-    } catch (e) {
-
-    }
+  data: {
+    userInfo: {}
+  },
+  onLoad: function () {
+    var userInfo = wx.getStorageSync('userInfo')
     var that = this
     that.setData({
-      userInfo: e.detail.userInfo,
-      canIUse: false,
-      getUser: true
+      userInfo: userInfo,
     })
   },
-  bindTapToPlayPage:function(){
-    wx.switchTab({
-      url: '../index/index',
-    })
-  },
-  //点击更多
-  bindTapToWorkDetail: function (e) {
-    const type=e.target.dataset.type+1;
-    const hot=e.target.dataset.hot;
+  bindTapToMyWorks: function () {
     wx.navigateTo({
-      url: '../workDetail/workDetail?type=' + type+'&hot='+hot,
+      url: '../workDetail/workDetail',
     })
   },
-  bindTapToSwitchNav:function(e){
-    let index = e.target.dataset.index;
-    this.setData({
-      current_index:index,
-      current_tab:index,
+  bindTapMyCollect: function () {
+    wx.navigateTo({
+      url: '../workDetail/workDetail',
     })
   },
-  tabChange:function(e){
-    this.setData({
-      current_index:e.detail.current
-    });
-    console.log(1);
+  bindTapToMyPower: function () {
+    /*wx.navigateTo({
+      //url: '../myPower/myPower',
+      url: '../StrengthRank/StrengthRank',
+    })*/
+    wx.switchTab({
+      url: '../StrengthRank/StrengthRank',
+    })
+  },
+  bindTapToMyCharm: function () {
+    wx.navigateTo({
+      //url: '../myCharm/myCharm',
+      url: '../charmRank/charmRank',
+    })
+  },
 
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
