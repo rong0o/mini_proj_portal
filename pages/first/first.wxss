@@ -12,7 +12,7 @@
 }
 .btn {
   width: 60%;
-  margin-top: 0rpx;
+  margin-top: 600rpx;
   
   background-color: #FFCC00;
   color: #FFF;
