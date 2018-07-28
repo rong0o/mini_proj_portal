@@ -95,6 +95,12 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  f(e){
+    console.log(e)
+    console.log(e.target.dataset)
+    console.log(e.target.dataset.index)
   }
 })
 

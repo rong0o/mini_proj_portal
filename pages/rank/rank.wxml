@@ -2,10 +2,13 @@
 <button class='btng'  bindtap="green" size='mini' >偶像派</button>
 
 <image class="box" src='/mini_icon/yellowTree.png'>
-
+  <view bindtap='f'>
     <view wx:for="{{position}}" wx:for-index="j">
-    <image class='avatar'  style='top: {{position[j].x}};left:{{position[j].y}}'
+    <image class='avatar' data-index='{{j}}' style='top: {{position[j].x}};left:{{position[j].y}}'
      src='{{others[j].userImage}}' ></image> 
     </view>
+  </view>
+
+  <text>jhuhu</text>
 
 </image>
