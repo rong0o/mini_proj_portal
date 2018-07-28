@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/first/first",
     "pages/index/index",
     "pages/charmRank/charmRank",
-    "pages/StrengthRank/StrengthRank",
-    "pages/myPage/myPage",
+    "pages/myPage2/myPage",
     "pages/recording/recording",
     "pages/userDetail/userDetail",
     "pages/workDetail/workDetail",
@@ -27,13 +27,13 @@
         "selectedIconPath":"mini_icon/home_selected.png"
       },
       {
-        "pagePath": "pages/StrengthRank/StrengthRank",
+        "pagePath": "pages/charmRank/charmRank",
         "text": "排行榜",
         "iconPath": "mini_icon/ranking.png",
         "selectedIconPath": "mini_icon/ranking_selected.png"
       },
       {
-        "pagePath": "pages/myPage/myPage",
+        "pagePath": "pages/myPage2/myPage",
         "text": "我的",
         "iconPath": "mini_icon/my.png",
         "selectedIconPath": "mini_icon/my_selected.png"        
