@@ -5,7 +5,7 @@ var token = app.globalData.token;
 var userId = app.globalData.id;
 console.log(userId);
 var comment_page=1;
-var audioId=27;
+var audioId=1;
 Page({
   /**
    * 页面的初始数据
@@ -113,7 +113,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    audioId=27;//options.audioId;
+    audioId=options.audioId;
     userId = app.globalData.id;
     var type=options.type
     //请求视频信息
