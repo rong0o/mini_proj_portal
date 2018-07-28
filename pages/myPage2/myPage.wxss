@@ -29,12 +29,29 @@
   color: #160404;
 }
 
+
+.btny2 {
+  width: 30%;
+  margin-left: 40px;
+  margin-right: 10rpx;
+  background-color: #FFFFFF;
+  color: #160404;
+}
+
 .btng {
-    width: 30%;
+  width: 30%;
   margin-left: 100rpx;
   background-color: rgb(215, 238, 238);
   color: #160404;
 }
+
+.btng2 {
+  width: 30%;
+  margin-left: 290rpx;
+  background-color: #FFFFFF;
+  color: #160404;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -87,6 +104,14 @@
   margin-left: 538rpx;
   width: 16rpx;
   height: 26rpx;
+}
+
+.list-icon1 {
+  margin-top: 5rpx;
+  margin-left: 10px;
+  margin-right: 10rpx;
+  width: 56rpx;
+  height: 56rpx;
 }
 
 .list-container {

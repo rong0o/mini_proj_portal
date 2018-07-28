@@ -1,7 +1,7 @@
 <view class="container">
 <swiper class="home-swiper" autoplay='{{true}}' interval="{{3000}}" circular='{{true}}'>
     <swiper-item wx:for="{{home_swiper_array}}" >
-    <image src='{{item.imageSrc}}' mode='aspectFill'></image>
+    <image src='{{host}}{{item.imageSrc}}' mode='aspectFill'></image>
     </swiper-item>
 </swiper>
 <view class="nav-bar">
@@ -24,7 +24,7 @@
         <view class='more' bindtap='bindTapToWorkDetail' data-type='{{tab_index}}' data-hot='{{true}}'>更多>></view>
           <view class='tab_item_content' wx:for='{{tab_item.hot}}' wx:for-item="img_item">
             <view class="img-box" bindtap='bindTapToPlayPage'>
-              <image class="img" src='{{img_item.imageSrc}}' mode='aspectFill'></image>
+              <image class="img" src='{{host}}{{img_item.imageSrc}}' mode='aspectFill'></image>
             <image class="img-icon" src='../../mini_icon/play.png'></image>
             </view>
             <view class='img_title'>title</view>
@@ -37,7 +37,7 @@
         <view class='more' bindtap='bindTapToWorkDetail' data-type='{{tab_index}}'  data-hot='{{false}}'>更多>></view>
           <view class='tab_item_content' wx:for='{{tab_item.new}}'  wx:for-item="img_item">
             <view class="img-box" bindtap='bindTapToPlayPage'>
-              <image class="img" src='{{img_item.imageSrc}}' mode='aspectFill'></image>
+              <image class="img" src='{{host}}{{img_item.imageSrc}}' mode='aspectFill'></image>
               <image class="img-icon" src='../../mini_icon/play.png'></image>
             </view>
             <view class='img_title'>title</view>

@@ -1,6 +1,7 @@
 // pages/myPage/myPage.js
 var app=getApp();
 var host=app.globalData.host;
+var token = app.globalData.token;
 Page({
   /**
    * 页面的初始数据
@@ -10,6 +11,7 @@ Page({
     current_index:0,
     home_tab_array:[],
     current_tab:0,
+    host:host,
 
   },
   bindTapToPlayPage:function(){
@@ -46,8 +48,11 @@ Page({
     console.log(app.globalData.token);
     //请求轮播图数据
      wx.request({
-       url: host+"swiper",
+       url: host+"/swiper",
        method:"POST",
+       data:{
+         token: token
+       },
        header: {
          'content-type': 'application/json' 
        },
@@ -66,7 +71,7 @@ Page({
      });
      //请求首页图片
      wx.request({
-       url: host+'mainpage',
+       url: host+'/mainpage',
        method: "POST",
        data:{
          type:5,
@@ -88,52 +93,4 @@ Page({
      })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
