@@ -30,7 +30,7 @@ page{
 
 .user1{
   position: absolute;
-  top:0.2%;
+  top:010%;
   left:35%;
   height: 30px;
   width: 30px;
@@ -40,7 +40,7 @@ page{
 
 .user2{
   position: absolute;
-  top:20%;
+  top:24%;
   left:43%;
   height: 30px;
   width: 30px;
@@ -50,7 +50,7 @@ page{
 
 .user3{
   position: absolute;
-  top:40%;
+  top:44%;
   left:44%;
   height: 30px;
   width: 30px;
@@ -60,7 +60,7 @@ page{
 
 .user4{
   position: absolute;
-  top:60%;
+  top:65%;
   left:50%;
   height: 30px;
   width: 30px;
@@ -70,7 +70,7 @@ page{
 
 .user5{
   position: absolute;
-  top:70%;
+  top:75%;
   left:52%;
   height: 30px;
   width: 30px;

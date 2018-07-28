@@ -280,11 +280,11 @@ Page({
   },
 
 
-  nextPage: function(e) {
+  // nextPage: function(e) {
     
-    this.setData({
-      others: this.others
-    })
-  }
+  //   this.setData({
+  //     others: this.others
+  //   })
+  // }
 
 })
