@@ -2,10 +2,10 @@
 <text>\n</text>
 <text>\n</text>
 <text>\n</text>
-<view style="width:750rpx;height:750rpx;background-color:#fff;" class="center">
+<view style="width:750rpx;height:10rpx;background-color:#fff;" class="center">
     <image src="icon.png" mode='widthFix' style="width:60%;"></image>
 </view>
-<view>
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="btn">点击进入</button>
-</view>
 
+
+<!--wxml-->
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="btn" >点击进入</button>
