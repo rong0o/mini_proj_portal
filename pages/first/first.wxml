@@ -1,11 +1,11 @@
 
 <text>\n</text>
 <text>\n</text>
-<view style="width:750rpx;height:750rpx;background-color:#fff;">
-    <image src="icon.png" mode='aspectFit' style="width:100%;height:100%;"></image>
+<text>\n</text>
+<view style="width:750rpx;height:750rpx;background-color:#fff;" class="center">
+    <image src="icon.png" mode='widthFix' style="width:60%;"></image>
 </view>
 
-<text>\n</text>
-<text>\n</text>
+
 <!--wxml-->
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击进入</button>
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="btn">点击进入</button>
