@@ -27,7 +27,7 @@ Page({
     var eData = e.currentTarget.dataset;
     var imgIndex = eData.imgindex;
     var tabIndex=eData.tabindex;
-    var isHot = eData.isHot?"hot":"new";
+    var isHot = eData.ishot?"hot":"new";
     var vedioId = this.data.home_tab_array[tabIndex][isHot][imgIndex-0].vedioId;
 
     wx.navigateTo({
