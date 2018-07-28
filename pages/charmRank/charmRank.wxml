@@ -2,7 +2,7 @@
 <button class='btny'  bindtap='yellow' size='mini' >实力派</button>
 <button class='btng'  bindtap="green" size='mini' >偶像派</button>
 <view class='wrap'>
-  <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 120% 100%; background-repeat: no-repeat;background-position: cover;  margin-left: 40px'>
+  <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 100% 100%; background-repeat: no-repeat;background-position: cover;'>
       <image class='user1' src='{{user1}}' bindtap='one'></image> 
       
       
