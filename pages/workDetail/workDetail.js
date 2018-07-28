@@ -86,7 +86,7 @@ Page({
     var initNum = that.data.nworksPerPage;
     var initPage = 1;
     console.log(that.data.type);
-    if (options.hot == -1) { // "我的" 页面点入
+    if (options.hot == null || options.hot == -1) { // "我的" 页面点入
       switch (that.data.type - 0) {
         case 0: 
           wx.setNavigationBarTitle({ title: '我的作品', });
@@ -116,7 +116,7 @@ Page({
     } else { // 从主页更多点入
       console.log(this.data.hot);
       if ((this.data.hot - 0) == 0) { // 最新
-        switch (that.data.type) {
+        switch (that.data.type - 0) {
           case 1: {
             wx.setNavigationBarTitle({ title: '最新 二次元', });
             that.requestMoreVideoList({
@@ -234,18 +234,18 @@ Page({
     var that = this;
     var postData = {
       'type': options.type - 0,
-      'page': options.page,
-      'hot': options.hot,
-      'num': this.data.nworksPerPage,
+      'page': options.page - 0,
+      'hot': options.hot - 0,
+      'num': this.data.nworksPerPage - 0,
       'token': appData.token,
     };
-    //console.log("post data: ", postData);
+    console.log("post data: ", postData);
     wx.request({
       url: appData.host + '/more',
       method: 'POST',
       data: postData,
       success: function (res) {
-        //console.log(res);
+        console.log(res);
         if (res.statusCode == 0) { // 失败
           console.log("请求出错！");
         } else if (!res.data.data.length) {

@@ -9,11 +9,11 @@
     <scroll-view wx:if="{{powerArray.length > 0}}" class="rank-block" scroll-x="true" scroll-y="true">
       <view class="scroll-block" wx:for="{{powerArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToPowerUser'>
         <view class="user-info-block">
-          <image class="user-img" src="{{item.userImg}}">用户头像</image>
-          <view>{{item.username}}</view>
+          <image class="user-img" src="{{item.userImage}}">用户头像</image>
+          <view>{{item.nickname}}</view>
           <view class="index-block">
             <image class="index-icon" src="{{powerImgSrc}}">实力值</image>
-            <view class="small-text">{{item.power}}</view>
+            <view class="small-text">{{item.value}}</view>
           </view> 
         </view>
       </view>
@@ -28,11 +28,11 @@
     <scroll-view wx:if="{{powerArray.length > 0}}" class="rank-block" scroll-y="false" scroll-x="true">
       <view class="scroll-block" wx:for="{{charmArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToCharmUser'>
         <view class="user-info-block">
-          <image class="user-img" src="{{item.userImg}}">用户头像</image>
-          <view>{{item.username}}</view>
+          <image class="user-img" src="{{item.userImage}}">用户头像</image>
+          <view>{{item.nickname}}</view>
           <view class="index-block">
             <image class="index-icon" src="{{charmImgSrc}}">魅力值</image>
-            <view class="small-text">{{item.charm}}</view>
+            <view class="small-text">{{item.value}}</view>
           </view>
         </view>
       </view>

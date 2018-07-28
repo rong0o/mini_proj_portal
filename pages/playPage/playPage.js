@@ -59,23 +59,26 @@ Page({
   /**
    * 当前页请求数据
    */
-  requestvideo: function(options) {
+  requestvideo: function(videoId) {
     var that = this;
+    console.log(videoId);
     wx.request({
       url: appData.host + '/vedioDetail',
       method: 'POST',
       data: {
-        videoId: options.videoId,        
+        vedioId: videoId,
+        token: appData.token,   
       },
       success: function(res) {
-        console.log(res);
+        console.log(res.data);
+        var resData = res.data.data;
         that.setData({
-          'videoSrc': that.data.videoSrc,
-          'collectFlag': res.collectFlag,
-          'powerArray': res.power,
-          'charmArray': res.charm,
-          'title': res.title,
-          'desc': res.desc,
+          'videoSrc': appData.host + resData.vedioSrc,
+          //'collectFlag': res.collectFlag,
+          'powerArray': resData.power,
+          'charmArray': resData.charm,
+          'title': resData.title,
+          'desc': resData.desc,
         });
       },
       fail: function(e) {
@@ -151,23 +154,7 @@ Page({
     this.setData({
       videoId: options.vedioId,
     });
-
-    // 测试数据
-    // var test_img = './img/img_test.jpg';
-    // var testData = [{username: 'name1',power: 'p1',charm: 'c1',userImg: test_img,},
-    //   {username: 'name2',power: 'p2',charm: 'c2',userImg: test_img},
-    //   {username: 'name3',power: 'p3',charm: 'c3',userImg: test_img},
-    //   {username: 'name4',power: 'p4',charm: 'c4',userImg: test_img},
-    //   {username: 'name5',power: 'p5',charm: 'c5',userImg: test_img},];
-    // this.setData({
-    //   powerArray: testData,
-    //   charmArray: testData,
-    //   charmImg: test_img,
-    //   powerImg: test_img,
-    // });
-    //console.log(this.data.powerArray);
-    // 测试数据结束
-    
+    console.log(options);
     this.requestvideo(this.data.videoId);
   },
 

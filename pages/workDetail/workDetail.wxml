@@ -10,33 +10,33 @@
       </view>
       <view class="text-content">
         <view class="work-view-text big-text">{{item.title}}</view>
-        <view wx:if="{{hot == -1}}">
+        <view class="page-enter-content" wx:if="{{hot == null || hot == -1}}">
           <view wx:if="{{type == 2}}" class="work-view-text small-text">{{item.username}}</view>
-        <view class="work-view-text small-text">{{item.recordDate}}</view>
-        <view class="work-charm-and-like">
-          <view class="index-content">
-            <image class="small-icon" src="{{powerImgSrc}}"></image>
-            <view class="icon-value small-text">{{item.score}}</view>
-          </view>
+          <view class="work-view-text small-text">{{item.recordDate}}</view>
+          <view class="work-charm-and-like">
+            <view class="index-content">
+              <image class="small-icon" src="{{powerImgSrc}}"></image>
+              <view class="icon-value small-text">{{item.score}}</view>
+            </view>
 
-          <view class="index-content">
-            <image class="small-icon" src="{{charmImgSrc}}"></image>
-            <view class="icon-value small-text">{{item.like}}</view>
-          </view>
+            <view class="index-content">
+              <image class="small-icon" src="{{charmImgSrc}}"></image>
+              <view class="icon-value small-text">{{item.like}}</view>
+            </view>
 
-          <!-- <view class="index-content">
+            <!-- <view class="index-content">
             <image class="small-icon" src="../../../img/comment.png"></image>
             <view class="icon-value small-text">{{item.comment}}</view>
           </view> -->
 
-        </view>
-        </view>
-          
-        <view wx:else>
-        <view class="description-content">{{item.desc}}</view>
+          </view>
         </view>
 
-        
+        <view wx:else>
+          <view class="description-content">{{item.desc}}</view>
+        </view>
+
+
       </view>
     </view>
   </view>

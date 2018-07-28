@@ -36,6 +36,12 @@
   padding-left: 30px;
 }
 
+.page-enter-content {
+  display: flex;
+  flex-direction: column;
+  
+}
+
 .work-view-text {
   /* background: rgba(253, 214, 93, 0.753); */
   color: #000;
