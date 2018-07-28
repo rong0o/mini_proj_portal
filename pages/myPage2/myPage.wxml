@@ -7,7 +7,7 @@
 -->
 
 
-<view  class="container">
+<view class="container">
   <view bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -15,8 +15,14 @@
 
   <view class="list-container">
 
-    <button class='btny'  bindtap='bindTapToMyPower' size='mini' >实力值</button>
-<button class='btng'  bindtap="bindTapToMyCharm" size='mini' >魅力值</button>
+    <button class='btny' bindtap='bindTapToMyPower' size='mini'>实力值</button>
+    <button class='btng' bindtap="bindTapToMyCharm" size='mini'>魅力值</button>
+
+
+    <text class='btny2'>{{power}}</text>
+    <image class='list-icon1' src="../../mini_icon/charm.png"></image>
+    <text class='btng2'>{{charm}}</text>
+    <image class="list-icon1" src="../../mini_icon/power.png"></image>
   </view>
 
   <view class="list-container">
