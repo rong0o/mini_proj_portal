@@ -26,6 +26,8 @@ Page({
         },
         success: function (res) {
           app.globalData.id = res.data.data.id
+          app.globalData.power = res.data.data.power
+          app.globalData.charm = res.data.data.charm
         }
       })
       this.bindTapToPlayPage()
