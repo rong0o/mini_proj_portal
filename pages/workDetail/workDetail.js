@@ -14,6 +14,7 @@ Page({
     'powerImgSrc': '../../../mini_icon/power.png',
     'charmImgSrc': '../../../mini_icon/charm.png',
     host: appData.host,
+    hot: -1,
     noMoreWorkFlag: 0,
   },
 
@@ -24,16 +25,28 @@ Page({
     // 获得列表点击索引
     var that = this;
     var index = event.currentTarget.dataset.idx;
-    var audioId = this.data.worksArray[index].audioId;
-    var options = {
-      'type': that.data.type - 0,    
-      'audioId': audioId,
+    if (that.data.hot == null) { // "我的"页面进入
+      var audioId = this.data.worksArray[index].audioId;
+      var options = {
+        'type': that.data.type - 0,
+        'audioId': audioId,
+      }
+      // 此处替换新页
+      wx.navigateTo({
+        url: '../userPlayPage/userPlayPage?audioId=' + options.audioId
+          + '&type=' + options.type,
+      });
+    } else { // 主页"更多"进入
+      var videoId = this.data.worksArray[index].vedioId;
+      var options = {        
+        'videoId': videoId,
+      };
+      // 此处替换新页
+      wx.navigateTo({
+        url: '../playPage/playPage?videoId=' + options.videoId,
+      });
     }
-    // 此处替换新页
-    wx.navigateTo({
-      url: '../userPlayPage/userPlayPage?audioId=' + options.audioId
-      + '&type=' + options.type,
-    });
+    
   },
 
   /**
@@ -67,42 +80,114 @@ Page({
     that.setData({
       'worksArray': that.data.worksArray.concat(test_worksArray),
       'type': options.type,
+      'hot': options.hot,
     });
-    // 首次进入页面加载前10个作品
+
     var initNum = that.data.nworksPerPage;
     var initPage = 1;
-    if (that.data.type == 0) {
-      wx.setNavigationBarTitle({
-        title: '我的作品',
-      });
-      that.requestWorksList({
-        type: 0,
-        page: initPage,
-        num: initNum,
-      });
-    } else if (that.data.type == 1) {
-      wx.setNavigationBarTitle({
-        title: '我的作品'
-      });
-      that.requestWorksList({
-        type: 1,
-        page: initPage,
-        num: initNum,
-      });
-    } else if (that.data.type == 2) {
-      wx.setNavigationBarTitle({
-        title: '我的收藏'
-      });
-      that.requestWorksList({
-        type: 2,
-        page: initPage,
-        num: initNum,
-      });
-    } else if (that.data.type == 3) {
-
-    } else {
-      console.log('错误请求 type:' + that.data.type);
-    }    
+    console.log(that.data.type);
+    if (options.hot == -1) { // "我的" 页面点入
+      switch (that.data.type - 0) {
+        case 0: 
+          wx.setNavigationBarTitle({ title: '我的作品', });
+          that.requestWorksList({
+            type: 0,
+            page: 1,
+          });
+          break;        
+        case 1: 
+          wx.setNavigationBarTitle({ title: '我的作品' });
+          that.requestWorksList({
+            type: 1,
+            page: 1,
+          });
+          break;
+        case 2: 
+          wx.setNavigationBarTitle({ title: '我的收藏' });
+          that.requestWorksList({
+            type: 2,
+            page: 1,
+          });
+          break;
+        default: 
+          console.log('错误请求 type:' + that.data.type);
+          break;
+      }      
+    } else { // 从主页更多点入
+      console.log(this.data.hot);
+      if ((this.data.hot - 0) == 0) { // 最新
+        switch (that.data.type) {
+          case 1: {
+            wx.setNavigationBarTitle({ title: '最新 二次元', });
+            that.requestMoreVideoList({
+              type: 1,
+              page: 1,
+              hot: 0,
+            });
+            break;
+          }
+          case 2: {
+            wx.setNavigationBarTitle({ title: '最新 搞怪' });
+            that.requestMoreVideoList({
+              type: 2,
+              page: 1,
+              hot: 0,
+            });
+            break;
+          }
+          case 3: {
+            wx.setNavigationBarTitle({ title: '最新 经典' });
+            that.requestMoreVideoList({
+              type: 3,
+              page: 1,
+              hot: 0,
+            });
+            break;
+          }
+          default: {
+            console.log('错误请求 type:' + that.data.type + 'hot: ' + that.data.hot);
+            break;
+          }
+        }      
+      } else { // 最热
+        switch (that.data.type - 0) {
+          case 1: {
+            wx.setNavigationBarTitle({ title: '最热 二次元', });
+            that.requestMoreVideoList({
+              type: 1,
+              page: 1,
+              hot: 1,
+            });
+            break;
+          }
+          case 2: {
+            wx.setNavigationBarTitle({ title: '最热 搞怪' });
+            that.requestMoreVideoList({
+              type: 2,
+              page: 1,
+              hot: 1,
+            });
+            break;
+          }
+          case 3: {
+            wx.setNavigationBarTitle({ title: '最热 经典' });
+            that.requestMoreVideoList({
+              type: 3,
+              page: 1,
+              hot: 1,
+            });
+            break;
+          }
+          default: {
+            console.log('错误请求 type:' + that.data.type + 'hot: ' + that.data.hot);
+            break;
+          }
+        }      
+      }
+    }
+    // 首次进入页面加载前10个作品
+    
+    
   },
 
   /**
@@ -113,22 +198,20 @@ Page({
     var postData = {
       'type': options.type - 0,
       'page': options.page,
-      'num': options.num,
-      'userId': 94, // !!!!!!!!!!!!!!!!!!! 测试用id 
-      'token': appData.token,
+      'num': this.data.nworksPerPage,
+      'userId': 94, // !!!!!!!!!!!!!!!!!!! 测试用id      
     };
-    //console.log("post data: ", postData);
+    console.log("post data: ", postData);
     wx.request({
       url: appData.host + '/myaudio',      
       method: 'POST',      
       data: postData,
       success: function (res) {
-        //console.log(res);
+        console.log(res);
         if (res.statusCode == 0) { // 失败
           console.log("请求出错！");
         } else if (!res.data.data.length) {
-          // console.log('没有数据');
-
+          // console.log('没有更多数据');
         } else {
           console.log(res.data.data);          
           that.data.worksArray = that.data.worksArray.concat(res.data.data);
@@ -139,6 +222,44 @@ Page({
       },
       fail: function(e) {
         console.log('请求作品列表出错: ' +  options.type);
+        console.log(e.errMsg);
+      },
+    });
+  },
+
+  /**
+   * 请求更多视频列表
+   */
+  requestMoreVideoList: function (options) {
+    var that = this;
+    var postData = {
+      'type': options.type - 0,
+      'page': options.page,
+      'hot': options.hot,
+      'num': this.data.nworksPerPage,
+      'token': appData.token,
+    };
+    //console.log("post data: ", postData);
+    wx.request({
+      url: appData.host + '/more',
+      method: 'POST',
+      data: postData,
+      success: function (res) {
+        //console.log(res);
+        if (res.statusCode == 0) { // 失败
+          console.log("请求出错！");
+        } else if (!res.data.data.length) {
+          // console.log('没有更多数据');
+        } else {
+          //console.log(res.data.data);
+          that.data.worksArray = that.data.worksArray.concat(res.data.data);
+          that.setData({
+            worksArray: that.data.worksArray,
+          });
+        }
+      },
+      fail: function (e) {
+        console.log('请求作品列表出错: ' + options.type);
         console.log(e.errMsg);
       },
     });

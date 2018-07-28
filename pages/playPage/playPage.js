@@ -1,34 +1,34 @@
 // pages/playPage/playPage.js
 const app = getApp();
+const appData = app.globalData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    'videoSrc': "../../../img/柯南被亲亲.mp4",
-    'collectFlag': 0,
-    'powerArray': null,
-    'charmArray': null,
-    'title': null,
-    'desc': null, // 描述（已录音数）
+    'videoId': -1,    
+    'powerArray': [],
+    'charmArray': [],
+    'title': "",
+    'desc': "", // 描述（已录音数）
     'powerImgSrc': '../../../mini_icon/power.png',
     'charmImgSrc': '../../../mini_icon/charm.png',
-    'recordSrc': '../../../mini_icon/PKlogo-02.png', 
+    'recordSrc': '../../../mini_icon/PKlogo-02.png',
   },
 
   bindTapToRecording: function() {
     wx.navigateTo({
-      url: '../recording/recording?' + this.data.userId 
-      + '&audioId=' + this.data.videoId
-      + '&token=' + this.data.token,
+      url: '../recording/recording?' + this.data.userId +
+        '&audioId=' + this.data.videoId +
+        '&token=' + this.data.token,
     })
   },
 
   /**
    * 导航到录音作品页，内部调用
    */
-  __navigateToAudioPage: function(options) {    
+  __navigateToAudioPage: function(options) {
     wx.navigateTo({
       url: '../userPlayPage/userPlayPage?audioId=' + options.audioId,
     });
@@ -54,7 +54,7 @@ Page({
       audioId: this.data.charmArray[idx].audioId,
     };
     this.__navigateToAudioPage(options);
-  },  
+  },
 
   /**
    * 当前页请求数据
@@ -62,13 +62,13 @@ Page({
   requestvideo: function(options) {
     var that = this;
     wx.request({
-      url: 'http://134.175.160.37/vedioDetail',
+      url: appData.host + '/vedioDetail',
       method: 'POST',
       data: {
-        videoId: options.videoId,
-        token: options.token,
+        videoId: options.videoId,        
       },
-      success: function (res) {      
+      success: function(res) {
+        console.log(res);
         that.setData({
           'videoSrc': that.data.videoSrc,
           'collectFlag': res.collectFlag,
@@ -86,21 +86,16 @@ Page({
   },
 
   /**
-   * 收藏作品
+   * 收藏作品(暂弃)
    */
   bindCollectWork: function() {
     var that = this;
-    var collectFlag = 0;    
+    var collectFlag = 0;
     if (!that.data.collectFlag) {
       collectFlag = 1;
-    } 
+    }
     wx.request({
-      url: 'http://134.175.160.37/collection_video',
-      header: {
-        'Accept': '*/*',
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json'
-      },
+      url: appData.host + '/collection_video',      
       method: 'POST',
       data: {
         'userId': app.globalData.userId,
@@ -109,10 +104,14 @@ Page({
         'collectFlag': collectFlag,
       },
       success: function() {
-        that.setData({collectFlag: collectFlag});
+        that.setData({
+          collectFlag: collectFlag
+        });
       },
       fail: function(e) {
-        that.setData({collectFlag: 1 - collectFlag});
+        that.setData({
+          collectFlag: 1 - collectFlag
+        });
         console.log('收藏失败');
         console.log(e.detail.errMsg);
       },
@@ -120,7 +119,7 @@ Page({
         // that.setData({ collectFlag: collectFlag }); // 测试图标变换
       },
     });
-    
+
   },
 
   /**
@@ -149,43 +148,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
-    // this.options = JSON.parse(options.options);
-    // this.setData({
-    //   type: this.options.type,    
-    //   videoId: this.options.videoId,
-    // });
+    this.setData({
+      videoId: options.vedioId,
+    });
 
     // 测试数据
-    var test_img = './img/img_test.jpg';
-    var testData = [
-      {username: 'name1', power: 'p1', charm: 'c1', userImg: test_img},
-      { username: 'name2', power: 'p2', charm: 'c2', userImg: test_img },
-      { username: 'name3', power: 'p3', charm: 'c3', userImg: test_img },
-      { username: 'name4', power: 'p4', charm: 'c4', userImg: test_img },
-      { username: 'name5', power: 'p5', charm: 'c5', userImg: test_img },
-    ];
-    this.setData({
-      powerArray: testData,
-      charmArray: testData,
-      charmImg: test_img,
-      powerImg: test_img,
-    });
-    console.log(this.data.powerArray);
+    // var test_img = './img/img_test.jpg';
+    // var testData = [{username: 'name1',power: 'p1',charm: 'c1',userImg: test_img,},
+    //   {username: 'name2',power: 'p2',charm: 'c2',userImg: test_img},
+    //   {username: 'name3',power: 'p3',charm: 'c3',userImg: test_img},
+    //   {username: 'name4',power: 'p4',charm: 'c4',userImg: test_img},
+    //   {username: 'name5',power: 'p5',charm: 'c5',userImg: test_img},];
+    // this.setData({
+    //   powerArray: testData,
+    //   charmArray: testData,
+    //   charmImg: test_img,
+    //   powerImg: test_img,
+    // });
+    //console.log(this.data.powerArray);
     // 测试数据结束
-
-
-    var reqOps = {
-      videoId: this.data.videoId,
-      token: app.globalData.token,
-    };
-    //this.requestvideo(reqOps);
+    
+    this.requestvideo(this.data.videoId);
   },
 
   /**
    * 视频错误处理
    */
-  videoErrorCallback: function (e) {
+  videoErrorCallback: function(e) {
     console.log('视频错误信息:')
     console.log(e.detail.errMsg)
   },

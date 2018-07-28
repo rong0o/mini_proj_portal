@@ -15,6 +15,10 @@
   height: 270px;
 }
 
+.rank-content {
+  height: 50%;
+}
+
 .desc-text {
   padding-bottom: 2px;
 }
@@ -136,4 +140,12 @@
 width: 0;
 height: 0;
 color: transparent;
+}
+
+.no-rank-user {
+  height: 80%;
+  align-items: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
 }

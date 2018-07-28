@@ -6,12 +6,13 @@
     <view class="work-content">
       <view class="img-content">
         <image class="work-img" src="{{host + item.imageSrc}}" lazy-load="true" mode="aspectFill"></image>
-        <image class="work-play-icon" src="{{playIconSrc}}">url{{item.picSrc}}</image>
+        <image class="work-play-icon" src="{{playIconSrc}}"></image>
       </view>
       <view class="text-content">
-        <view class="work-view-text big-text">名称:{{item.title}}</view>
-        <view wx:if="{{type == 2}}" class="work-view-text small-text">{{item.username}}</view>
-        <view class="work-view-text small-text">时间:{{item.recordDate}}</view>
+        <view class="work-view-text big-text">{{item.title}}</view>
+        <view wx:if="{{hot == -1}}">
+          <view wx:if="{{type == 2}}" class="work-view-text small-text">{{item.username}}</view>
+        <view class="work-view-text small-text">{{item.recordDate}}</view>
         <view class="work-charm-and-like">
           <view class="index-content">
             <image class="small-icon" src="{{powerImgSrc}}"></image>
@@ -29,6 +30,13 @@
           </view> -->
 
         </view>
+        </view>
+          
+        <view wx:else>
+        <view class="description-content">{{item.desc}}</view>
+        </view>
+
+        
       </view>
     </view>
   </view>

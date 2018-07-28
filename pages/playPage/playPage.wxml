@@ -4,9 +4,9 @@
 <view class="big-text left-padding">作品名:{{title}}</view>
 <view class="small-text left-padding desc-text">共有{{desc}}人配音</view>
 <view class="rank-area">
-  <view class="power-area">
+  <view class="rank-content">
     <text class="big-text left-padding">实力排行榜</text>
-    <scroll-view class="rank-block" scroll-x="true" scroll-y="true">
+    <scroll-view wx:if="{{powerArray.length > 0}}" class="rank-block" scroll-x="true" scroll-y="true">
       <view class="scroll-block" wx:for="{{powerArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToPowerUser'>
         <view class="user-info-block">
           <image class="user-img" src="{{item.userImg}}">用户头像</image>
@@ -18,11 +18,14 @@
         </view>
       </view>
     </scroll-view>
+    <view wx:elif="{{powerArray.length==0}}" class="no-rank-user">
+      <view>榜首位置暂空，快来打榜吧！O(∩_∩)O~</view>
+    </view>
   </view>
 
-  <view class="charm-area">
+  <view class="rank-content">
     <text class="big-text left-padding">魅力排行榜</text>
-    <scroll-view class="rank-block" scroll-y="false" scroll-x="true">
+    <scroll-view wx:if="{{powerArray.length > 0}}" class="rank-block" scroll-y="false" scroll-x="true">
       <view class="scroll-block" wx:for="{{charmArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToCharmUser'>
         <view class="user-info-block">
           <image class="user-img" src="{{item.userImg}}">用户头像</image>
@@ -34,7 +37,11 @@
         </view>
       </view>
     </scroll-view>
+    <view wx:elif="{{charmArray.length==0}}" class="no-rank-user">
+      <view>榜首位置暂空，快来打榜吧！O(∩_∩)O~</view>
+    </view>
   </view>
+
 </view>
 
 <view class="btn-area">
