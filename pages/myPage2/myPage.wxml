@@ -7,12 +7,7 @@
 -->
 
 
-<!--wxml-->
-<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
-
-
-
-<view wx:if="{{getUser}}" class="container">
+<view  class="container">
   <view bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
