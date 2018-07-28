@@ -31,6 +31,8 @@ Page({
         value: 80
       }
     ],
+
+  
     user1: '/mini_icon/li_avatar.png',
     user2: '/mini_icon/li_avatar.png',
     isCharm: true,
@@ -122,8 +124,10 @@ Page({
         console.log(res)
         console.log(res.data.data.others)
         if (res.data.error_code == 0) {
+          console.log(res.data.data.others.length)
           this.setData({
             others: res.data.data.others
+            
             // user1: '/mini_icon/test_avatar.png'
 
           });
