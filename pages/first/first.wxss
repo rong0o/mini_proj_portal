@@ -11,10 +11,12 @@
   justify-content: center;
 }
 .btn {
-  width: 90%;
-  margin-top: 0rpx;
+  width: 60%;
+  margin-top: 600rpx;
+  
   background-color: #FFCC00;
   color: #FFF;
+  font-weight: 700
 }
 .nav-content{
   flex:1;
@@ -98,3 +100,5 @@
   visibility:hidden;
   height:0
   } 
+
+
