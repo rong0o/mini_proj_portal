@@ -23,6 +23,11 @@ page{
   color: #160404;
 }
 
+.box{
+  height: 100%;
+  width: 100%;
+}
+
 .user1{
   position: absolute;
   top:0.2%;
