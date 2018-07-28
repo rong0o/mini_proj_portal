@@ -6,7 +6,7 @@
       <image class='user1' src='{{user1}}' bindtap='one'></image> 
       
       
-      <image class='user2' src='{{user1}}'></image> 
+      <image class='user2' src='{{user2}}'></image> 
 
 
       <block wx:if="{{isCharm & isClickUser1}}">

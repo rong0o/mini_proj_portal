@@ -11,6 +11,7 @@ Page({
   data: {
     
     user1: '/mini_icon/li_avatar.png',
+    user2: '/mini_icon/li_avatar.png',
     stengthContent1: '小星星 实力评分98 超越他还差17个实力值少年 加油~',
     charmContent1: '叮当猫 魅力值2888 超越他还差500个赞哦少年 加油~',
     isCharm: false,
@@ -86,17 +87,24 @@ Page({
       },
       success: (res) => {
         console.log(res)
-        if (res.error_code == 0) {
+        if (res.data.error_code == 0) {
+          console.log(res.data.me.username)
+          this.setData({
+            user1: res.data.me.userImage
+            // user1: '/mini_icon/test_avatar.png'
+
+          });
+
+
+
+
+
           this.setData({
             // home_tab_array: res.data.data
           });
-          console.log(url)
-          console.log(res.data.others);
-        } else
+        } else {
           console.log("ERROR:error_code-------" + res.error_code);
-          console.log(app.globalData.host + '/ranking');
-
-        console.log(app.globalData.wechatid)
+        }
       }
     })
   },
