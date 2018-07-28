@@ -18,6 +18,10 @@ Page({
   //点击轮播图
   onTapSwiper:function(e){
     var index=e.currentTarget.dataset.swiperindex;
+    var vedioId = this.data.home_swiper_array[index].vedioId;
+    wx.navigateTo({
+      url: '../playPage/playPage?vedioId=' + vedioId,
+    }); 
   },
   bindTapToPlayPage:function(e){
     var eData = e.currentTarget.dataset;
@@ -73,7 +77,7 @@ Page({
            this.setData({
              home_swiper_array: res.data.data
            });
-           console.log(res.data.data);
+           console.log(res.data.data); 
          }else
             console.log("ERROR:error_code"+res.data.error_code);
        },
@@ -99,7 +103,7 @@ Page({
            this.setData({
              home_tab_array: res.data.data
            });
-           console.log(res.data.data);
+          //  console.log(res.data.data);
          }else 
           console.log("ERROR:error_code" + res.data.error_code);
        }

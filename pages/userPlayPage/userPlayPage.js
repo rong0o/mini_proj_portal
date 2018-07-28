@@ -89,7 +89,7 @@ Page({
     var data = {
       audioId: audioId,
       userId: userId,
-      type: like_type,
+      type: collect_type,
       token: token,
     };
     var callback = () => {
@@ -117,17 +117,20 @@ Page({
     var url = host + "/audioDetail";
     var data = {
       audioId:audioId,
+      userId: userId,
       token:token,
     };
-    var callback = () => {
+    var callback = (res) => {
+      var rData=res.data.data;
       this.setData({
-        vedioScr: this.data.data.vedioScr,
-        audioScr: this.data.data.audioScr,
-        charisma: this.data.data.like,
-        power: this.data.data.score,
-        username: this.data.data.username,
-        userImage: this.data.data.userImage,
-        recordDate: this.data.data.recordDate
+        vedioScr: rData.vedioScr,
+        audioScr: rData.audioScr,
+        charisma: rData.like,
+        power: rData.score,
+        username: rData.username,
+        userImage: rData.userImage,
+        recordDate: rData.recordDate,
+        isSelf:rData.isSeft
       });
       console.log(res.data.data);
     }
