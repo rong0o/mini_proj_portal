@@ -11,7 +11,8 @@ Page({
       var nickname = e.detail.userInfo.nickName
       var avatarurl = e.detail.userInfo.avatarUrl
       var wechatid = wx.getStorageSync('wechatid')
-      console.log(wechatid)
+
+      console.log(avatarurl)
       wx.setStorageSync('nickname', e.detail.userInfo.nickName)
       wx.setStorageSync('avatarurl', e.detail.userInfo.avatarUrl)
       wx.setStorageSync('userInfo', e.detail.userInfo)
@@ -19,10 +20,13 @@ Page({
         url: 'http://134.175.160.37:80/user/add', //仅为示例，并非真实的接口地址
         data: {
           username: nickname,
-          avatarUrl: avatarurl,
+          avatarurl: avatarurl,
           wechatid: wechatid,
           token: wechatid
         },
+        success: function (res) {
+          app.globalData.id = res.data.data.id
+        }
       })
       this.bindTapToPlayPage()
       /*wx.navigateTo({
