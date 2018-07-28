@@ -5,7 +5,7 @@
 <view style="width:750rpx;height:750rpx;background-color:#fff;" class="center">
     <image src="icon.png" mode='widthFix' style="width:60%;"></image>
 </view>
-
-
-<!--wxml-->
+<view>
 <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="btn">点击进入</button>
+</view>
+
