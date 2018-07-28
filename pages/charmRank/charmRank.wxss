@@ -27,7 +27,6 @@ page{
   position: absolute;
   top:0.2%;
   left:30%;
-  color: red;
   height: 30px;
   width: 30px;
 }
@@ -36,7 +35,22 @@ page{
   position: absolute;
   top:5%;
   left:43%;
-  color: red;
+  height: 30px;
+  width: 30px;
+}
+
+.user3{
+  position: absolute;
+  top:10%;
+  left:30%;
+  height: 30px;
+  width: 30px;
+}
+
+.user4{
+  position: absolute;
+  top:5%;
+  left:43%;
   height: 30px;
   width: 30px;
 }
@@ -44,8 +58,8 @@ page{
 .text1{
   position: absolute;
   top:5%;
-  left:50%;
-  color: red;
+  left:60%;
+  color: black;
 }
 
 
