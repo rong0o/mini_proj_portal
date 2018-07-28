@@ -6,10 +6,14 @@ const recorderManager = wx.getRecorderManager()
 const innerAudioContexts = [] //存放音频上下文
 const urls = [] //存放录音微信文件的路径
 const recorderManagers = [] //存放录音机
-const textUrl = 'http://e228e498.ngrok.io'
-let innerVideoContext, isrecording
+const textUrl = 'http://d0b664c6.ngrok.io'
+let innerVideoContext, isrecording, condition
 var resurl, i1 = 0
-
+let _ = (t, arr) => arr.some(__ => (
+  __.currentTime - 0.4 <= t &&
+  t <= __.duration + __.currentTime
+)
+)
 Page({
   //存放多个音频上下文，对应多个句子
   onLoad() {
@@ -18,13 +22,20 @@ Page({
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
+    
   },
   data: {
     urls: '',
     list: [
-      { sentence: 'hello', chinese: '你好', slider2change: 0, currentTime: 0, duration: 3 },
-      { sentence: 'you', chinese: '你', slider2change: 0, currentTime: 8, duration: 3 },
-      { sentence: 'a', chinese: '113', slider2change: 0, currentTime: 13, duration: 3 }
+      { sentence: 'hello', chinese: '都是我不好',  currentTime: 0, duration: 1 },
+      { sentence: 'you', chinese: '金锁你干什么，这又不干你的事', currentTime: 1.72, duration: 3.782 },
+      { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524},
+      { sentence: 'a', chinese: '我的心里好难过', slider2change: 0, currentTime: 9.112, duration: 1.414},
+      { sentence: 'a', chinese: '我有什么资格可以去追问他呢', slider2change: 0, currentTime: 12.585, duration: 2.145},
+      { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.68, duration: 2.32},
+      { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
+      { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
+      { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
     ],
     recording: {
       state: false,
@@ -34,7 +45,6 @@ Page({
     },
     content: '完成配音',
     status: true,
-    isdisabled: true,
     ismerging: false,
     ismuted: false,
     times: [],
@@ -86,8 +96,8 @@ Page({
             'content-type': 'multipart/form-data',
             filePath: resurl,
             name: 'testname',
-            userId: 123,
-            token: 'sdfsfd123safd',
+            userId: 94,
+            token: 'ooBkB5S0uzPoJ4BlTytIbs1AVbxU',
           },
           success: function (res) {
             console.log('ok', res)
@@ -101,38 +111,19 @@ Page({
     })
 
     //控制合并全部按钮是否可以点击
-    let count = 0
-    urls.forEach(url => {
-      url && count++
-    })
-    this.count = count
-    if (this.count === this.data.list.length - 1) {
-      this.setData({ isdisabled: false })
-    }
+    // let count = 0
+    // urls.forEach(url => {
+    //   url && count++
+    // })
+    // this.count = count
+    // if (this.count === this.data.list.length - 1) {
+    //   this.setData({ isdisabled: false })
+    // }
 
 
   },
   play: function (i) {
-    /*wx.request({
-      url: textUrl + '/play',
-      method: 'GET',
-      data: {
-        index: i
-      },
-      success(res) {
-        resurl = decodeURIComponent(res.data)
-        console.log(resurl)
-        innerAudioContexts[i] = wx.createInnerAudioContext()
-        innerAudioContexts[i].autoplay = true
-        innerAudioContexts[i].src = resurl
-        innerAudioContexts[i].onPlay(() => {
-          console.log('开始播放', innerAudioContexts[i].src)
-        })
-        innerAudioContexts[i].onError((res) => {
-          console.log(res)
-        })
-      }
-    })*/
+    
     //播放第i个句子的录音
     if (!urls[i]) {
       return
@@ -160,18 +151,24 @@ Page({
         ctx.autoplay = true
         ctx.src = urls[i1++]
       }
+      if(_(curTime, this.data.list)){
+        this.setData({ ismuted: true })
+      } else {
+        this.setData({ ismuted: false, stack: null })
+      }
+      /*
       if (this.data.stack) {
         const duration = this.data.stack.duration
         const currentTime = this.data.stack.currentTime
-        const endTime = duration + currentTime
+        const endTime = duration + currentTime 
         //如果在录音音频的播放范围，原视频静音
-        if (curTime >= currentTime && curTime <= endTime) {
-          console.log(1211123123)
+        if (curTime >= currentTime - 0.4 && curTime <= endTime + 0.4) {
           this.setData({ ismuted: true })
-        } else if (curTime > endTime) {
+        } else if (curTime > endTime + 0.4) {
           this.setData({ ismuted: false, stack: null })
         }
       }
+      */
     }
     //播放原音状态，视频的自动跳转
     if (this.data.recording.state) {
@@ -180,6 +177,7 @@ Page({
       this.setData({
         list: this.data.list
       })
+      console.log(_(t, this.data.lsit))
       if (curTime >= this.data.recording.currentTime + this.data.recording.duration) {
         this.data.recording.state = false;
         innerVideoContext.seek(this.data.recording.currentTime)
@@ -217,23 +215,31 @@ Page({
     setTimeout(() => {
       isrecording = false
       this.stop(index)
-    }, delay)
+    }, delay + 800)
   },
   //合并全部
   //请求统计信息
   mergeAll() {
+    let count = 0
+    urls.forEach(url => {
+      url && count++
+    })
+    if (count < this.data.list.length - 1) {
+      return
+    }
     this.setData({ isshare: true, content: '播放配音' })
   },
   preview() {
     //预览
     this.setData({
-      ismerging: true
+      ismerging: true,
+      ismuted: true
     })
     const lists = this.data.list
     this.data.times = [...lists]
 
-    innerVideoContext.seek(0)
     innerVideoContext.autoplay = true
+    innerVideoContext.seek(0)
   },
   recordAgain() {
     //重新配音
@@ -247,6 +253,7 @@ Page({
     urls.length = 0
     innerAudioContexts.length = 0
     innerVideoContext = wx.createVideoContext('myVideo', this)
+    innerVideoContext.autoplay = false
     innerVideoContext.seek(0)
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
@@ -261,4 +268,23 @@ Page({
 
   }
 
+})
+
+wx.request({
+  url: 'http://134.175.160.37/mainpage',
+  method:'POST',
+  header:{
+    'content-type' : 'application/json'
+  },  
+  data:{
+    type: 1,
+    num:1,
+    token:'adfsdfsdf'
+  },
+  success(res){
+    console.log(res)
+  },
+  fail(res){
+    console.log(res)
+  }
 })

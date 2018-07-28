@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
 <link href="iconfont-embedded.css" rel="stylesheet" type="text/css" /> 
-<video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
+<video id="myVideo" src="../../static/金锁吃醋.mp4" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
 
 <view>
   <view wx:if="{{status}}">
@@ -40,15 +40,15 @@
             <progress percent="{{item.slider2change}}"  />
           </view>
           <view class='icon'  bindtap='playRecord'  data-index='{{index}}'>
-            <image src='play.png'></image>
+            <image src='播放.png'></image>
           </view>
           <view class='icon' bindtap='record'  data-index='{{index}}'>
-            <image src='voice.png'></image>
+            <image src='录音.png'></image>
           </view>
         </view>
       </view>
     </view>
-    <button class='play-list-header-btn' bindtap='mergeAll' disabled='{{isdisabled}}'>{{content}}   </button>
+    <button class='play-list-finish-btn' bindtap='mergeAll'>{{content}}   </button>
   </view>
   </view>
   
