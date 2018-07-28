@@ -58,13 +58,26 @@ page{
     border-radius: 500px;
 }
 
-/* .user4{
+.user4{
   position: absolute;
-  top:5%;
-  left:43%;
+  top:60%;
+  left:50%;
   height: 30px;
   width: 30px;
-} */
+  border: 0 solid #ffffff;
+    border-radius: 500px;
+}
+
+.user5{
+  position: absolute;
+  top:70%;
+  left:52%;
+  height: 30px;
+  width: 30px;
+  border: 0 solid #ffffff;
+    border-radius: 500px;
+}
+
 
 .text1{
   position: absolute;
@@ -84,6 +97,22 @@ page{
 .text3{
   position: absolute;
   top:35%;
+  left:70%;
+  color: black;
+  font-size: 10px;
+}
+
+.text4{
+  position: absolute;
+  top:45%;
+  left:70%;
+  color: black;
+  font-size: 10px;
+}
+
+.text5{
+  position: absolute;
+  top:55%;
   left:70%;
   color: black;
   font-size: 10px;
