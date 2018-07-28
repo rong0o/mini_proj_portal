@@ -6,13 +6,13 @@
 </swiper>
 <view class="nav-bar">
   <view class="nav-content {{current_index==0?'active':''}}" bindtap='bindTapToSwitchNav' data-index='0'>二次元</view>
-  <view class="nav-space">|</view>
+  <view class="nav-space" style="color:#bfbfbf">|</view>
   <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>搞怪</view>
-  <view class="nav-space"bindtap='bindTapToSwitchNav'>|</view>
+  <view class="nav-space"bindtap='bindTapToSwitchNav' style="color:#bfbfbf">|</view>
   <view class="nav-content {{current_index==2?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='2'>经典</view>
-  <view class="nav-space">|</view>
+  <!-- <view class="nav-space">|</view>
   <view class="nav-content {{current_index==3?'active':''}}" 
- bindtap='bindTapToSwitchNav' data-index='3'>原创</view>
+ bindtap='bindTapToSwitchNav' data-index='3'>原创</view> -->
 </view>
 <swiper class="home-tab" current='{{current_tab}}'  bindchange="tabChange" >
   <swiper-item wx:for='{{home_tab_array}}' wx:for-item="tab_item" wx:for-index="tab_index">
@@ -24,11 +24,11 @@
         <view class='more' bindtap='bindTapToWorkDetail' data-type='{{tab_index}}' data-hot='{{true}}'>更多>></view>
           <view class='tab_item_content' wx:for='{{tab_item.hot}}' wx:for-item="img_item">
             <view class="img-box" bindtap='bindTapToPlayPage'>
-              <image class="img" src='{{host}}{{img_item.imageSrc}}' mode='aspectFill'></image>
+              <image class="img" src='{{host}}{{img_item.imageSrc}}' ></image>
             <image class="img-icon" src='../../mini_icon/play.png'></image>
             </view>
-            <view class='img_title'>title</view>
-            <view class='img_descr'>date/descr</view>
+            <view class='img_title'>{{img_item.title}}</view>
+            <view class='img_descr'>{{img_item.desc}}</view>
           </view>
         <!-- </view>
         
@@ -37,11 +37,11 @@
         <view class='more' bindtap='bindTapToWorkDetail' data-type='{{tab_index}}'  data-hot='{{false}}'>更多>></view>
           <view class='tab_item_content' wx:for='{{tab_item.new}}'  wx:for-item="img_item">
             <view class="img-box" bindtap='bindTapToPlayPage'>
-              <image class="img" src='{{host}}{{img_item.imageSrc}}' mode='aspectFill'></image>
+              <image class="img" src='{{host}}{{img_item.imageSrc}}' ></image>
               <image class="img-icon" src='../../mini_icon/play.png'></image>
             </view>
-            <view class='img_title'>title</view>
-            <view class='img_descr'>date/descr</view>
+            <view class='img_title'>{{img_item.title}}</view>
+            <view class='img_descr'>{{img_item.desc}}</view>
           </view>
         </view>     
       </view>

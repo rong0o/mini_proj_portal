@@ -1,16 +1,17 @@
 <!--index.wxml-->
-<view class="vedio-wrap">
+<view class="vedio-wrap ">
   <video src="{{vedioSrc}}"></video>
   <view class="video-info-wrap clear-float">
     <view class="user-image">
       <image src="{{userImage}}"></image>
     </view>
     <view class="user-name">{{username}}</view>    
-    <view class="vedio-time">{{recordDate}}</view>
+    <view class="vedio-time">{{recordDate}}</view> 
     <view class="power">实力值:{{power}}</view>
     <view class="charimas">魅力值:{{charisma}}</view>
-    <view class="comment-button" bindtap="onTapInputComment"><image src='../../mini_icon/comment.png'></image></view>
-    <view class="iconfont icon-dianzan"  style="color:{{isLike? '#FDD65D':'#bfbfbf'}}" bindtap='onTapLike'></view>
+    <view class="comment-button" bindtap="onTapInputComment" wx:if="{{type==2}}"><image src='../../mini_icon/comment.png'></image></view>
+    <view class="iconfont icon-dianzan"  style="color:{{isLike? '#FDD65D':'#bfbfbf'}}" bindtap='onTapLike' wx:if='{{type==2}}'></view>
+    <button class="vedio-icon  iconfont icon-fenxiang" wx:if="{{type==0}}"  bindtap='onShareAppMessagege' open-type="share"></button>
   </view>
 </view>
 
@@ -22,7 +23,7 @@
   </form>
 </view>
 
-<scroll-view bindscrolltolower="onScrollCommentList">
+<scroll-view bindscrolltolower="onScrollCommentList" class="scroll">
   <view class="comment-disp">
     <view class="comment-title">最新评论</view>
     <view class="comment-item clear-float" wx:for='{{comment}}'>
@@ -33,25 +34,18 @@
     </view>
   </view>
 </scroll-view>
-
-<view class="foot-bar clear-float">
+<view class="foot-bar clear-float" wx:if="{{type==2}}">
   <view class="collect foot-item">
     <view class="foot-icon iconfont icon-shoucang"  style="color:{{isCollect? '#FDD65D':'#bfbfbf'}}" bindtap='onTapCollect'></view>
     <view class="foot-text" >{{collect_text}}</view>
   </view>
-  <view class="recording foot-item">
+  <view class="recording foot-item" bindtap='onTapToRecording'>
     <view class="foot-icon"><image src="../../mini_icon/PKlogo-02.png"></image></view>
-    <view class="foot-text" bindtap='onTapToRecording'>我要配音</view>
+    <view class="foot-text" >我要配音</view>
   </view>
-  <view class="like foot-item">
+  <button class="like foot-item" bindtap='onShareAppMessagege' open-type="share">
     <view class="foot-icon  iconfont icon-fenxiang"></view>
-    <view class="foot-text" bindtap='onTapToShare'>分享</view>
-  </view>
-
-
-
-
-
-
+    <view class="foot-text" >分享</view>
+  </button>
 </view>
 

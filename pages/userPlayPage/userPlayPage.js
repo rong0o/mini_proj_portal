@@ -3,14 +3,15 @@ var app = getApp();
 var host = app.globalData.host;
 var token = app.globalData.token;
 var userId = app.globalData.id;
+var comment_page=1;
+var audioId=0;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     comment: [],
-    audioId: 0,
+    type:0,
     isLike: false,
     isCollect: false,
     collect_text: "收藏",
@@ -95,23 +96,29 @@ Page({
     }
     this.ajax(url, data, callback);
   },
+  //跳转到录音
   onTapToRecording: () => {
-
+    wx.navigateTo({
+      url: '../recording/recording',
+    })
   },
   //刷新评论列表
   onScrollCommentList: function () {
-
+    //请求评论列表
+    this.reqCommit(comment_page, audioId);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      audioId: options.audioId
-    })
+    audioId=options.audioId;
+    type=options.type
     //请求视频信息
     var url = host + "/audioDetail";
-    var data = {};
+    var data = {
+      audioId:audioId,
+      token:token,
+    };
     var callback = () => {
       this.setData({
         vedioScr: this.data.data.vedioScr,
@@ -127,7 +134,7 @@ Page({
     this.ajax(url, data, callback)
 
     //请求评论列表
-    this.reqCommit(1, 1);
+    this.reqCommit(comment_page, 1);
 
     //查询点赞
     var url = host + "/audioLike";
@@ -185,7 +192,7 @@ Page({
   reqCommit: function (page, audioId) {
     wx.request({
       url: host + "/comment",
-      method: "GET",//"POST",
+      method: "POST",
       data: {
         page: page,
         num: 8,
@@ -195,15 +202,37 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
-        this.setData({
-          comment: res.data.data
-        });
+        var arr = res.data.data;
+        if(arr.length===0){
+          this.setData({
+            comment: comment.push(arr)
+          });
+          comment_page++;
+        }
         console.log(res.data.data);
       },
       fail: () => {
         console.log("comment data error");
       }
     });
+  },
+
+  /**
+   * 分享按钮回调函数
+   */
+  onShareAppMessagege: function (options) {
+    var that = this;
+    var shareObj = {
+      imgUrl: '',
+      title: '配音大PK',
+      success: function (res) {
+
+      },
+      fail: function (e) {
+        console.log(e.errMsg);
+      },
+    };
+    return shareObj;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

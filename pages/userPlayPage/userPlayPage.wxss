@@ -25,11 +25,18 @@
 
 
 /*页面样式*/
-
+button{
+  border: none;
+  background: white;
+}
+ button::after{ border: none; }
 .vedio-wrap{
-  height: 300px;
+  /* height: 300px;  */
   width: 100%;
   border-bottom: 1px solid #f7f7f7;
+}
+video{
+  width: 100%;
 }
 .clear-float::after{
   content: "";
@@ -42,6 +49,7 @@
   width: 100%;
   margin-top: 3px;
 }
+
 .user-image,.user-name,.vedio-time,.power,.charimas,.comment-button{
   float: left;
 }
@@ -94,6 +102,14 @@ image{
   font-size: 28rpx;
   color:#bfbfbf;
 }
+.vedio-icon{
+  float:right;
+  text-align: venter;
+  width: 30%;
+  height: 7.5vw;
+  line-height: 7.5vw;
+  font-size: 7vw;
+}
 .icon-dianzan{
   float:left;
   height: 7.5vw;
@@ -134,6 +150,9 @@ image{
   margin: 2.5%;
   height: 500px;
 }
+.scroll{
+  height: 500px;
+}
 .comment-item{
   width: 100%;
   margin: 10px 0;
@@ -144,7 +163,6 @@ image{
 .comment-user-img{
   height: 10vw;
   width: 10%;
-  background-color: red;
   margin-right:3%; 
   overflow:hidden;
   border-radius:5vw;

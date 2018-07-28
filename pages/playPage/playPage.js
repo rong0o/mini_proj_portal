@@ -12,13 +12,14 @@ Page({
     'charmArray': null,
     'title': null,
     'desc': null, // 描述（已录音数）
-    'powerImg': '../../../img/power.png',
-    'charmImg': '../../../img/charm.png',
+    'powerImgSrc': '../../../mini_icon/power.png',
+    'charmImgSrc': '../../../mini_icon/charm.png',
+    'recordSrc': '../../../mini_icon/PKlogo-02.png', 
   },
 
   bindTapToRecording: function() {
     wx.navigateTo({
-      url: '../recording/recording?userId=' + this.data.userId 
+      url: '../recording/recording?' + this.data.userId 
       + '&audioId=' + this.data.videoId
       + '&token=' + this.data.token,
     })
@@ -27,10 +28,9 @@ Page({
   /**
    * 导航到录音作品页，内部调用
    */
-  __navigateToAudioPage: function(ops) {
-    var opsStr = JSON.stringify(ops);
+  __navigateToAudioPage: function(options) {    
     wx.navigateTo({
-      url: '../audioPage/audioPage?options=' + opsStr,
+      url: '../userPlayPage/userPlayPage?audioId=' + options.audioId,
     });
   },
 
@@ -38,10 +38,9 @@ Page({
    * 点击实力排行榜用户
    */
   bindtapToPowerUser: function(e) {
-    var idx = e.currentTarget.dataset.idx;
+    var idx = e.currentTarget.dataset.idx; // 点击用户索引
     var options = {
       audioId: this.data.powerArray[idx].audioId,
-      idx: idx, // 点击用户索引
     };
     this.__navigateToAudioPage(options);
   },
@@ -53,7 +52,6 @@ Page({
     var idx = e.currentTarget.dataset.idx;
     var options = {
       audioId: this.data.charmArray[idx].audioId,
-      idx: idx, // 点击用户索引
     };
     this.__navigateToAudioPage(options);
   },  
@@ -140,9 +138,10 @@ Page({
         console.log(e.errMsg);
       },
     };
-    if (options.from == 'button') {
+    // 采用button分享
+    // if (options.from == 'button') {
 
-    }
+    // }
     return shareObj;
   },
 
@@ -172,14 +171,15 @@ Page({
       charmImg: test_img,
       powerImg: test_img,
     });
+    console.log(this.data.powerArray);
     // 测试数据结束
 
-    //console.log("playpage: ", this.options);
+
     var reqOps = {
       videoId: this.data.videoId,
       token: app.globalData.token,
     };
-    this.requestvideo(reqOps);
+    //this.requestvideo(reqOps);
   },
 
   /**

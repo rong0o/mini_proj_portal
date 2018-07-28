@@ -34,6 +34,15 @@
   width: 30%;
   margin-left: 40px;
   margin-right: 10rpx;
+  margin-top: 50rpx;
+  background-color: #FFFFFF;
+  color: #160404;
+}
+
+.btny3 {
+  width: 30%;
+  margin-left: 30px;
+  margin-right: 10rpx;
   background-color: #FFFFFF;
   color: #160404;
 }
@@ -47,7 +56,15 @@
 
 .btng2 {
   width: 30%;
-  margin-left: 290rpx;
+  margin-top: 20rpx;
+  margin-left: 390rpx;
+  background-color: #FFFFFF;
+  color: #160404;
+}
+
+.btng3 {
+  width: 30%;
+  margin-left: 200rpx;
   background-color: #FFFFFF;
   color: #160404;
 }
@@ -96,7 +113,6 @@
   font-family: PingFang SC;
   font-size: 34rpx;
   color: #000;
-  
 }
 
 .list-icon {
@@ -110,8 +126,9 @@
   margin-top: 5rpx;
   margin-left: 10px;
   margin-right: 10rpx;
-  width: 56rpx;
-  height: 56rpx;
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align:top;
 }
 
 .list-container {

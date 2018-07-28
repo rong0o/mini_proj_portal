@@ -1,6 +1,9 @@
 //app.js
 App({
   onLaunch: function () {
+    wx.setEnableDebug({
+      enableDebug: true
+    })
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -32,9 +35,9 @@ App({
     wechatid: null,
     userInfo: null,
     host: "http://134.175.160.37",
-    token:null,
-    id:0,
-    power:0,
-    charm:0
+    token: 'ooBkB5S0uzPoJ4BlTytIbs1AVbxU',
+    id: null,
+    power: 0,
+    charm: 0
   }
 })
