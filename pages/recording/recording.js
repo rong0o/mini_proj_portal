@@ -412,7 +412,7 @@ Page({
     innerVideoContext = wx.createVideoContext('myVideo', this)
     innerVideoContext.autoplay = false
     innerVideoContext.seek(0)
-    innerVideoContext.stop()
+    innerVideoContext.pause()
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
