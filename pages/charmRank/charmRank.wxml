@@ -6,11 +6,11 @@
 
 <image class="box" src='{{tree}}'>
     
-     <image class='user1' src='{{others[0].userImage}}' bindtap='one'></image>
-      <image class='user2' src='{{others[1].userImage}}' bindtap='two'></image>
-       <image class='user3' src='{{others[2].userImage}}' bindtap='three'></image>
-       <image class='user4' src='{{others[3].userImage}}' bindtap='four'></image>
-       <image class='user5' src='{{others[4].userImage}}' bindtap='five'></image>
+     <image class='user1' src='{{oo[0].userImage}}' bindtap='one'></image>
+      <image class='user2' src='{{oo[1].userImage}}' bindtap='two'></image>
+       <image class='user3' src='{{oo[2].userImage}}' bindtap='three'></image>
+       <image class='user4' src='{{oo[3].userImage}}' bindtap='four'></image>
+       <image class='user5' src='{{oo[4].userImage}}' bindtap='five'></image>
 
 
       <block wx:if="{{isCharm & isClickUser1}}">
