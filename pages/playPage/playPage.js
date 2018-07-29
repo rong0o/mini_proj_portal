@@ -12,6 +12,7 @@ Page({
     'charmArray': [],
     'title': "",
     'desc': "", // 描述（已录音数）
+    'num': 0,
     'powerImgSrc': '../../../mini_icon/power.png',
     'charmImgSrc': '../../../mini_icon/charm.png',
     'recordSrc': '../../../mini_icon/PKlogo-02.png',
@@ -79,6 +80,7 @@ Page({
           'charmArray': resData.charm,
           'title': resData.title,
           'desc': resData.desc,
+          'num': resData.num,
         });
       },
       fail: function(e) {
@@ -151,10 +153,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.data.videoId = options.videoId == null ? options.vedioId : options.videoId;
     this.setData({
-      videoId: options.vedioId,
+      videoId: this.data.videoId,
     });
     console.log(options);
+    console.log(this.data.videoId);
     this.requestvideo(this.data.videoId);
   },
 

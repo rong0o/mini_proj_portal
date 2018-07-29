@@ -2,7 +2,6 @@
 
 button{
   background-color: rgba(127, 127, 127, 0);
-
 }
 .work-video {
   width: 100%;
@@ -48,6 +47,7 @@ button{
   padding-top: 3px;
   padding-left: 18px;
   padding-right: 18px;
+  width: 58px;
   align-items: center;
   justify-content: center;
 }
@@ -56,6 +56,15 @@ button{
   width: 54px;
   height: 54px;
   border-radius: 50%; /* 圆形图 */
+}
+
+.name-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  font-size: 13.5px;
+  width: 100%;
+  text-align: center;
 }
 
 .index-block {
@@ -126,7 +135,7 @@ button{
 .big-text {
   color: black;
   font-size: 16px;
-  font-style:normal;
+  font-style: normal;
 }
 
 .btn-text {  
