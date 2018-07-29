@@ -106,6 +106,7 @@ Page({
     wx.navigateTo({
       url: '../recording/recording?userId='+userId+'&vedioId='+audioId,
     })
+    console.log('../ recording / recording ? userId = '+userId+' & vedioId='+audioId);
   },
   //刷新评论列表
   onScrollCommentList: function() {
