@@ -54,7 +54,6 @@ Page({
     this.setData({
       current_index:e.detail.current
     });
-    console.log(1);
 
   },
   /**
@@ -98,10 +97,12 @@ Page({
          'content-type': 'application/json' // 默认值
        },
        success:(res)=>{
-         console.log(res.data);
+        var tempArr=[];
+         tempArr.push(res.data.data[0]);
+         tempArr.push(res.data.data[1]);
          if (res.data.error_code == 0) {
            this.setData({
-             home_tab_array: res.data.data
+             home_tab_array: tempArr
            });
           //  console.log(res.data.data);
          }else 

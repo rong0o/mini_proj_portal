@@ -8,9 +8,6 @@
   <view class="nav-content {{current_index==0?'active':''}}" bindtap='bindTapToSwitchNav' data-index='0'>二次元</view>
    <view class="nav-space" style="color:#bfbfbf">|</view>
   <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>经典</view> 
-
-
-  
   <!-- <view class="nav-space">|</view>
   <view class="nav-content {{current_index==3?'active':''}}" 
  bindtap='bindTapToSwitchNav' data-index='3'>原创</view> -->
