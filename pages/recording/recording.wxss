@@ -78,7 +78,7 @@ page{
 .share-footer{
   position: relative;
   top:6rem;
-}
+} 
 .share-footer-item{
   display: inline-block;
   padding: 1.5rem;
