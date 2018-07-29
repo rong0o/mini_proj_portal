@@ -10,9 +10,9 @@ Page({
     worksArray: [],
     'type': -1,
     nworksPerPage: 5,
-    'playIconSrc': '../../../mini_icon/play.png',
-    'powerImgSrc': '../../../mini_icon/power.png',
-    'charmImgSrc': '../../../mini_icon/charm.png',
+    'playIconSrc': '../../mini_icon/play.png',
+    'powerImgSrc': '../../mini_icon/power.png',
+    'charmImgSrc': '../../mini_icon/charm.png',
     host: appData.host,
     hot: -1,
     noMoreWorkFlag: 0,
@@ -199,8 +199,10 @@ Page({
       'type': options.type - 0,
       'page': options.page,
       'num': this.data.nworksPerPage,
-      'userId': 94, // !!!!!!!!!!!!!!!!!!! 测试用id      
+      //'userId': 94, // !!!!!!!!!!!!!!!!!!! 测试用id      
+      'userId': appData.id,
     };
+    console.log('userId', appData.id)
     console.log("post data: ", postData);
     wx.request({
       url: appData.host + '/myaudio',      

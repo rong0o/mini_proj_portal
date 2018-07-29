@@ -14,7 +14,7 @@ button{
   border-bottom-width: 1px;
   border-bottom-style: solid;
   padding-top: 2px;
-  padding-bottom: 2px;
+  padding-bottom: 0px;
   height: 270px;
 }
 
@@ -130,7 +130,7 @@ button{
 .small-text {
   color: gainsboro;
   font-size: 15px;
-  padding-bottom: px;
+  padding-bottom: 0px;
 }
 
 .big-text {

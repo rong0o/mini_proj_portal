@@ -13,9 +13,9 @@ Page({
     'title': "",
     'desc': "", // 描述（已录音数）
     'num': 0,
-    'powerImgSrc': '../../../mini_icon/power.png',
-    'charmImgSrc': '../../../mini_icon/charm.png',
-    'recordSrc': '../../../mini_icon/PKlogo-02.png',
+    'powerImgSrc': '../../mini_icon/power.png',
+    'charmImgSrc': '../../mini_icon/charm.png',
+    'recordSrc': '../../mini_icon/PKlogo-02.png',
   },
 
   bindTapToRecording: function() {
