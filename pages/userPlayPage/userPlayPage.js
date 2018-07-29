@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    host:host,
     comment: [],
     isSelf:0,
     isLike: false,
@@ -18,12 +19,12 @@ Page({
     collect_text: "收藏",
     dianzan_color: "#bfbfbf",
     isCommentIput: false,
-    vedioScr: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
+    vedioScr: "",
     audioScr: "",
     charisma: "",
     power: "",
     username: "",
-    userImage: 'http://ojg9qyra6.bkt.clouddn.com/1.png',
+    userImage: '',
     recordDate: ""
   },
   onTapInputComment: function () {
@@ -36,13 +37,15 @@ Page({
     this.setData({
       isCommentIput: !this.data.isCommentIput
     });
-    console.log(e.detail)
+    console.log("///");
+    console.log(e.detail.value.comment);
     //发送评论
     var url = host + "/commitComment";
+
     var data = {
       audioId: audioId,
       userId: userId,
-      comment: e.target.value.comment,
+      comment: e.detail.value.comment,
       num: 1,
       token: token,
     };
@@ -126,8 +129,8 @@ Page({
     var callback = (res) => {
       var rData=res.data.data;
       this.setData({
-        vedioScr: rData.vedioScr,
-        audioScr: rData.audioScr,
+        vedioSrc: host+rData.vedioSrc,
+        audioSrc: rData.audioSrc,
         charisma: rData.like,
         power: rData.score,
         username: rData.username,
@@ -162,7 +165,7 @@ Page({
     var data = {
       audioId: audioId,
       userId: userId,
-      type: like_type,
+      type: 0,
       token: token,
     };
     var callback = (res) => {
@@ -196,6 +199,7 @@ Page({
   },
   //评论请求函数
   reqCommit: function (page, audioId) {
+    var that=this;
     wx.request({
       url: host + "/comment",
       method: "POST",
@@ -207,15 +211,24 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: (res) => {
+      success: function(res) {
         var arr = res.data.data;
-        if(arr.length===0){
-          this.setData({
-            comment: comment.push(arr)
+        console.log("////");
+        console.log(arr);
+        if(arr.length!=0){
+          var tmpArr = that.data.comment;
+          console.log("////");
+          console.log(tmpArr);
+          console.log(arr);
+          tmpArr=tmpArr.concat(arr);
+          console.log("////");
+          console.log(tmpArr);
+          that.setData({
+            comment: tmpArr
           });
           comment_page++;
         }
-        console.log(res.data.data);
+
       },
       fail: () => {
         console.log("comment data error");

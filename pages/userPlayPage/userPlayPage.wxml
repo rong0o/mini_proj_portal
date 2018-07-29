@@ -32,6 +32,7 @@
       <view class="comment-time">{{item.date}}</view>
       <scroll-view class="comment-content">{{item.comment}}</scroll-view>
     </view>
+    <view wx:if='{{comment.length==0}}' style="text-align:center">暂无任何评论，快来添加吧！</view>
   </view>
 </scroll-view>
 <view class="foot-bar clear-float" wx:if="{{isSelf==0}}">
