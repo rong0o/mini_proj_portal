@@ -49,7 +49,25 @@ let _ = (t, arr) => arr.some(__ => (
 )
 Page({
   //存放多个音频上下文，对应多个句子
-  onLoad() {
+  onLoad(opts) {
+    console.log('上一夜')
+    console.log(opts)
+    id = opts.audioId
+    const that = this
+    wx.request({
+      url: 'http://134.175.160.37/vedioDetail',
+      method:'POST',
+      data:{
+        vedioId: id
+      },
+      success(res){
+        console.log(666777)
+        console.log(res)
+        that.setData({
+          vurl: 'http://134.175.160.37'+res.data.data.vedioSrc
+        })
+      }
+    })
     innerVideoContext = wx.createVideoContext('myVideo', this)
     innerVideoContext.seek(0)
     this.data.list.forEach(x => {
@@ -92,7 +110,8 @@ Page({
     isshare: false,
     istotal:false,
     score: 0,
-    percent: 60
+    percent: 60,
+    vurl:''
   },
   start: function () {
     const options = {
