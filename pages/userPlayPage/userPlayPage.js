@@ -104,7 +104,7 @@ Page({
   //跳转到录音
   onTapToRecording: function() {
     wx.navigateTo({
-      url: '../recording/recording',
+      url: '../recording/recording?userId='+userId+'&vedioId='+audioId,
     })
   },
   //刷新评论列表
