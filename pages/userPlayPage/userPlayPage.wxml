@@ -23,7 +23,7 @@
   </form>
 </view>
 
-<scroll-view bindscrolltolower="onScrollCommentList" class="scroll">
+<scroll-view bindscrolltolower="onScrollCommentList" class="scroll" scroll-y>
   <view class="comment-disp">
     <view class="comment-title">最新评论</view>
     <view class="comment-item clear-float" wx:for='{{comment}}'>

@@ -11,6 +11,31 @@ const textUrl = 'http://134.175.160.37'
 const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
+const sleep = t => new Promise((resolve,reject) => {
+  setTimeout(()=>{
+    resolve()
+  }, t)
+})
+
+const getList = vedioId => {
+  wx.request({
+    url: 'http://134.175.160.37/vedioSubtitle',
+    method: 'POST',
+    header: {
+      'content-type': 'application/json'
+    },
+    data: {
+      vedioId: vedioId
+    },
+    success(res) {
+      console.log(666)
+      console.log(res)
+    },
+    fail(res) {
+      console.log(res)
+    }
+  })
+}
 
 let innerVideoContext, isrecording, ctx
 let resurl, i1 = 0
@@ -19,6 +44,7 @@ let _ = (t, arr) => arr.some(__ => (
   t <= + __.duration + (+__.currentTime)
 )
 )
+let currentPlay = false
 Page({
   //存放多个音频上下文，对应多个句子
   onLoad() {
@@ -27,11 +53,11 @@ Page({
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
-    
+    getList(27)
   },
   data: {
     urls: '',
-    list: /*[
+    list: [
       { sentence: 'hello', chinese: '都是我不好',  currentTime: 0, duration: 1 },
       { sentence: 'you', chinese: '金锁你干什么，这又不干你的事', currentTime: 1.72, duration: 3.782 },
       { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524},
@@ -41,16 +67,16 @@ Page({
       { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
       { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
       { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
-    ],*/
-    [
-      { chinese: "传说在魔兽山脉深处", currentTime: "0.780", duration: "2.932" }, 
-      { chinese: "有一种可以短时间内提升战斗力的宝物", currentTime: "4.292", duration: "3.973" }, 
-      { chinese: "多少修炼之人", currentTime: "9.271", duration: "1.620" }, 
-      { chinese: "不惜以身范险深入山脉", currentTime: "11.340", duration: "3.370" }, 
-      { chinese: "但都是有去无回白白搭上性命", currentTime: "15.420", duration: "4.919" },
-      { chinese: "不过人们依然对它如此执着", currentTime: "21.818", duration: "3.524" },
-      { chinese: "紫灵晶", currentTime: "26.596", duration: "2.128" }
-      ],
+    ],
+    // [
+    //   { chinese: "传说在魔兽山脉深处", currentTime: "0.780", duration: "2.932" }, 
+    //   { chinese: "有一种可以短时间内提升战斗力的宝物", currentTime: "4.292", duration: "3.973" }, 
+    //   { chinese: "多少修炼之人", currentTime: "9.271", duration: "1.620" },
+    //   { chinese: "不惜以身范险深入山脉", currentTime: "11.340", duration: "3.370" }, 
+    //   { chinese: "但都是有去无回白白搭上性命", currentTime: "15.420", duration: "4.919" },
+    //   { chinese: "不过人们依然对它如此执着", currentTime: "21.818", duration: "3.524" },
+    //   { chinese: "紫灵晶", currentTime: "26.596", duration: "2.128" }
+    //   ],
     recording: {
       state: false,
       currentTime: 0,
@@ -146,21 +172,35 @@ Page({
     //如果是合并全部的时候
     if (this.data.isshare) {
       const times = this.data.times
+      console.log(this.data.stack)
       if (times.length && !this.data.stack) {
         const time = times.shift()
-        this.data.stack = time
-        console.log(urls)
+        const duration = +time.duration
+        this.setData({ stack: time})
+        const that = this
+        console.log(urls[i1])
         ctx = wx.createInnerAudioContext()
         ctx.autoplay = true
         ctx.src = urls[i1++]
+        sleep(duration*1000 - 300).then(() => {
+          currentPlay = true
+        })
+        if (!this.data.times.length && !this.data.stack) {
+          this.setData({ isshare: false, ismuted: false })
+        }
       }
       //在特定时间段把原视频静音
       if(_(curTime, this.data.list)){
+        if (currentPlay) {
+          this.setData({ stack: null })
+          currentPlay = false
+        }
         this.setData({ ismuted: true })
       } else {
-        this.setData({ ismuted: false, stack: null })
+        this.setData({ ismuted: false})
       }
-    
+
+
     }
     //播放原音状态，视频的自动跳转
     if (this.data.recording.state) {
@@ -199,14 +239,15 @@ Page({
     }
     isrecording = true
     const index = e.currentTarget.dataset.index;
-    const delay = this.data.list[index].duration * 1000;
-    setTimeout(() => {
+    const delay = +this.data.list[index].duration * 1000;
+
+    sleep(300).then(() => {
       this.start()
     })
-    setTimeout(() => {
+    sleep(delay + 300).then(() => {
       isrecording = false
       this.stop(index)
-    }, delay + 500)
+    })
   },
   //合并全部
   //请求统计信息
@@ -247,6 +288,7 @@ Page({
     innerVideoContext = wx.createVideoContext('myVideo', this)
     innerVideoContext.autoplay = false
     innerVideoContext.seek(0)
+    innerVideoContext.stop()
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
@@ -284,6 +326,8 @@ wx.request({
     console.log(res)
   }
 })*/
+
+
 
 
 /*

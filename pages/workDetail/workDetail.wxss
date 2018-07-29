@@ -19,6 +19,7 @@
 .img-content {
   width: 50%;
   height: 100%;
+  position: relative;
   /* background: red; */
 }
 
@@ -65,7 +66,10 @@
   /* left: 50%; */
   /* top: 50%; */
   /* 平移x = -(播放宽 + 图片宽)/2; 平移y = (图片高度 - 播放图高度)/2 */
-  transform: translate(-97px, 35px);
+  /* transform: translate(-97px, 35px); */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
   z-index: 999;
 }
 
