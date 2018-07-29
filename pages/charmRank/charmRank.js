@@ -10,29 +10,45 @@ Page({
    */
   data: {
     index: 0,
-    others: [{
-      userid: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userid: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userid: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    }
-    ],
+    length:0,
+    others: [ ],
 
+    oo: [{
+      userId: 1,
+      username: "小风筝f",
+      userImage: null,
+      rank: 9,
+      value: 80
+    },
+      {
+        userId: 1,
+        username: "小风筝f",
+        userImage: null,
+        rank: 9,
+        value: 80
+      },
+      {
+        userId: 1,
+        username: "小风筝f",
+        userImage: null,
+        rank: 9,
+        value: 80
+      },
+      {
+        userId: 1,
+        username: "小风筝f",
+        userImage: null,
+        rank: 9,
+        value: 80
+      },
+      {
+        userId: 1,
+        username: "小风筝f",
+        userImage: null,
+        rank: 9,
+        value: 80
+      }
+    ],
 
 
     tree: '/mini_icon/yellowTree.png',
@@ -246,52 +262,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('hha')
-    console.log(this.data.oo)
     var app = getApp();
     var token = app.globalData.token
     var wechatid = app.globalData.wechatid
-
     var id = app.globalData.id
-
-    console.log(token)
     var that = this
-    var oo = [{
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    ]
     //请求首页图片
     wx.request({
       url: app.globalData.host + '/ranking',
@@ -307,203 +282,64 @@ Page({
       },
       success: (res) => {
         console.log(res.data.data.others)
-        for (var i = 0; i < 5; i++) {
-          oo[i].userId = res.data.data.others[i + that.data.index * 5].userid
-          oo[i].username = res.data.data.others[i + that.data.index * 5].username
-          oo[i].userImage = res.data.data.others[i + that.data.index * 5].userImage
-          oo[i].value = res.data.data.others[i + that.data.index * 5].value
-          oo[i].rank = res.data.data.others[i + that.data.index * 5].rank
-        }
+
+        // console.log(res.data.data.others.length)
         if (res.data.error_code == 0) {
           this.setData({
-            others: oo
-            // user1: '/mini_icon/test_avatar.png'
-
+            others: res.data.data.others,
+            length: res.data.data.others.length,
           });
         } else {
           console.log("ERROR:error_code-------" + res.error_code);
         }
+
+        
+        for (var i = 0; i < 5; i++) {
+          this.data.oo[i].userId = this.data.others[i + this.data.index * 5].userId;
+          this.data.oo[i].username = this.data.others[i + this.data.index * 5].username;
+          this.data.oo[i].userImage = this.data.others[i + this.data.index * 5].userImage;
+          this.data.oo[i].value = this.data.others[i + this.data.index * 5].value;
+          this.data.oo[i].rank = this.data.others[i + this.data.index * 5].rank;
+        }
+        this.setData({
+          oo: that.data.oo
+        })
       }
     })
   },
 
  
   nextPage: function (options) {
-    console.log('hha')
-    console.log(this.data.oo)
-    var app = getApp();
-    var token = app.globalData.token
-    var wechatid = app.globalData.wechatid
-
-    var id = app.globalData.id
- 
-
-    console.log(token)
+    if (this.data.index * 5 <= this.data.length - 10) {
+      this.data.index = this.data.index + 1
+    }
+    for (var i = 0; i < 5; i++) {
+      this.data.oo[i].userId = this.data.others[i + this.data.index * 5].userId;
+      this.data.oo[i].username = this.data.others[i + this.data.index * 5].username;
+      this.data.oo[i].userImage = this.data.others[i + this.data.index * 5].userImage;
+      this.data.oo[i].value = this.data.others[i + this.data.index * 5].value;
+      this.data.oo[i].rank = this.data.others[i + this.data.index * 5].rank;
+    }
     var that = this
-    that.data.index = that.data.index + 1
-    var oo = [{
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    ]
-    //请求首页图片
-    wx.request({
-      url: app.globalData.host + '/ranking',
-      method: "POST",
-      data: {
-        userId: id,
-        token: token,
-        num: 15,
-        type: 1,
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: (res) => {
-        console.log(res.data.data.others)
-        
-        for (var i = 0; i < 5; i++) {
-          oo[i].userId = res.data.data.others[i + that.data.index * 5].userid
-          oo[i].username = res.data.data.others[i + that.data.index * 5].username
-          oo[i].userImage = res.data.data.others[i + that.data.index * 5].userImage
-          oo[i].value = res.data.data.others[i + that.data.index * 5].value
-          oo[i].rank = res.data.data.others[i + that.data.index * 5].rank
-        }
-        if (res.data.error_code == 0) {
-          this.setData({
-            others: oo
-            // user1: '/mini_icon/test_avatar.png'
-
-          });
-        } else {
-          console.log("ERROR:error_code-------" + res.error_code);
-        }
-      }
+    this.setData({
+      oo: that.data.oo
     })
   },
 
   upPage: function (options) {
-    console.log('hha')
-    console.log(this.data.oo)
-    var app = getApp();
-    var token = app.globalData.token
-    var wechatid = app.globalData.wechatid
-
-    var id = app.globalData.id
-
-
-    console.log(token)
+    if (this.data.index > 0) {
+      this.data.index = this.data.index - 1
+    }
+    for (var i = 0; i < 5; i++) {
+      this.data.oo[i].userId = this.data.others[i + this.data.index * 5].userId;
+      this.data.oo[i].username = this.data.others[i + this.data.index * 5].username;
+      this.data.oo[i].userImage = this.data.others[i + this.data.index * 5].userImage;
+      this.data.oo[i].value = this.data.others[i + this.data.index * 5].value;
+      this.data.oo[i].rank = this.data.others[i + this.data.index * 5].rank;
+    }
     var that = this
-    that.data.index = that.data.index - 1
-    var oo = [{
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    {
-      userId: 1,
-      username: "小风筝f",
-      userImage: null,
-      rank: 9,
-      value: 80
-    },
-    ]
-    //请求首页图片
-    wx.request({
-      url: app.globalData.host + '/ranking',
-      method: "POST",
-      data: {
-        userId: id,
-        token: token,
-        num: 15,
-        type: 1,
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: (res) => {
-        console.log(res.data.data.others)
-
-        for (var i = 0; i < 5; i++) {
-          oo[i].userId = res.data.data.others[i + that.data.index * 5].userid
-          oo[i].username = res.data.data.others[i + that.data.index * 5].username
-          oo[i].userImage = res.data.data.others[i + that.data.index * 5].userImage
-          oo[i].value = res.data.data.others[i + that.data.index * 5].value
-          oo[i].rank = res.data.data.others[i + that.data.index * 5].rank
-        }
-        if (res.data.error_code == 0) {
-          this.setData({
-            others: oo
-            // user1: '/mini_icon/test_avatar.png'
-
-          });
-        } else {
-          console.log("ERROR:error_code-------" + res.error_code);
-        }
-      }
+    this.setData({
+      oo: that.data.oo
     })
-  },
-
-
-  // nextPage: function(e) {
-
-  //   this.setData({
-  //     others: this.others
-  //   })
-  // }
-
+  }
 })

@@ -1,19 +1,16 @@
 <!--index.wxml-->
 <view class="container">
 <link href="iconfont-embedded.css" rel="stylesheet" type="text/css" /> 
-<video id="myVideo" src="../../static/金锁吃醋.mp4" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
+<video id="myVideo" src="http://134.175.160.37/vedio/1532784047009.mp4" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
 
-<view>
-  <view wx:if="{{status}}">
-    <button  bindtap='startTo'>开启配音</button>
-  </view>
-  <view wx:elif='{{isshare}}'>
-    <view bindtap='preview'>预览</view>
+<view id='main'>
+  <view wx:if='{{isshare}}'>
+    <view bindtap='preview' class='share-preview'>预览</view>
     <view class='share-total'>统计</view>
     <view class='share-footer'>
-      <view class='share-footer-item'><button bindtap='recordAgain'>重配</button></view>
-      <view class='share-footer-item share-footer-item-publish'><button bindtap='publish'>我要发布</button></view>
-      <view class='share-footer-item'><button bindtap='toSave'>保存</button></view>
+      <view class='share-footer-item' bindtap='recordAgain'>重配</view>
+      <view class='share-footer-item share-footer-item-publish' bindtap='publish'>我要发布</view>
+      <view class='share-footer-item' bindtap='toSave'>保存</view>
     </view>
   </view>
   <view wx:else>
@@ -30,20 +27,20 @@
       </view>
       <view>
         <view class='play-list-sentence'>
-          {{item.sentence}}
+          {{item.sentence || ''}}
         </view>
         <view class='play-list-chinese'>
-          {{item.chinese}}
+          {{item.chinese || ''}}
         </view>
         <view class='play-list-footer'>
           <view class='play-list-footer-progress'>
             <progress percent="{{item.slider2change}}"  />
           </view>
           <view class='icon'  bindtap='playRecord'  data-index='{{index}}'>
-            <image src='播放.png'></image>
+            <image style='width:1.5rem;height:1.5rem' src='http://134.175.160.37/image/play.png'></image>
           </view>
           <view class='icon' bindtap='record'  data-index='{{index}}'>
-            <image src='录音.png'></image>
+            <image style='width:1.5rem;height:1.5rem'  src='http://134.175.160.37/image/record.png'></image>
           </view>
         </view>
       </view>
