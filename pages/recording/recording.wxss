@@ -1,66 +1,90 @@
-/**index.wxss**/
-page{
-  background: rgba(250, 243, 243, 0.5);
+.home-swiper{
+  height: 100px;
 }
-.userinfo {
+.nav-bar{
+  display:flex;
+  width:100%;
+  flex-direction: row;
+}
+.nav-content{
+  flex:1;
+  text-align: center;
+  border-radius: 8px;
+  height: 25px;
+  line-height: 25px;
+  margin: 2%;
+  background-color:rgb(181, 237, 225);
+}
+.nav-space{
+  height: 25px;
+  line-height: 25px;
+  margin:2% 0;
+}
+.active{
+  background-color:rgb(253, 214, 93);
+}
+.no-active{
+  background-color:rgb(181, 237, 225); 
+}
+
+.tab_item_title{
+  height: 30px;
+  line-height: 30px;
+  width: 45%;
+}
+.more{
+  width: 45%;
+  text-align: right;
+  font-size: 60%;
+  height: 30px;
+  line-height: 30px;
+}
+.tab_item_box{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow:row wrap;
+  justify-content: space-around;
+  height: 300px;
+  width: 100%;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.tab_item_content{
+  width: 45%;
+  margin-top: 5px;
+  height: 145px;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.home-tab{
+  height: 400px
 }
-
-.usermotto {
-  margin-top: 200px;
+.img{
+  width: 100%;
+  height: 110px;
 }
-
-.play-list{
-  width:18rem;
-  margin: 0.2rem;
-  padding: 0.2rem;
+.img-box{
+  position: relative;
 }
-
-.play-list-header{
-  display: flex;
-  justify-content: space-between;
+.img-icon{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 999;
 }
-
-.play-list-header-item{
-
-  vertical-align: bottom;
-}
-.play-list-header-btn,.play-list-finish-btn{
-  background: #ddd;
-  width: 7rem;
-  height: 1.8rem;
-  vertical-align: bottom;
-  line-height: 1.8rem;
-}
-.play-list-chinese{
-  color: #aaa;
-}
-.play-list-footer image {
-  width: 20px; 
+.img_title{
   height: 20px;
-
+  font-size: 14px;
+  margin-top:-5px;
 }
-.icon,.play-list-footer-progress{
-  display: inline-block;
-  margin: 2px;
-  height: 10px;
+.img_descr{
+  height: 15px;
+  font-size: 8px;
+  margin-top:-2px;
+  color: #bfbfbf;
 }
-.play-list-footer-progress{
-  width: 80%;
-}
-.play-list-finish-btn{
-  background: #f7c443;
-}
+.clear-float:after{
+  content:"";
+  display:block;
+  clear:both;
+  visibility:hidden;
+  height:0
+  } 
