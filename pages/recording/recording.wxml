@@ -2,7 +2,7 @@
 <view class="container">
 <link href="iconfont-embedded.css" rel="stylesheet" type="text/css" /> 
 <view id='v-container'>
-<video id="myVideo" src="http://134.175.160.37/vedio/1532779573180.mp4" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
+<video id="myVideo" src='{{vurl}}' bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
 </view>
 
 
