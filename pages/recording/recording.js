@@ -88,15 +88,6 @@ Page({
       { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524 },
       { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524 }
     ],
-    // [
-    //   { chinese: "传说在魔兽山脉深处", currentTime: "0.780", duration: "2.932" }, 
-    //   { chinese: "有一种可以短时间内提升战斗力的宝物", currentTime: "4.292", duration: "3.973" }, 
-    //   { chinese: "多少修炼之人", currentTime: "9.271", duration: "1.620" },
-    //   { chinese: "不惜以身范险深入山脉", currentTime: "11.340", duration: "3.370" }, 
-    //   { chinese: "但都是有去无回白白搭上性命", currentTime: "15.420", duration: "4.919" },
-    //   { chinese: "不过人们依然对它如此执着", currentTime: "21.818", duration: "3.524" },
-    //   { chinese: "紫灵晶", currentTime: "26.596", duration: "2.128" }
-    //   ],
     recording: {
       state: false,
       currentTime: 0,
@@ -108,6 +99,7 @@ Page({
     times: [],
     stack: null,
     isshare: false,
+    isshare1: false,
     istotal:false,
     score: 0,
     percent: 60,
@@ -362,7 +354,7 @@ Page({
     // if (count < this.data.list.length - 1) {
     //   return
     // }
-    this.setData({ isshare: true, content: '播放配音' })
+    this.setData({ isshare1: true, content: '播放配音' })
     const that = this
     wx.request({
       url: 'http://134.175.160.37/getScore',
@@ -408,6 +400,7 @@ Page({
     this.setData({
       status: false,
       isshare: false,
+      isshare1: false,
       times: [],
       stack: null,
       score: 0,
