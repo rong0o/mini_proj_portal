@@ -6,8 +6,9 @@
 </swiper>
 <view class="nav-bar">
   <view class="nav-content {{current_index==0?'active':''}}" bindtap='bindTapToSwitchNav' data-index='0'>二次元</view>
-  <view class="nav-space" style="color:#bfbfbf">|</view>
-  <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>经典</view>
+   <view class="nav-space" style="color:#bfbfbf">|</view>
+  <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>经典</view> 
+
 
   
   <!-- <view class="nav-space">|</view>
@@ -59,4 +60,3 @@
 点击查看更多作品
 </button> -->
 </view>
-
