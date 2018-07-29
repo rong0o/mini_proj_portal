@@ -1,8 +1,8 @@
 <!--pages/playPage/playPage.wxml-->
 <video class="work-video" id="user-video" src="{{videoSrc}}" binderror="videoErrorCallback"></video>
 
-<view class="big-text left-padding">作品名:{{title}}</view>
-<view class="small-text left-padding desc-text">共有{{desc}}人配音</view>
+<view class="big-text left-padding">{{title}}</view>
+<view class="small-text left-padding desc-text">共有{{num}}人配音</view>
 <view class="rank-area">
   <view class="rank-content">
     <text class="big-text left-padding">实力排行榜</text>
@@ -10,7 +10,7 @@
       <view class="scroll-block" wx:for="{{powerArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToPowerUser'>
         <view class="user-info-block">
           <image class="user-img" src="{{item.userImage}}">用户头像</image>
-          <view>{{item.nickname}}</view>
+          <view class="name-text">{{item.nickname}}</view>
           <view class="index-block">
             <image class="index-icon" src="{{powerImgSrc}}">实力值</image>
             <view class="small-text">{{item.value}}</view>
@@ -29,7 +29,7 @@
       <view class="scroll-block" wx:for="{{charmArray}}" wx:key="*this" data-idx="{{index}}" bindtap='bindtapToCharmUser'>
         <view class="user-info-block">
           <image class="user-img" src="{{item.userImage}}">用户头像</image>
-          <view>{{item.nickname}}</view>
+          <view class="name-text">{{item.nickname}}</view>
           <view class="index-block">
             <image class="index-icon" src="{{charmImgSrc}}">魅力值</image>
             <view class="small-text">{{item.value}}</view>

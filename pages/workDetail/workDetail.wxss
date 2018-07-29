@@ -12,17 +12,21 @@
 .work-content {
   display: flex;
   flex-direction: row;  
-  padding: 12px;
+  padding: 13px;
+  height: 125px;
 }
 
 .img-content {
-  width: 45%;
+  width: 50%;
+  height: 100%;
   /* background: red; */
 }
 
 .work-img {
-  width: 175px;
-  height: 120px;
+  /* width: 175px;
+  height: 120px; */
+  width: 100%;
+  height: 100%;
   padding-right: 3px;
   padding-left: 1px;
 }
@@ -31,24 +35,27 @@
   display: flex;
   flex-direction: column;
   /* background: yellow; */
-  width: 50%;
-  height: 120px;
-  padding-left: 30px;
+  width: 45%;
+  height: 100%;
+  padding-left: 20px;
 }
 
 .page-enter-content {
   display: flex;
   flex-direction: column;
-  
 }
 
 .work-view-text {
   /* background: rgba(253, 214, 93, 0.753); */
   color: #000;
-  display: flex;
   align-items: center;
   /* justify-content: center; */
   height: 30%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  width: 100%;
+
 }
 
 .work-play-icon {
@@ -99,6 +106,10 @@
   color: black;
   font-size: 17px;
   padding-top: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  width: 100%;
 }
 
 .index-content {
@@ -114,4 +125,8 @@
 width: 0;
 height: 0;
 color: transparent;
+}
+
+.description-content {
+  font-size: 15px;
 }

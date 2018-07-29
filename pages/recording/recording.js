@@ -12,11 +12,11 @@ const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
 
-let innerVideoContext, isrecording
+let innerVideoContext, isrecording, ctx
 let resurl, i1 = 0
 let _ = (t, arr) => arr.some(__ => (
-  __.currentTime - 0.4 <= t &&
-  t <= __.duration + __.currentTime
+  + __.currentTime - 0.4 <= t &&
+  t <= + __.duration + (+__.currentTime)
 )
 )
 Page({
@@ -31,7 +31,7 @@ Page({
   },
   data: {
     urls: '',
-    list: [
+    list: /*[
       { sentence: 'hello', chinese: '都是我不好',  currentTime: 0, duration: 1 },
       { sentence: 'you', chinese: '金锁你干什么，这又不干你的事', currentTime: 1.72, duration: 3.782 },
       { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524},
@@ -41,7 +41,16 @@ Page({
       { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
       { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
       { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
-    ],
+    ],*/
+    [
+      { chinese: "传说在魔兽山脉深处", currentTime: "0.780", duration: "2.932" }, 
+      { chinese: "有一种可以短时间内提升战斗力的宝物", currentTime: "4.292", duration: "3.973" }, 
+      { chinese: "多少修炼之人", currentTime: "9.271", duration: "1.620" }, 
+      { chinese: "不惜以身范险深入山脉", currentTime: "11.340", duration: "3.370" }, 
+      { chinese: "但都是有去无回白白搭上性命", currentTime: "15.420", duration: "4.919" },
+      { chinese: "不过人们依然对它如此执着", currentTime: "21.818", duration: "3.524" },
+      { chinese: "紫灵晶", currentTime: "26.596", duration: "2.128" }
+      ],
     recording: {
       state: false,
       currentTime: 0,
@@ -84,7 +93,7 @@ Page({
       resurl = res.tempFilePath
       setTimeout(() => {
         wx.uploadFile({
-          url: textUrl + '/saveVoice', //线上可用非localhost的域名
+          url: textUrl + '/1231423423', //线上可用非localhost的域名
           filePath: resurl, //路径
           name: 'file',
           method: 'POST',
@@ -135,15 +144,17 @@ Page({
     //视频播放更新触发
     const curTime = e.detail.currentTime
     //如果是合并全部的时候
-    if (this.data.ismerging) {
+    if (this.data.isshare) {
       const times = this.data.times
       if (times.length && !this.data.stack) {
         const time = times.shift()
         this.data.stack = time
-        const ctx = wx.createInnerAudioContext()
+        console.log(urls)
+        ctx = wx.createInnerAudioContext()
         ctx.autoplay = true
         ctx.src = urls[i1++]
       }
+      //在特定时间段把原视频静音
       if(_(curTime, this.data.list)){
         this.setData({ ismuted: true })
       } else {
@@ -153,14 +164,14 @@ Page({
     }
     //播放原音状态，视频的自动跳转
     if (this.data.recording.state) {
-      const percent = 100 * (curTime - this.data.recording.currentTime) / this.data.recording.duration
+      const percent = 100 * (+ curTime - (+this.data.recording.currentTime)) / (+this.data.recording.duration)
       this.data.list[this.data.recording.index].slider2change = percent
       this.setData({
         list: this.data.list
       })
-      if (curTime >= this.data.recording.currentTime + this.data.recording.duration) {
+      if (curTime >= +this.data.recording.currentTime + (+this.data.recording.duration)) {
         this.data.recording.state = false;
-        innerVideoContext.seek(this.data.recording.currentTime)
+        innerVideoContext.seek(+this.data.recording.currentTime)
         innerVideoContext.pause();
       }
     }
@@ -169,10 +180,10 @@ Page({
     //播放哪一个句子的原音
     let list = this.data.list;
     const index = e.currentTarget.dataset.index;
-    innerVideoContext.seek(list[index].currentTime);
+    innerVideoContext.seek(+list[index].currentTime);
     this.data.recording.state = true;
-    this.data.recording.currentTime = list[index].currentTime;
-    this.data.recording.duration = list[index].duration;
+    this.data.recording.currentTime = +list[index].currentTime;
+    this.data.recording.duration = +list[index].duration;
     this.data.recording.index = index;
     innerVideoContext.play();
   },
@@ -204,14 +215,13 @@ Page({
     urls.forEach(url => {
       url && count++
     })
-    if (count < this.data.list.length - 1) {
-      return
-    }
+    // if (count < this.data.list.length - 1) {
+    //   return
+    // }
     this.setData({ isshare: true, content: '播放配音' })
   },
   preview() {
     //预览
-    console.log(123)
     this.setData({
       ismerging: true,
       ismuted: true
@@ -275,4 +285,17 @@ wx.request({
   }
 })*/
 
+
+/*
+list: [
+  { sentence: 'hello', chinese: '都是我不好', currentTime: 0, duration: 1 },
+  { sentence: 'you', chinese: '金锁你干什么，这又不干你的事', currentTime: 1.72, duration: 3.782 },
+  { sentence: 'a', chinese: '其实你们不知道', currentTime: 6.603, duration: 1.524 },
+  { sentence: 'a', chinese: '我的心里好难过', currentTime: 9.112, duration: 1.414 },
+  { sentence: 'a', chinese: '我有什么资格可以去追问他呢',  currentTime: 12.585, duration: 2.145 },
+  { sentence: 'a', chinese: '我只是不过是个丫头而已', currentTime: 15.68, duration: 2.32 },
+  { sentence: 'a', chinese: '就算将来是他的人',  currentTime: 19.978, duration: 1.693 },
+  { sentence: 'a', chinese: '我也只是不过是个附件',  currentTime: 23.308, duration: 1.524 },
+  { sentence: 'a', chinese: '哪有资格吃醋啊', currentTime: 26.17, duration: 1.524 }
+]*/
 

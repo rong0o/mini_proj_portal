@@ -33,7 +33,7 @@
         </view>
 
         <view wx:else>
-          <view class="description-content">{{item.desc}}</view>
+          <view class="description-content small-text">共有{{item.num==null?0:item.num}}人进行录音</view>
         </view>
 
 
