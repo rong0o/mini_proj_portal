@@ -254,7 +254,7 @@ Page({
   },
   publish() {
     //发布，post所有的list
-    wx.redirectTo({
+    wx.switchTab({
       url: '../index/index'
     })
   },
