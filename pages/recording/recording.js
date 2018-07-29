@@ -89,7 +89,10 @@ Page({
     ismuted: false,
     times: [],
     stack: null,
-    isshare: false
+    isshare: false,
+    istotal:false,
+    score: 0,
+    percent: 60
   },
   start: function () {
     const options = {
@@ -244,10 +247,10 @@ Page({
     const index = e.currentTarget.dataset.index;
     const delay = +this.data.list[index].duration * 1000;
 
-    sleep(300).then(() => {
+    sleep(200).then(() => {
       this.start()
     })
-    sleep(delay + 300).then(() => {
+    sleep(delay + 200).then(() => {
       isrecording = false
       this.stop(index)
     })
@@ -263,6 +266,32 @@ Page({
     //   return
     // }
     this.setData({ isshare: true, content: '播放配音' })
+    const that = this
+    wx.request({
+      url: 'http://134.175.160.37/getScore',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        userId: 97,
+        vedioId: id,
+        token: 'adfsdfsdf'
+      },
+      success(res) {
+        that.setData(
+          {
+            score: (res.data).toFixed(2),
+            percent: ~~(60 + 35 * Math.random()),
+            istotal: true
+          }
+        )
+        console.log(res)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
   },
   preview() {
     //预览
@@ -283,7 +312,9 @@ Page({
       status: false,
       isshare: false,
       times: [],
-      stack: null
+      stack: null,
+      score: 0,
+      istotal:false
     })
     recorderManagers.length = 0
     urls.length = 0
@@ -298,26 +329,6 @@ Page({
     i1 = 0
   },
   publish() {
-    wx.request({
-      url: 'http://134.175.160.37/getScore',
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        userId: 97,
-        vedioId: id,
-        token: 'adfsdfsdf'
-      },
-      success(res) {
-        console.log(111666)
-        console.log(res)
-      },
-      fail(res) {
-        console.log(111666)
-        console.log(res)
-      }
-    })
     //发布，post所有的list
     wx.switchTab({
       url: '../index/index'

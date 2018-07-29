@@ -4,10 +4,17 @@ page{
   position: relative;
   top:35vh;
 }
-#myVideo{
+
+#v-container{
+  width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 1
+  z-index: 1;
+  background: #fff
+}
+#myVideo{
+  left: 50%;
+  transform: translateX(-50%)
 }
 
 .userinfo {
@@ -71,7 +78,7 @@ page{
 .share-footer{
   position: relative;
   top:6rem;
-}
+} 
 .share-footer-item{
   display: inline-block;
   padding: 1.5rem;
@@ -82,6 +89,7 @@ page{
 }
 .share-total{
   background: #c2ebe2;
+  text-align: center;
 }
 
 .share-preview{

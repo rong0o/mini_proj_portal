@@ -1,16 +1,22 @@
 <!--index.wxml-->
 <view class="container">
 <link href="iconfont-embedded.css" rel="stylesheet" type="text/css" /> 
-<video id="myVideo" src="http://134.175.160.37/vedio/1532784047009.mp4" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
+<view id='v-container'>
+<video id="myVideo" src="http://134.175.160.37/vedio/1532779573180.mp4" bindtimeupdate='timeupdate' controls muted='{{ismuted}}'></video>
+</view>
+
 
 <view id='main'>
   <view wx:if='{{isshare}}'>
     <view bindtap='preview' class='share-preview'>预览</view>
-    <view class='share-total'>统计</view>
+    <view class='share-total' wx:show='{{istotal}}'>
+        <view>{{(score === 0)?'请稍等，正在为你评分...':'配音总分' + score + '分,'+ 
+        '目前已经超越' +percent+ '%好友'}}</view>
+        <view></view>
+    </view>
     <view class='share-footer'>
       <view class='share-footer-item' bindtap='recordAgain'>重配</view>
       <view class='share-footer-item share-footer-item-publish' bindtap='publish'>我要发布</view>
-      <view class='share-footer-item' bindtap='toSave'>保存</view>
     </view>
   </view>
   <view wx:else>
