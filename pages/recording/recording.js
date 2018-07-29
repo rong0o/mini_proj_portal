@@ -11,8 +11,9 @@ const textUrl = 'http://134.175.160.37'
 const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
-const sleep = t => new Promise((resolve,reject) => {
-  setTimeout(()=>{
+let id = 26
+const sleep = t => new Promise((resolve, reject) => {
+  setTimeout(() => {
     resolve()
   }, t)
 })
@@ -25,7 +26,7 @@ const getList = (vedioId, ctx) => {
       'content-type': 'application/json'
     },
     data: {
-      vedioId: 27
+      vedioId: id
     },
     success(res) {
       console.log(res)
@@ -42,7 +43,7 @@ const getList = (vedioId, ctx) => {
 let innerVideoContext, isrecording, ctx
 let resurl, i1 = 0
 let _ = (t, arr) => arr.some(__ => (
-  + __.currentTime - 0.4 <= t &&
+  + __.currentTime - 0.2 <= t &&
   t <= + __.duration + (+__.currentTime)
 )
 )
@@ -54,20 +55,20 @@ Page({
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
-    getList(27, this)
+    getList(id, this)
   },
   data: {
     urls: '',
     list: [
-      { sentence: 'hello', chinese: '都是我不好',  currentTime: 0, duration: 1 },
+      { sentence: 'hello', chinese: '都是我不好', currentTime: 0, duration: 1 },
       { sentence: 'you', chinese: '金锁你干什么，这又不干你的事', currentTime: 1.72, duration: 3.782 },
-      { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524},
-      { sentence: 'a', chinese: '我的心里好难过', slider2change: 0, currentTime: 9.112, duration: 1.414},
-      { sentence: 'a', chinese: '我有什么资格可以去追问他呢', slider2change: 0, currentTime: 12.585, duration: 2.145},
-      { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.38, duration: 2.32},
-      { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
-      { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
-      { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
+      { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524 },
+      { sentence: 'a', chinese: '我的心里好难过', slider2change: 0, currentTime: 9.112, duration: 1.414 },
+      { sentence: 'a', chinese: '我有什么资格可以去追问他呢', slider2change: 0, currentTime: 12.585, duration: 2.145 },
+      { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.38, duration: 2.32 },
+      { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693 },
+      { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524 },
+      { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524 }
     ],
     // [
     //   { chinese: "传说在魔兽山脉深处", currentTime: "0.780", duration: "2.932" }, 
@@ -85,7 +86,6 @@ Page({
       index: 0
     },
     content: '完成配音',
-    ismerging: false,
     ismuted: false,
     times: [],
     stack: null,
@@ -120,7 +120,7 @@ Page({
       resurl = res.tempFilePath
       setTimeout(() => {
         wx.uploadFile({
-          url: textUrl + '/1231423423', //线上可用非localhost的域名
+          url: textUrl + '/saveVoice', //线上可用非localhost的域名
           filePath: resurl, //路径
           name: 'file',
           method: 'POST',
@@ -133,10 +133,10 @@ Page({
             name: 'testname',
             userId: 94,
             token: 'ooBkB5S0uzPoJ4BlTytIbs1AVbxU',
-            startTime: list[index].currentTime,
-            elapsedTime: list[index].duration,
+            startTime: +list[index].currentTime,
+            elapsedTime: +list[index].duration,
             index: index + '',
-            vedioId: 27
+            vedioId: id
           },
           success: function (res) {
             console.log('ok', res)
@@ -152,7 +152,7 @@ Page({
 
   },
   play: function (i) {
-    
+
     //播放第i个句子的录音
     if (!urls[i]) {
       return
@@ -194,15 +194,15 @@ Page({
 
       }
       //在特定时间段把原视频静音
-      if(_(curTime, this.data.list)){
+      if (_(curTime, this.data.list)) {
         this.setData({ ismuted: true })
       } else {
-        this.setData({ ismuted: false})
+        this.setData({ ismuted: false })
       }
 
       //栈没有元素，中间数组也没有元素，意味着预览结束
-      if (!this.data.times.length && !this.data.stack){
-        this.setData({ isshare: false, ismuted: false})
+      if (!this.data.times.length && !this.data.stack) {
+        this.setData({ isshare: false, ismuted: false })
       }
     }
     //播放原音状态，视频的自动跳转
@@ -298,6 +298,26 @@ Page({
     i1 = 0
   },
   publish() {
+    wx.request({
+      url: 'http://134.175.160.37/getScore',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        userId: 97,
+        vedioId: id,
+        token: 'adfsdfsdf'
+      },
+      success(res) {
+        console.log(111666)
+        console.log(res)
+      },
+      fail(res) {
+        console.log(111666)
+        console.log(res)
+      }
+    })
     //发布，post所有的list
     wx.switchTab({
       url: '../index/index'
@@ -309,26 +329,8 @@ Page({
   }
 
 })
-/*
-wx.request({
-  url: 'http://134.175.160.37/saveVoice',
-  method:'POST',
-  header:{
-    'content-type' : 'application/json'
-  },  
-  data:{
-    type: 1,
-    num:1,
-    token:'adfsdfsdf'
-  },
-  success(res){
-    console.log(666)
-    console.log(res)
-  },
-  fail(res){
-    console.log(res)
-  }
-})*/
+
+
 
 
 
