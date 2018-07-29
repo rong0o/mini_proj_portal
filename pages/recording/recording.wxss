@@ -1,18 +1,16 @@
 /**index.wxss**/
 page{
   background: rgba(250, 243, 243, 0.5);
-  position: relative;
-  top:35vh;
 }
 
 #v-container{
   width: 100vw;
-  position: fixed;
   top: 0;
   z-index: 1;
   background: #fff
 }
 #myVideo{
+  width: 100vw;
   left: 50%;
   transform: translateX(-50%)
 }
@@ -78,7 +76,7 @@ page{
 .share-footer{
   position: relative;
   top:6rem;
-} 
+}
 .share-footer-item{
   display: inline-block;
   padding: 1.5rem;
