@@ -14,54 +14,54 @@
 
 
       <block wx:if="{{isCharm & isClickUser1}}">
-          <text class='text1' style=''>{{others[0].username}}魅力值
-          {{others[0].value}},当前排名{{others[0].rank}},非常棒~~</text>
+          <text class='text1' style=''>{{oo[0].username}}魅力值
+          {{oo[0].value}},当前排名{{oo[0].rank}},非常棒~~</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser1}}">
-        <text class='text1' style=''>{{others[0].username}}评分
-          {{others[0].value}},当前排名{{others[0].rank}},非常棒~~</text>
+        <text class='text1' style=''>{{oo[0].username}}评分
+          {{oo[0].value}},当前排名{{oo[0].rank}},非常棒~~</text>
       </block>
 
 
       <block wx:if="{{isCharm & isClickUser2}}">
-          <text class='text2' style=''>{{others[1].username}}魅力值
-          {{others[1].value}},当前排名{{others[1].rank}},不错哦</text>
+          <text class='text2' style=''>{{oo[1].username}}魅力值
+          {{oo[1].value}},当前排名{{oo[1].rank}},不错哦</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser2}}">
-        <text class='text2' style=''>{{others[1].username}}评分
-          {{others[1].value}},当前排名{{others[1].rank}},不错哦</text>
+        <text class='text2' style=''>{{oo[1].username}}评分
+          {{oo[1].value}},当前排名{{oo[1].rank}},不错哦</text>
       </block>
 
     <block wx:if="{{isCharm & isClickUser3}}">
-          <text class='text3' style=''>{{others[2].username}}魅力值
-          {{others[2].value}},当前排名{{others[2].rank}},不错哦</text>
+          <text class='text3' style=''>{{oo[2].username}}魅力值
+          {{oo[2].value}},当前排名{{oo[2].rank}},不错哦</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser3}}">
-        <text class='text3' style=''>{{others[2].username}}评分
-          {{others[2].value}},当前排名{{others[2].rank}},不错哦</text>
+        <text class='text3' style=''>{{oo[2].username}}评分
+          {{oo[2].value}},当前排名{{oo[2].rank}},不错哦</text>
       </block>
 
          <block wx:if="{{isCharm & isClickUser4}}">
-          <text class='text4' style=''>{{others[3].username}}魅力值
-          {{others[2].value}},当前排名{{others[2].rank}},还可以的呢</text>
+          <text class='text4' style=''>{{oo[3].username}}魅力值
+          {{oo[3].value}},当前排名{{oo[3].rank}},还可以的呢</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser4}}">
-        <text class='text4' style=''>{{others[3].username}}评分
-          {{others[3].value}},当前排名{{others[3].rank}},还可以的呢</text>
+        <text class='text4' style=''>{{oo[3].username}}评分
+          {{oo[3].value}},当前排名{{oo[3].rank}},还可以的呢</text>
       </block>
 
          <block wx:if="{{isCharm & isClickUser5}}">
-          <text class='text5' style=''>{{others[4].username}}魅力值
-          {{others[4].value}},当前排名{{others[4].rank}},加把劲哦~</text>
+          <text class='text5' style=''>{{oo[4].username}}魅力值
+          {{oo[4].value}},当前排名{{oo[4].rank}},加把劲哦~</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser5}}">
-        <text class='text5' style=''>{{others[4].username}}评分
-          {{others[4].value}},当前排名{{others[4].rank}},加把劲哦~</text>
+        <text class='text5' style=''>{{oo[4].username}}评分
+          {{oo[4].value}},当前排名{{oo[4].rank}},加把劲哦~</text>
       </block>
       
       <!-- <block wx:for="{{others}}">
