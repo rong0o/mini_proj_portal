@@ -3,8 +3,6 @@ var app = getApp();
 var host = app.globalData.host;
 var token = app.globalData.token;
 var userId = app.globalData.id;
-console.log(userId);
-var comment_page=1;
 var audioId=1;
 Page({
   /**
@@ -25,7 +23,8 @@ Page({
     power: "",
     username: "",
     userImage: '',
-    recordDate: ""
+    recordDate: "",
+    comment_page:1
   },
   onTapInputComment: function () {
     var isCommentIput = this.data.isCommentIput;
@@ -46,12 +45,13 @@ Page({
       audioId: audioId,
       userId: userId,
       comment: e.detail.value.comment,
-      num: 1,
+      num: 8,
       token: token,
     };
     var callback = (res) => {
       this.setData({
-        comment: res.data.data
+        comment: res.data.data,
+        comment_page:1
       });
       console.log(res.data.data);
     }
@@ -89,7 +89,7 @@ Page({
       isCollect: isCollect,
       collect_text: collectText
     });
-    var collect_type = !isCollect ? 1 : 2;
+    var collect_type = !isCollect ? 2 : 1;
     var url = host + "/collection_audio";
     var data = {
       audioId: audioId,
@@ -102,15 +102,17 @@ Page({
     this.ajax(url, data, callback);
   },
   //跳转到录音
-  onTapToRecording: () => {
+  onTapToRecording: function() {
     wx.navigateTo({
       url: '../recording/recording',
     })
   },
   //刷新评论列表
-  onScrollCommentList: function () {
+  onScrollCommentList: function() {
     //请求评论列表
-    this.reqCommit(comment_page, audioId);
+    console.log("///");
+    console.log(this.data);
+    this.reqCommit(this.data.comment_page, audioId);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -143,7 +145,7 @@ Page({
     this.ajax(url, data, callback)
 
     //请求评论列表
-    this.reqCommit(comment_page, 1);
+    this.reqCommit(this.data.comment_page, audioId);
 
     //查询点赞
     var url = host + "/audioLike";
@@ -213,20 +215,13 @@ Page({
       },
       success: function(res) {
         var arr = res.data.data;
-        console.log("////");
-        console.log(arr);
         if(arr.length!=0){
           var tmpArr = that.data.comment;
-          console.log("////");
-          console.log(tmpArr);
-          console.log(arr);
           tmpArr=tmpArr.concat(arr);
-          console.log("////");
-          console.log(tmpArr);
           that.setData({
-            comment: tmpArr
+            comment: tmpArr,
+            comment_page:that.data.comment_page+1
           });
-          comment_page++;
         }
 
       },
@@ -264,7 +259,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log("//**onShow**//");
+    console.log(this.data)
   },
 
   /**

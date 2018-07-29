@@ -148,10 +148,9 @@ image{
 }
 .comment-disp{
   margin: 2.5%;
-  height: 500px;
 }
 .scroll{
-  height: 500px;
+  height: 350px;
 }
 .comment-item{
   width: 100%;
