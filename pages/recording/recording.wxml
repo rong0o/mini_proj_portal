@@ -7,7 +7,7 @@
 
 
 <view id='main'>
-  <view wx:if='{{isshare}}'>
+  <view wx:if='{{isshare1}}'>
     
     <view class='share-total' wx:show='{{istotal}}'>
         <view>{{(score === 0)?'请稍等，正在为你评分...':'配音总分' + score + '分,'+ 
