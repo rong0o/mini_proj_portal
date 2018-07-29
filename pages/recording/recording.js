@@ -267,7 +267,7 @@ Page({
   preview() {
     //预览
     this.setData({
-      ismerging: true,
+      isshare: true,
       ismuted: true
     })
     const lists = this.data.list
