@@ -28,6 +28,7 @@ const getList = (vedioId, ctx) => {
       vedioId: 27
     },
     success(res) {
+      console.log(res)
       ctx.setData({
         list: res.data.data
       })
