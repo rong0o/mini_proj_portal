@@ -4,7 +4,6 @@
 <!-- <view class='wrap'> -->
   <!-- <view style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;background-image: url({{image_url}}); background-size: 100% 100%; background-repeat: no-repeat;background-position: cover;'> -->
 
-
 <image class="box" src='{{tree}}'>
     
      <image class='user1' src='{{others[0].userImage}}' bindtap='one'></image>
@@ -71,8 +70,8 @@
         <text>{{item.test}}</text>
     
       </block> -->
-<!-- 
-      <button class='nextPage' bindtap='nextPage'>下一页</button> -->
+
+      <button class='nextPage' bindtap='nextPage'>下一页</button>
 </image>
   <!-- </view> -->
 <!-- </view> -->
