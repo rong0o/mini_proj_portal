@@ -207,11 +207,11 @@ Page({
       method: 'POST',      
       data: postData,
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         if (res.statusCode == 0) { // 失败
-          console.log("请求出错！");
+          console.log("请求出错！requestWorksList", res);
         } else if (!res.data.data.length) {
-          // console.log('没有更多数据');
+          console.log('没有更多数据');
         } else {
           console.log(res.data.data);          
           that.data.worksArray = that.data.worksArray.concat(res.data.data);
