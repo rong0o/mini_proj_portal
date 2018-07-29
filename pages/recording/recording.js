@@ -25,7 +25,7 @@ const getList = vedioId => {
       'content-type': 'application/json'
     },
     data: {
-      vedioId: vedioId
+      vedioId: 27
     },
     success(res) {
       console.log(666)
@@ -44,7 +44,6 @@ let _ = (t, arr) => arr.some(__ => (
   t <= + __.duration + (+__.currentTime)
 )
 )
-let currentPlay = false
 Page({
   //存放多个音频上下文，对应多个句子
   onLoad() {
@@ -53,7 +52,7 @@ Page({
     this.data.list.forEach(x => {
       recorderManagers.push(wx.getRecorderManager())
     })
-    getList(27)
+    
   },
   data: {
     urls: '',
@@ -61,12 +60,12 @@ Page({
       { sentence: 'hello', chinese: '都是我不好',  currentTime: 0, duration: 1 },
       { sentence: 'you', chinese: '金锁你干什么，这又不干你的事', currentTime: 1.72, duration: 3.782 },
       { sentence: 'a', chinese: '其实你们不知道', slider2change: 0, currentTime: 6.603, duration: 1.524},
-      { sentence: 'a', chinese: '我的心里好难过', slider2change: 0, currentTime: 9.112, duration: 1.414},
-      { sentence: 'a', chinese: '我有什么资格可以去追问他呢', slider2change: 0, currentTime: 12.585, duration: 2.145},
-      { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.38, duration: 2.32},
-      { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
-      { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
-      { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
+      // { sentence: 'a', chinese: '我的心里好难过', slider2change: 0, currentTime: 9.112, duration: 1.414},
+      // { sentence: 'a', chinese: '我有什么资格可以去追问他呢', slider2change: 0, currentTime: 12.585, duration: 2.145},
+      // { sentence: 'a', chinese: '我只是不过是个丫头而已', slider2change: 0, currentTime: 15.38, duration: 2.32},
+      // { sentence: 'a', chinese: '就算将来是他的人', slider2change: 0, currentTime: 19.978, duration: 1.693},
+      // { sentence: 'a', chinese: '我也只是不过是个附件', slider2change: 0, currentTime: 23.308, duration: 1.524},
+      // { sentence: 'a', chinese: '哪有资格吃醋啊', slider2change: 0, currentTime: 26.17, duration: 1.524}
     ],
     // [
     //   { chinese: "传说在魔兽山脉深处", currentTime: "0.780", duration: "2.932" }, 
@@ -183,24 +182,20 @@ Page({
         ctx.autoplay = true
         ctx.src = urls[i1++]
         sleep(duration*1000 - 300).then(() => {
-          currentPlay = true
+          this.setData({ stack: null })
         })
-        if (!this.data.times.length && !this.data.stack) {
-          this.setData({ isshare: false, ismuted: false })
-        }
+
       }
       //在特定时间段把原视频静音
       if(_(curTime, this.data.list)){
-        if (currentPlay) {
-          this.setData({ stack: null })
-          currentPlay = false
-        }
         this.setData({ ismuted: true })
       } else {
         this.setData({ ismuted: false})
       }
 
-
+      if (!this.data.times.length && !this.data.stack){
+        this.setData({ isshare: false, ismuted: false})
+      }
     }
     //播放原音状态，视频的自动跳转
     if (this.data.recording.state) {
@@ -296,7 +291,7 @@ Page({
   },
   publish() {
     //发布，post所有的list
-    wx.redirectTo({
+    wx.switchTab({
       url: '../index/index'
     })
   },
