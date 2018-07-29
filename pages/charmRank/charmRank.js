@@ -413,6 +413,92 @@ Page({
     })
   },
 
+  upPage: function (options) {
+    console.log('hha')
+    console.log(this.data.oo)
+    var app = getApp();
+    var token = app.globalData.token
+    var wechatid = app.globalData.wechatid
+
+    var id = app.globalData.id
+
+
+    console.log(token)
+    var that = this
+    that.data.index = that.data.index - 1
+    var oo = [{
+      userId: 1,
+      username: "小风筝f",
+      userImage: null,
+      rank: 9,
+      value: 80
+    },
+    {
+      userId: 1,
+      username: "小风筝f",
+      userImage: null,
+      rank: 9,
+      value: 80
+    },
+    {
+      userId: 1,
+      username: "小风筝f",
+      userImage: null,
+      rank: 9,
+      value: 80
+    },
+    {
+      userId: 1,
+      username: "小风筝f",
+      userImage: null,
+      rank: 9,
+      value: 80
+    },
+    {
+      userId: 1,
+      username: "小风筝f",
+      userImage: null,
+      rank: 9,
+      value: 80
+    },
+    ]
+    //请求首页图片
+    wx.request({
+      url: app.globalData.host + '/ranking',
+      method: "POST",
+      data: {
+        userId: id,
+        token: token,
+        num: 15,
+        type: 1,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: (res) => {
+        console.log(res.data.data.others)
+
+        for (var i = 0; i < 5; i++) {
+          oo[i].userId = res.data.data.others[i + that.data.index * 5].userid
+          oo[i].username = res.data.data.others[i + that.data.index * 5].username
+          oo[i].userImage = res.data.data.others[i + that.data.index * 5].userImage
+          oo[i].value = res.data.data.others[i + that.data.index * 5].value
+          oo[i].rank = res.data.data.others[i + that.data.index * 5].rank
+        }
+        if (res.data.error_code == 0) {
+          this.setData({
+            others: oo
+            // user1: '/mini_icon/test_avatar.png'
+
+          });
+        } else {
+          console.log("ERROR:error_code-------" + res.error_code);
+        }
+      }
+    })
+  },
+
+
   // nextPage: function(e) {
 
   //   this.setData({

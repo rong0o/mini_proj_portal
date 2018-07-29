@@ -71,6 +71,7 @@
     
       </block> -->
 
+<button class='upPage' bindtap='upPage'>上一页</button>
       <button class='nextPage' bindtap='nextPage'>下一页</button>
 </image>
   <!-- </view> -->
