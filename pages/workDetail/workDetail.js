@@ -127,7 +127,7 @@ Page({
             break;
           }
           case 2: {
-            wx.setNavigationBarTitle({ title: '最新 搞怪' });
+            wx.setNavigationBarTitle({ title: '最新 经典' });
             that.requestMoreVideoList({
               type: 2,
               page: 1,
@@ -161,7 +161,7 @@ Page({
             break;
           }
           case 2: {
-            wx.setNavigationBarTitle({ title: '最热 搞怪' });
+            wx.setNavigationBarTitle({ title: '最热 经典' });
             that.requestMoreVideoList({
               type: 2,
               page: 1,
