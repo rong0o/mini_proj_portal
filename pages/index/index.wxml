@@ -6,8 +6,8 @@
 </swiper>
 <view class="nav-bar">
   <view class="nav-content {{current_index==0?'active':''}}" bindtap='bindTapToSwitchNav' data-index='0'>二次元</view>
-  <view class="nav-space" style="color:#bfbfbf">|</view>
-  <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>搞怪</view>
+  <!-- <view class="nav-space" style="color:#bfbfbf">|</view>
+  <view class="nav-content {{current_index==1?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='1'>搞怪</view> -->
   <view class="nav-space"bindtap='bindTapToSwitchNav' style="color:#bfbfbf">|</view>
   <view class="nav-content {{current_index==2?'active':''}}"  bindtap='bindTapToSwitchNav' data-index='2'>经典</view>
   <!-- <view class="nav-space">|</view>
