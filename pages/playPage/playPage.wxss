@@ -84,6 +84,7 @@ button{
   width: 30px;
   height: 60%;
   /* background: yellow; */
+  display: flex;
   align-items: center;
   justify-content: center;
 }
