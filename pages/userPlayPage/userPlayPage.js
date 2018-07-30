@@ -240,6 +240,7 @@ Page({
     var shareObj = {
       imgUrl: '',
       title: '配音大PK',
+      path:"pages/index/index?audioId="+audioId+"&share=1",
       success: function (res) {
 
       },

@@ -60,6 +60,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      console.log(options)
+      //判断是否分享进入
+      if (options && option.share && options.share==1) {
+        // wx.showLoading({
+        //   title: '我是从分享页面进入的',
+        // })
+          wx.navigateTo({
+            url: '/pages/userPlayPage/userPlayPage?audioId=' + options.audioId,
+          });
+          
+          }
+
+
     console.log(app.globalData.token);
     //请求轮播图数据
      wx.request({
