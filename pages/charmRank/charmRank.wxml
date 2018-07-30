@@ -15,12 +15,12 @@
 
       <block wx:if="{{isCharm & isClickUser1}}">
           <text class='text1' style=''>{{oo[0].username}}魅力值
-          {{oo[0].value}},超越她还差{{oo[0].rank}}个赞哦~</text>
+          {{oo[0].value}},超越她还差{{oo[0].rank* 10}}个赞哦~</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser1}}">
         <text class='text1' style=''>{{oo[0].username}}实力评分
-          {{oo[0].value}},超越她还需要{{oo[0].rank}}个实力值，加油~</text>
+          {{oo[0].value}},超越她还需要{{oo[0].rank * 10}}个实力值，加油~</text>
       </block>
 
 
