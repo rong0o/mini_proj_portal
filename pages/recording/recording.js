@@ -52,8 +52,8 @@ let _ = (t, arr) => arr.some(__ => (
 Page({
   //存放多个音频上下文，对应多个句子
   onLoad(opts) {
-    console.log(app.globalData.id)
-    id = opts.audioId
+    console.log('opts',opts)
+    id = opts.audioId || opts.vedioId
     const that = this
     wx.request({
       url: 'http://134.175.160.37/vedioDetail',
