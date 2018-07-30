@@ -237,18 +237,10 @@ Page({
    */
   onShareAppMessagege: function (options) {
     var that = this;
-    var shareObj = {
+    return {
       imgUrl: '',
-      title: '配音大PK',
-      path:"pages/index/index?audioId="+audioId+"&share=1",
-      success: function (res) {
-
-      },
-      fail: function (e) {
-        console.log(e.errMsg);
-      },
+      title: '配音大PK'
     };
-    return shareObj;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

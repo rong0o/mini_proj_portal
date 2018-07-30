@@ -78,12 +78,18 @@ image{
   height: 20px;
   font-size: 14px;
   margin-top:-5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
 }
 .img_descr{
   height: 15px;
   font-size: 8px;
   margin-top:-2px;
   color: #bfbfbf;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
 }
 .clear-float:after{
   content:"";
