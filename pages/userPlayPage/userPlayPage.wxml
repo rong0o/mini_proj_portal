@@ -1,6 +1,8 @@
 <!--index.wxml-->
 <view class="vedio-wrap ">
   <video src="{{vedioSrc}}"></video>
+  <!-- <video src="{{vedioSrc}}"  muted="{{true}}" id="userVedio" bindtap='onVeidoPlay'></video>
+  <audio src="{{audioSrc}}" id="userAudio" bindtap="onAudioPlay" binderror="onAudioError"></audio> -->
   <view class="video-info-wrap clear-float">
     <view class="user-image">
       <image src="{{userImage}}"></image>

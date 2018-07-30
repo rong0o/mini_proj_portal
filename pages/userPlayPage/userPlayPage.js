@@ -119,7 +119,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    audioId=options.audioId;
+    audioId=40;//options.audioId;
     userId = app.globalData.id;
     var type=options.type
     //请求视频信息
@@ -133,7 +133,7 @@ Page({
       var rData=res.data.data;
       this.setData({
         vedioSrc: host+rData.vedioSrc,
-        audioSrc: rData.audioSrc,
+        audioSrc: host+rData.audioSrc,
         charisma: rData.like,
         power: rData.score,
         username: rData.username,
@@ -245,10 +245,23 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
-
+  // onReady: function () {
+  //   this.videoContext = wx.createVideoContext('userVedio');
+  //   this.audioContext = wx.createAudioContext('userAudio');
+  // },
+  // onVeidoPlay:function(e){
+  //   this.audioContext.play();
+  //   console.log("vedio play ////");
+  //   console.log(this.audioContext);
+  //   console.log(this.videoContext);
+  // },
+  // onAudioPlay:function(e){
+  //   console.log("audio play ////")
+  // },
+  // onAudioError:function(e){
+  //   console.log("********");
+  //   console.log(e.detail.errMsg);
+  // },
   /**
    * 生命周期函数--监听页面显示
    */

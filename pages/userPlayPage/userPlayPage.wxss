@@ -92,6 +92,9 @@ image{
   margin-left: 2%;
   font-size: 28rpx;
   color:#bfbfbf;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
 }
 
 .charimas{
@@ -101,6 +104,9 @@ image{
   margin-left: 2%;
   font-size: 28rpx;
   color:#bfbfbf;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
 }
 .vedio-icon{
   float:right;
@@ -222,4 +228,6 @@ image{
   color:#B5EDE1;
 }
 
-
+audio{
+  height: 0;
+}
