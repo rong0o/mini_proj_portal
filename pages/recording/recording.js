@@ -11,11 +11,13 @@ const textUrl = 'http://134.175.160.37'
 const app = getApp();
 const host = app.globalData.host;
 const token = app.globalData.token;
+const nickname = wx.getStorageSync('nickname')
+
 let id = 26 , globalt = 0
 const sleep = t => new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve()
-  }, t)
+  }, t) 
 })
 
 const getList = (vedioId, ctx) => {
@@ -50,8 +52,7 @@ let _ = (t, arr) => arr.some(__ => (
 Page({
   //存放多个音频上下文，对应多个句子
   onLoad(opts) {
-    console.log('上一夜')
-    console.log(opts)
+    console.log(app.globalData.id)
     id = opts.audioId
     const that = this
     wx.request({
@@ -61,7 +62,6 @@ Page({
         vedioId: id
       },
       success(res){
-        console.log(666777)
         console.log(res)
         that.setData({
           vurl: 'http://134.175.160.37'+res.data.data.vedioSrc
@@ -363,7 +363,7 @@ Page({
         'content-type': 'application/json'
       },
       data: {
-        userId: 97,
+        userId: app.globalData.id,
         vedioId: id,
         token: 'adfsdfsdf'
       },
