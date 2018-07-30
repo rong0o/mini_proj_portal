@@ -51,7 +51,7 @@ Page({
     ],
 
 
-    tree: '/mini_icon/yellowTree.png',
+    tree: '/mini_icon/greenTree.png',
     // greenTree: '/mini_icon/greenTree.png',
 
 
@@ -73,7 +73,7 @@ Page({
 
     isClickUser5: false,
     isClick5: false,
-    image_url: 'http://134.175.160.37/image/yellowTree.png',
+    image_url: 'http://134.175.160.37/image/greenTree.png',
   },
 
   yellow: function (e) {
@@ -86,13 +86,12 @@ Page({
       image_url: 'http://134.175.160.37/image/yellowTree.png',
       tree: '/mini_icon/yellowTree.png',
     })
+
     var app = getApp();
     var token = app.globalData.token
     var wechatid = app.globalData.wechatid
-
     var id = app.globalData.id
-
-    console.log(token)
+    var that = this
     //请求首页图片
     wx.request({
       url: app.globalData.host + '/ranking',
@@ -100,24 +99,36 @@ Page({
       data: {
         userId: id,
         token: token,
-        num: 10,
-        type: 0,
+        num: 15,
+        type: 1,
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: (res) => {
-        console.log(res)
         console.log(res.data.data.others)
+
+        // console.log(res.data.data.others.length)
         if (res.data.error_code == 0) {
           this.setData({
-            others: res.data.data.others
-            // user1: '/mini_icon/test_avatar.png'
-
+            others: res.data.data.others,
+            length: res.data.data.others.length,
           });
         } else {
           console.log("ERROR:error_code-------" + res.error_code);
         }
+
+
+        for (var i = 0; i < 5; i++) {
+          this.data.oo[i].userId = this.data.others[i + this.data.index * 5].userId;
+          this.data.oo[i].username = this.data.others[i + this.data.index * 5].username;
+          this.data.oo[i].userImage = this.data.others[i + this.data.index * 5].userImage;
+          this.data.oo[i].value = this.data.others[i + this.data.index * 5].value;
+          this.data.oo[i].rank = this.data.others[i + this.data.index * 5].rank;
+        }
+        this.setData({
+          oo: that.data.oo
+        })
       }
     })
   },
@@ -134,10 +145,8 @@ Page({
     var app = getApp();
     var token = app.globalData.token
     var wechatid = app.globalData.wechatid
-
     var id = app.globalData.id
-
-    console.log(token)
+    var that = this
     //请求首页图片
     wx.request({
       url: app.globalData.host + '/ranking',
@@ -145,26 +154,36 @@ Page({
       data: {
         userId: id,
         token: token,
-        num: 10,
-        type: 1,
+        num: 15,
+        type: 0,
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: (res) => {
-        console.log(res)
         console.log(res.data.data.others)
+
+        // console.log(res.data.data.others.length)
         if (res.data.error_code == 0) {
-          console.log(res.data.data.others.length)
           this.setData({
-            others: res.data.data.others
-
-            // user1: '/mini_icon/test_avatar.png'
-
+            others: res.data.data.others,
+            length: res.data.data.others.length,
           });
         } else {
           console.log("ERROR:error_code-------" + res.error_code);
         }
+
+
+        for (var i = 0; i < 5; i++) {
+          this.data.oo[i].userId = this.data.others[i + this.data.index * 5].userId;
+          this.data.oo[i].username = this.data.others[i + this.data.index * 5].username;
+          this.data.oo[i].userImage = this.data.others[i + this.data.index * 5].userImage;
+          this.data.oo[i].value = this.data.others[i + this.data.index * 5].value;
+          this.data.oo[i].rank = this.data.others[i + this.data.index * 5].rank;
+        }
+        this.setData({
+          oo: that.data.oo
+        })
       }
     })
   },
@@ -275,7 +294,7 @@ Page({
         userId: id,
         token: token,
         num: 15,
-        type: 1,
+        type: 0,
       },
       header: {
         'content-type': 'application/json' // 默认值
