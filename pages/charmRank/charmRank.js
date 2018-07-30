@@ -51,7 +51,7 @@ Page({
     ],
 
 
-    tree: '/mini_icon/yellowTree.png',
+    tree: '/mini_icon/greenTree.png',
     // greenTree: '/mini_icon/greenTree.png',
 
 
@@ -73,7 +73,7 @@ Page({
 
     isClickUser5: false,
     isClick5: false,
-    image_url: 'http://134.175.160.37/image/yellowTree.png',
+    image_url: 'http://134.175.160.37/image/greenTree.png',
   },
 
   yellow: function (e) {
@@ -294,7 +294,7 @@ Page({
         userId: id,
         token: token,
         num: 15,
-        type: 1,
+        type: 0,
       },
       header: {
         'content-type': 'application/json' // 默认值

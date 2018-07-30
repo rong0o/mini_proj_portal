@@ -15,48 +15,48 @@
 
       <block wx:if="{{isCharm & isClickUser1}}">
           <text class='text1' style=''>{{oo[0].username}}魅力值
-          {{oo[0].value}},超越她还差{{oo[0].rank* 10}}个赞哦~</text>
+          {{oo[0].value}},超越她还差{{oo[0].value* 10}}个赞哦~</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser1}}">
         <text class='text1' style=''>{{oo[0].username}}实力评分
-          {{oo[0].value}},超越她还需要{{oo[0].rank * 10}}个实力值，加油~</text>
+          {{oo[0].value}},超越她还需要{{oo[0].rank * 30}}个实力值，加油~</text>
       </block>
 
 
       <block wx:if="{{isCharm & isClickUser2}}">
           <text class='text2' style=''>{{oo[1].username}}魅力值
-          {{oo[1].value}},超越她还差{{oo[1].rank}}个赞哦~</text>
+          {{oo[1].value}},超越她还差{{oo[1].value * 8}}个赞哦~</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser2}}">
         <text class='text2' style=''>{{oo[1].username}}实力评分
-          {{oo[1].value}},超越她还需要{{oo[1].rank}}个实力值，加油~</text>
+          {{oo[1].value}},超越她还需要{{oo[1].rank * 8}}个实力值，加油~</text>
       </block>
 
     <block wx:if="{{isCharm & isClickUser3}}">
           <text class='text3' style=''>{{oo[2].username}}魅力值
-          {{oo[2].value}},超越她还差{{oo[2].rank}}个赞哦</text>
+          {{oo[2].value}},超越她还差{{oo[2].value * 5}}个赞哦</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser3}}">
         <text class='text3' style=''>{{oo[2].username}}评分
-          {{oo[2].value}},超越她还需要{{oo[2].rank}}个实力值，加油~</text>
+          {{oo[2].value}},超越她还需要{{oo[2].rank* 5}}个实力值，加油~</text>
       </block>
 
          <block wx:if="{{isCharm & isClickUser4}}">
           <text class='text4' style=''>{{oo[3].username}}魅力值
-          {{oo[3].value}},超越她还差{{oo[3].rank}}个赞哦</text>
+          {{oo[3].value}},超越她还差{{oo[3].value * 3}}个赞哦</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser4}}">
         <text class='text4' style=''>{{oo[3].username}}评分
-          {{oo[3].value}},超越她还需要{{oo[3].rank}}个实力值，加油~</text>
+          {{oo[3].value}},超越她还需要{{oo[3].rank* 3}}个实力值，加油~</text>
       </block>
 
          <block wx:if="{{isCharm & isClickUser5}}">
           <text class='text5' style=''>{{oo[4].username}}魅力值
-          {{oo[4].value}},超越她还差{{oo[4].rank}}个赞哦~</text>
+          {{oo[4].value}},超越她还差{{oo[4].value}}个赞哦~</text>
       </block>
 
       <block wx:if="{{isStrength & isClickUser5}}">
